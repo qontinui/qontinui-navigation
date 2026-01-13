@@ -1,0 +1,509 @@
+/**
+ * Navigation Groups
+ *
+ * Shared navigation group definitions for Qontinui applications.
+ * These define the structure and hierarchy of the sidebar navigation.
+ */
+
+import type { NavigationGroup, NavigationItem } from "./types";
+
+// ============================================================================
+// RUN Group
+// ============================================================================
+
+export const RUN_ITEMS: NavigationItem[] = [
+  {
+    id: "run",
+    label: "Execute",
+    icon: "Play",
+    description: "Run workflows and automation",
+  },
+  {
+    id: "active",
+    label: "Active",
+    icon: "Activity",
+    description: "Monitor active executions",
+  },
+  {
+    id: "history",
+    label: "History",
+    icon: "History",
+    description: "View execution history",
+  },
+];
+
+export const RUN_GROUP: NavigationGroup = {
+  id: "run",
+  label: "RUN",
+  items: RUN_ITEMS,
+  defaultExpanded: true,
+};
+
+// ============================================================================
+// OBSERVE Group - Session Sub-items
+// ============================================================================
+
+export const SESSION_ITEMS: NavigationItem[] = [
+  {
+    id: "run-dashboard",
+    label: "Dashboard",
+    icon: "LayoutDashboard",
+    description: "Session overview and status",
+  },
+  {
+    id: "run-actions",
+    label: "Actions",
+    icon: "Zap",
+    description: "Action execution log",
+  },
+  {
+    id: "run-image",
+    label: "Image Recognition",
+    icon: "Image",
+    description: "Visual recognition results",
+  },
+  {
+    id: "run-summary",
+    label: "Summary",
+    icon: "ClipboardList",
+    description: "Execution summary",
+  },
+  {
+    id: "run-findings",
+    label: "Findings",
+    icon: "FileText",
+    description: "Detected findings and issues",
+  },
+  {
+    id: "run-verification",
+    label: "Verification",
+    icon: "FileSearch",
+    description: "State verification results",
+  },
+  {
+    id: "run-tests",
+    label: "Test Results",
+    icon: "TestTube",
+    description: "Playwright test results",
+  },
+  {
+    id: "run-ai-output",
+    label: "AI Output",
+    icon: "Bot",
+    description: "AI conversation and responses",
+  },
+  {
+    id: "run-statistics",
+    label: "Statistics",
+    icon: "BarChart3",
+    description: "Performance metrics",
+  },
+  {
+    id: "run-ai-data",
+    label: "AI Data View",
+    icon: "Database",
+    description: "Structured AI data",
+  },
+];
+
+export const OBSERVE_ITEMS: NavigationItem[] = [
+  {
+    id: "general-logs",
+    label: "General Logs",
+    icon: "ScrollText",
+    description: "Application logs",
+  },
+  {
+    id: "session",
+    label: "Session",
+    icon: "LayoutDashboard",
+    hasChildren: true,
+    selectsFirstChild: false,
+    description: "Current execution session",
+  },
+  // Session children are handled separately for the secondary sidebar
+  {
+    id: "discoveries",
+    label: "Discoveries",
+    icon: "Cloud",
+    description: "Sync queue for discoveries",
+  },
+];
+
+export const OBSERVE_GROUP: NavigationGroup = {
+  id: "observe",
+  label: "OBSERVE",
+  items: OBSERVE_ITEMS,
+  defaultExpanded: false,
+};
+
+// ============================================================================
+// BUILD Group - Library Categories
+// ============================================================================
+
+export const LIBRARY_ITEMS: NavigationItem[] = [
+  {
+    id: "library-tasks",
+    label: "Tasks",
+    icon: "FileText",
+    description: "Single-step AI tasks",
+  },
+  {
+    id: "library-workflows",
+    label: "Workflows",
+    icon: "Sparkles",
+    description: "Phase-based automation workflows",
+  },
+  {
+    id: "library-workflows-legacy",
+    label: "AI Workflows (Legacy)",
+    icon: "Sparkles",
+    description: "Legacy multi-step AI workflows",
+  },
+  {
+    id: "library-gui-workflows",
+    label: "GUI Workflows",
+    icon: "MousePointer2",
+    description: "Sequential GUI automation",
+  },
+  {
+    id: "library-scripts",
+    label: "Scripts",
+    icon: "TestTube",
+    description: "Playwright scripts",
+  },
+  {
+    id: "library-scriptlets",
+    label: "Scriptlets",
+    icon: "Puzzle",
+    description: "Reusable code snippets",
+  },
+  {
+    id: "library-contexts",
+    label: "Contexts",
+    icon: "BookOpen",
+    description: "AI knowledge base",
+  },
+  {
+    id: "library-verifications",
+    label: "Verifications",
+    icon: "ShieldCheck",
+    description: "State verification configs",
+  },
+  {
+    id: "library-api-requests",
+    label: "API Requests",
+    icon: "Globe",
+    description: "Saved HTTP request templates",
+  },
+];
+
+// ============================================================================
+// BUILD Group - Builder Categories (flyout items)
+// Matches 1:1 with Library categories
+// ============================================================================
+
+export const BUILDER_ITEMS: NavigationItem[] = [
+  {
+    id: "task-builder",
+    label: "Task Builder",
+    icon: "FileText",
+    description: "Create single-step AI tasks",
+  },
+  {
+    id: "unified-workflow-builder",
+    label: "Workflow Builder",
+    icon: "Sparkles",
+    description: "Create phase-based automation workflows",
+  },
+  {
+    id: "workflow-builder",
+    label: "AI Workflow Builder (Legacy)",
+    icon: "Sparkles",
+    description: "Legacy multi-step AI workflows",
+  },
+  {
+    id: "gui-workflow-builder",
+    label: "GUI Workflow Builder",
+    icon: "MousePointer2",
+    description: "Create sequential GUI automation",
+    platforms: ["runner"],
+  },
+  {
+    id: "script-builder",
+    label: "Script Builder",
+    icon: "TestTube",
+    description: "Create Playwright scripts",
+  },
+  {
+    id: "scriptlet-builder",
+    label: "Scriptlet Builder",
+    icon: "Puzzle",
+    description: "Create reusable code snippets",
+  },
+  {
+    id: "context-builder",
+    label: "Context Builder",
+    icon: "BookOpen",
+    description: "Create AI knowledge base entries",
+  },
+  {
+    id: "verification-builder",
+    label: "Verification Builder",
+    icon: "ShieldCheck",
+    description: "Create state verification configs",
+  },
+  {
+    id: "api-request-builder",
+    label: "API Request Builder",
+    icon: "Globe",
+    description: "Create HTTP request templates",
+  },
+  {
+    id: "test-builder",
+    label: "Test Builder",
+    icon: "FlaskConical",
+    description: "Create verification tests",
+  },
+];
+
+export const BUILD_ITEMS: NavigationItem[] = [
+  {
+    id: "library",
+    label: "Library",
+    icon: "BookOpen",
+    description: "Browse saved automation assets",
+  },
+  {
+    id: "builders",
+    label: "Builders",
+    icon: "Sparkles",
+    hasChildren: true,
+    selectsFirstChild: false,
+    description: "Create automation workflows and scripts",
+  },
+  {
+    id: "capture",
+    label: "Capture",
+    icon: "Camera",
+    description: "Capture screen elements",
+    platforms: ["runner"],
+  },
+];
+
+export const BUILD_GROUP: NavigationGroup = {
+  id: "build",
+  label: "BUILD",
+  items: BUILD_ITEMS,
+  defaultExpanded: false,
+};
+
+// ============================================================================
+// CONFIGURE Group
+// ============================================================================
+
+export const CONFIGURE_ITEMS: NavigationItem[] = [
+  {
+    id: "config-log-sources",
+    label: "Log Sources",
+    icon: "FolderOpen",
+    description: "Configure log file locations",
+  },
+  {
+    id: "config-findings",
+    label: "Findings",
+    icon: "Tag",
+    description: "Configure finding patterns",
+  },
+];
+
+export const CONFIGURE_GROUP: NavigationGroup = {
+  id: "configure",
+  label: "CONFIGURE",
+  items: CONFIGURE_ITEMS,
+  defaultExpanded: false,
+};
+
+// ============================================================================
+// SCHEDULE Group
+// ============================================================================
+
+export const SCHEDULE_ITEMS: NavigationItem[] = [
+  {
+    id: "tasks",
+    label: "Scheduled Tasks",
+    icon: "Calendar",
+    description: "Manage scheduled automation",
+  },
+];
+
+export const SCHEDULE_GROUP: NavigationGroup = {
+  id: "schedule",
+  label: "SCHEDULE",
+  items: SCHEDULE_ITEMS,
+  defaultExpanded: false,
+};
+
+// ============================================================================
+// SYSTEM Group - Settings Sub-items
+// ============================================================================
+
+export const SETTINGS_ITEMS: NavigationItem[] = [
+  {
+    id: "settings-account",
+    label: "Account",
+    icon: "User",
+    description: "User account settings",
+  },
+  {
+    id: "settings-ai",
+    label: "AI Providers",
+    icon: "Bot",
+    description: "Configure AI providers and models",
+  },
+  {
+    id: "settings-playwright",
+    label: "Playwright",
+    icon: "FlaskConical",
+    description: "Playwright configuration",
+    platforms: ["runner"],
+  },
+  {
+    id: "settings-general",
+    label: "General",
+    icon: "Wrench",
+    description: "General application settings",
+  },
+  {
+    id: "settings-storage",
+    label: "Storage",
+    icon: "HardDrive",
+    description: "Data storage settings",
+  },
+  {
+    id: "settings-backup",
+    label: "Backup",
+    icon: "Archive",
+    description: "Backup and restore",
+  },
+  {
+    id: "settings-updates",
+    label: "Updates",
+    icon: "Download",
+    description: "Check for updates",
+    platforms: ["runner"],
+  },
+  {
+    id: "settings-debug",
+    label: "Debug",
+    icon: "FlaskConical",
+    description: "Debug and diagnostics",
+  },
+];
+
+export const SYSTEM_ITEMS: NavigationItem[] = [
+  {
+    id: "settings",
+    label: "Settings",
+    icon: "Settings",
+    hasChildren: true,
+    selectsFirstChild: true,
+    description: "Application settings",
+  },
+  {
+    id: "help",
+    label: "Help",
+    icon: "HelpCircle",
+    description: "Documentation and support",
+  },
+];
+
+export const SYSTEM_GROUP: NavigationGroup = {
+  id: "system",
+  label: "SYSTEM",
+  items: SYSTEM_ITEMS,
+  defaultExpanded: true,
+};
+
+// ============================================================================
+// Complete Navigation Structure
+// ============================================================================
+
+/**
+ * All navigation groups in order.
+ */
+export const NAVIGATION_GROUPS: NavigationGroup[] = [
+  RUN_GROUP,
+  OBSERVE_GROUP,
+  BUILD_GROUP,
+  CONFIGURE_GROUP,
+  SCHEDULE_GROUP,
+  SYSTEM_GROUP,
+];
+
+/**
+ * Map of parent IDs to their children for secondary sidebar.
+ */
+export const CHILDREN_MAP: Record<string, NavigationItem[]> = {
+  session: SESSION_ITEMS,
+  library: LIBRARY_ITEMS,
+  builders: BUILDER_ITEMS,
+  settings: SETTINGS_ITEMS,
+};
+
+/**
+ * Get children items for a parent item.
+ */
+export function getChildrenItems(parentId: string): NavigationItem[] {
+  return CHILDREN_MAP[parentId] || [];
+}
+
+/**
+ * Get all navigation items flattened.
+ */
+export function getAllItems(): NavigationItem[] {
+  const items: NavigationItem[] = [];
+
+  for (const group of NAVIGATION_GROUPS) {
+    items.push(...group.items);
+  }
+
+  // Add children items
+  for (const children of Object.values(CHILDREN_MAP)) {
+    items.push(...children);
+  }
+
+  return items;
+}
+
+/**
+ * Find an item by ID across all groups and children.
+ */
+export function findItemById(id: string): NavigationItem | undefined {
+  return getAllItems().find((item) => item.id === id);
+}
+
+/**
+ * Get the parent group for an item.
+ */
+export function getItemGroup(itemId: string): NavigationGroup | undefined {
+  for (const group of NAVIGATION_GROUPS) {
+    if (group.items.some((item) => item.id === itemId)) {
+      return group;
+    }
+  }
+
+  // Check children
+  for (const [parentId, children] of Object.entries(CHILDREN_MAP)) {
+    if (children.some((item) => item.id === itemId)) {
+      // Find the parent's group
+      for (const group of NAVIGATION_GROUPS) {
+        if (group.items.some((item) => item.id === parentId)) {
+          return group;
+        }
+      }
+    }
+  }
+
+  return undefined;
+}
