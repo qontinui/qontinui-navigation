@@ -51,6 +51,12 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Session overview and status",
   },
   {
+    id: "run-recap",
+    label: "Recap",
+    icon: "ClipboardCheck",
+    description: "Quick overview of what happened",
+  },
+  {
     id: "run-actions",
     label: "Actions",
     icon: "Zap",
@@ -75,10 +81,10 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Detected findings and issues",
   },
   {
-    id: "run-verification",
-    label: "Verification",
+    id: "run-exploration",
+    label: "State Exploration",
     icon: "FileSearch",
-    description: "State verification results",
+    description: "State exploration results",
   },
   {
     id: "run-tests",
@@ -104,6 +110,13 @@ export const SESSION_ITEMS: NavigationItem[] = [
     icon: "Database",
     description: "Structured AI data",
   },
+  {
+    id: "run-accessibility",
+    label: "Accessibility Explorer",
+    icon: "Accessibility",
+    description: "Explore browser accessibility tree via CDP",
+    platforms: ["runner"],
+  },
 ];
 
 export const OBSERVE_ITEMS: NavigationItem[] = [
@@ -120,13 +133,31 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     hasChildren: true,
     selectsFirstChild: false,
     description: "Current execution session",
+    modes: ["developer"],
   },
   // Session children are handled separately for the secondary sidebar
+  {
+    id: "learning",
+    label: "Learning Insights",
+    icon: "Brain",
+    description: "AI learning patterns and performance",
+    platforms: ["runner"],
+    modes: ["developer"],
+  },
+  {
+    id: "checkpoints",
+    label: "Checkpoints",
+    icon: "History",
+    description: "Time-travel debugging with checkpoints",
+    platforms: ["runner"],
+    modes: ["developer"],
+  },
   {
     id: "discoveries",
     label: "Discoveries",
     icon: "Cloud",
     description: "Sync queue for discoveries",
+    modes: ["developer"],
   },
 ];
 
@@ -173,22 +204,16 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
     description: "Playwright scripts",
   },
   {
-    id: "library-scriptlets",
-    label: "Scriptlets",
-    icon: "Puzzle",
-    description: "Reusable code snippets",
-  },
-  {
     id: "library-contexts",
     label: "Contexts",
     icon: "BookOpen",
     description: "AI knowledge base",
   },
   {
-    id: "library-verifications",
-    label: "Verifications",
+    id: "library-state-explorer",
+    label: "State Explorer",
     icon: "ShieldCheck",
-    description: "State verification configs",
+    description: "Saved state exploration configs",
   },
   {
     id: "library-api-requests",
@@ -211,15 +236,9 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     description: "Create single-step AI tasks",
   },
   {
-    id: "unified-workflow-builder",
-    label: "Workflow Builder",
-    icon: "Sparkles",
-    description: "Create phase-based automation workflows",
-  },
-  {
     id: "workflow-builder",
     label: "AI Workflow Builder (Legacy)",
-    icon: "Sparkles",
+    icon: "Bot",
     description: "Legacy multi-step AI workflows",
   },
   {
@@ -236,22 +255,16 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     description: "Create Playwright scripts",
   },
   {
-    id: "scriptlet-builder",
-    label: "Scriptlet Builder",
-    icon: "Puzzle",
-    description: "Create reusable code snippets",
-  },
-  {
     id: "context-builder",
     label: "Context Builder",
     icon: "BookOpen",
     description: "Create AI knowledge base entries",
   },
   {
-    id: "verification-builder",
-    label: "Verification Builder",
+    id: "state-explorer-builder",
+    label: "State Explorer Builder",
     icon: "ShieldCheck",
-    description: "Create state verification configs",
+    description: "Create state exploration configs",
   },
   {
     id: "api-request-builder",
@@ -260,27 +273,59 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     description: "Create HTTP request templates",
   },
   {
+    id: "awas-builder",
+    label: "AWAS Builder",
+    icon: "Wifi",
+    description: "Create AWAS web automation configs",
+    platforms: ["runner"],
+  },
+  {
     id: "test-builder",
     label: "Test Builder",
     icon: "FlaskConical",
     description: "Create verification tests",
   },
+  {
+    id: "check-builder",
+    label: "Check Builder",
+    icon: "ShieldCheck",
+    description: "Create code quality checks (lint, format, type check)",
+  },
+  {
+    id: "shell-command-builder",
+    label: "Shell Command Builder",
+    icon: "Terminal",
+    description: "Create reusable shell commands for workflows",
+  },
 ];
 
 export const BUILD_ITEMS: NavigationItem[] = [
+  {
+    id: "unified-workflow-builder",
+    label: "Workflows",
+    icon: "Sparkles",
+    description: "Build phase-based automation workflows",
+  },
+  {
+    id: "flow-designer",
+    label: "Flow Designer",
+    icon: "GitBranch",
+    description: "Visual editor for deterministic workflows",
+    platforms: ["runner"],
+  },
+  {
+    id: "builders",
+    label: "Builders",
+    icon: "Wrench",
+    hasChildren: true,
+    selectsFirstChild: false,
+    description: "Create tasks, scripts, and other assets",
+  },
   {
     id: "library",
     label: "Library",
     icon: "BookOpen",
     description: "Browse saved automation assets",
-  },
-  {
-    id: "builders",
-    label: "Builders",
-    icon: "Sparkles",
-    hasChildren: true,
-    selectsFirstChild: false,
-    description: "Create automation workflows and scripts",
   },
   {
     id: "capture",
@@ -296,6 +341,7 @@ export const BUILD_GROUP: NavigationGroup = {
   label: "BUILD",
   items: BUILD_ITEMS,
   defaultExpanded: false,
+  modes: ["developer"],
 };
 
 // ============================================================================
@@ -315,6 +361,13 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     icon: "Tag",
     description: "Configure finding patterns",
   },
+  {
+    id: "config-hooks",
+    label: "Lifecycle Hooks",
+    icon: "Webhook",
+    description: "Configure execution event triggers",
+    platforms: ["runner"],
+  },
 ];
 
 export const CONFIGURE_GROUP: NavigationGroup = {
@@ -322,6 +375,7 @@ export const CONFIGURE_GROUP: NavigationGroup = {
   label: "CONFIGURE",
   items: CONFIGURE_ITEMS,
   defaultExpanded: false,
+  modes: ["developer"],
 };
 
 // ============================================================================
@@ -342,6 +396,7 @@ export const SCHEDULE_GROUP: NavigationGroup = {
   label: "SCHEDULE",
   items: SCHEDULE_ITEMS,
   defaultExpanded: false,
+  modes: ["developer"],
 };
 
 // ============================================================================
@@ -360,6 +415,23 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "AI Providers",
     icon: "Bot",
     description: "Configure AI providers and models",
+    modes: ["developer"],
+  },
+  {
+    id: "settings-agentic",
+    label: "Advanced AI",
+    icon: "Brain",
+    description: "Memory compression, retry, and task routing",
+    platforms: ["runner"],
+    modes: ["developer"],
+  },
+  {
+    id: "settings-self-healing",
+    label: "Self-Healing",
+    icon: "ShieldCheck",
+    description: "Self-healing automation settings",
+    platforms: ["runner"],
+    modes: ["developer"],
   },
   {
     id: "settings-playwright",
@@ -367,6 +439,31 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "FlaskConical",
     description: "Playwright configuration",
     platforms: ["runner"],
+    modes: ["developer"],
+  },
+  {
+    id: "settings-mobile",
+    label: "Mobile",
+    icon: "Monitor",
+    description: "Mobile device (ADB) settings",
+    platforms: ["runner"],
+    modes: ["developer"],
+  },
+  {
+    id: "settings-mcp",
+    label: "MCP Servers",
+    icon: "Wifi",
+    description: "Model Context Protocol server configuration",
+    platforms: ["runner"],
+    modes: ["developer"],
+  },
+  {
+    id: "settings-log-sources",
+    label: "Log Sources",
+    icon: "FolderOpen",
+    description: "Global log source configuration with AI selection",
+    platforms: ["runner"],
+    modes: ["developer"],
   },
   {
     id: "settings-general",
@@ -385,6 +482,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Backup",
     icon: "Archive",
     description: "Backup and restore",
+    modes: ["developer"],
   },
   {
     id: "settings-updates",
@@ -398,6 +496,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Debug",
     icon: "FlaskConical",
     description: "Debug and diagnostics",
+    modes: ["developer"],
   },
 ];
 

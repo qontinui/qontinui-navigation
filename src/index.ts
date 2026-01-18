@@ -23,6 +23,8 @@ export type {
   // Platform types
   Platform,
   PlatformConfig,
+  // App mode types
+  AppMode,
   // Configuration types
   NavigationConfig,
   NavigationExtensions,
@@ -90,6 +92,15 @@ export {
   filterItemsForPlatform,
   filterGroupForPlatform,
   filterGroupsForPlatform,
+  // App mode filtering
+  isItemAvailableForMode,
+  filterItemsForMode,
+  filterGroupForMode,
+  filterGroupsForMode,
+  getChildrenForMode,
+  getNavigationGroupsForMode,
+  getRunnerNavigationForMode,
+  getChildrenForPlatformAndMode,
   // Extensions
   applyItemExtensions,
   applyGroupExtensions,

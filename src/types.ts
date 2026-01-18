@@ -25,6 +25,7 @@ export type IconName =
   // Observe/Session
   | "ScrollText"
   | "LayoutDashboard"
+  | "ClipboardCheck"
   | "Zap"
   | "Image"
   | "ClipboardList"
@@ -34,6 +35,7 @@ export type IconName =
   | "BarChart3"
   | "Database"
   | "Cloud"
+  | "Accessibility"
   // Build
   | "BookOpen"
   | "Sparkles"
@@ -45,6 +47,8 @@ export type IconName =
   | "Code"
   | "Puzzle"
   | "ShieldCheck"
+  | "Wifi"
+  | "Terminal"
   // Configure
   | "FolderOpen"
   | "Tag"
@@ -60,7 +64,9 @@ export type IconName =
   | "Palette"
   | "Bell"
   | "Key"
-  | "CreditCard";
+  | "CreditCard"
+  | "Brain"
+  | "Webhook";
 
 // ============================================================================
 // Navigation Item Types
@@ -88,6 +94,8 @@ export interface NavigationItem {
   selectsFirstChild?: boolean;
   /** Platform availability - if not set, available on all platforms */
   platforms?: Platform[];
+  /** App mode availability - if not set, available in all modes */
+  modes?: AppMode[];
   /** Badge count or status to show on this item */
   badge?: NavigationBadge;
   /** Whether this item is disabled */
@@ -128,6 +136,8 @@ export interface NavigationGroup {
   icon?: IconName;
   /** Platform availability - if not set, available on all platforms */
   platforms?: Platform[];
+  /** App mode availability - if not set, available in all modes */
+  modes?: AppMode[];
 }
 
 // ============================================================================
@@ -138,6 +148,17 @@ export interface NavigationGroup {
  * Platform identifiers for conditional navigation items.
  */
 export type Platform = "web" | "runner" | "desktop" | "mobile";
+
+// ============================================================================
+// App Mode Types
+// ============================================================================
+
+/**
+ * Application mode for role-based navigation filtering.
+ * - automation: Minimal UI for executing pre-built workflows
+ * - developer: Full UI for building and debugging workflows
+ */
+export type AppMode = "automation" | "developer";
 
 /**
  * Platform-specific configuration.
@@ -231,6 +252,8 @@ export interface NavigationState {
   secondarySidebar: SecondarySidebarState;
   /** Whether the main sidebar is collapsed */
   isCollapsed: boolean;
+  /** Current application mode (automation or developer) */
+  appMode: AppMode;
 }
 
 /**
@@ -245,4 +268,5 @@ export type NavigationAction =
   | { type: "OPEN_SECONDARY"; parentId: string; items: NavigationItem[] }
   | { type: "CLOSE_SECONDARY" }
   | { type: "TOGGLE_SIDEBAR_COLLAPSE" }
-  | { type: "SET_SIDEBAR_COLLAPSED"; collapsed: boolean };
+  | { type: "SET_SIDEBAR_COLLAPSED"; collapsed: boolean }
+  | { type: "SET_APP_MODE"; mode: AppMode };

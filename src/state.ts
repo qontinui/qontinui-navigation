@@ -9,6 +9,7 @@ import type {
   NavigationAction,
   NavigationItem,
   SecondarySidebarState,
+  AppMode,
 } from "./types";
 
 // ============================================================================
@@ -24,6 +25,7 @@ export function createInitialState(
     expandedGroups: string[];
     expandedItems: string[];
     isCollapsed: boolean;
+    appMode: AppMode;
   }>
 ): NavigationState {
   return {
@@ -36,6 +38,7 @@ export function createInitialState(
       items: [],
     },
     isCollapsed: options?.isCollapsed ?? false,
+    appMode: options?.appMode ?? "developer",
   };
 }
 
@@ -133,6 +136,12 @@ export function navigationReducer(
         isCollapsed: action.collapsed,
       };
 
+    case "SET_APP_MODE":
+      return {
+        ...state,
+        appMode: action.mode,
+      };
+
     default:
       return state;
   }
@@ -192,6 +201,11 @@ export const navigationActions = {
     type: "SET_SIDEBAR_COLLAPSED",
     collapsed,
   }),
+
+  setAppMode: (mode: AppMode): NavigationAction => ({
+    type: "SET_APP_MODE",
+    mode,
+  }),
 };
 
 // ============================================================================
@@ -242,6 +256,7 @@ export function serializeState(state: NavigationState): string {
     expandedGroups: Array.from(state.expandedGroups),
     expandedItems: Array.from(state.expandedItems),
     isCollapsed: state.isCollapsed,
+    appMode: state.appMode,
   });
 }
 
@@ -256,6 +271,7 @@ export function deserializeState(json: string): Partial<NavigationState> | null 
       expandedGroups: new Set(data.expandedGroups ?? []),
       expandedItems: new Set(data.expandedItems ?? []),
       isCollapsed: data.isCollapsed ?? false,
+      appMode: data.appMode ?? "developer",
     };
   } catch {
     return null;
@@ -270,4 +286,5 @@ export const STORAGE_KEYS = {
   collapsed: "qontinui-sidebar-collapsed",
   expandedGroups: "qontinui-sidebar-groups",
   activeTab: "qontinui-active-tab",
+  appMode: "qontinui-app-mode",
 } as const;

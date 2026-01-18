@@ -25,6 +25,7 @@ export const Icons = {
   // Observe/Session
   ScrollText: "ScrollText" as const,
   LayoutDashboard: "LayoutDashboard" as const,
+  ClipboardCheck: "ClipboardCheck" as const,
   Zap: "Zap" as const,
   Image: "Image" as const,
   ClipboardList: "ClipboardList" as const,
@@ -34,6 +35,7 @@ export const Icons = {
   BarChart3: "BarChart3" as const,
   Database: "Database" as const,
   Cloud: "Cloud" as const,
+  Accessibility: "Accessibility" as const,
 
   // Build
   BookOpen: "BookOpen" as const,
@@ -65,6 +67,10 @@ export const Icons = {
   Bell: "Bell" as const,
   Key: "Key" as const,
   CreditCard: "CreditCard" as const,
+  Brain: "Brain" as const,
+  Webhook: "Webhook" as const,
+  Wifi: "Wifi" as const,
+  Terminal: "Terminal" as const,
 } satisfies Record<string, IconName>;
 
 /**
@@ -92,6 +98,7 @@ export const ICON_CATEGORIES: Record<string, IconName[]> = {
   observe: [
     "ScrollText",
     "LayoutDashboard",
+    "ClipboardCheck",
     "Zap",
     "Image",
     "ClipboardList",
@@ -101,6 +108,7 @@ export const ICON_CATEGORIES: Record<string, IconName[]> = {
     "BarChart3",
     "Database",
     "Cloud",
+    "Accessibility",
   ],
   build: [
     "BookOpen",
@@ -113,6 +121,7 @@ export const ICON_CATEGORIES: Record<string, IconName[]> = {
     "Code",
     "Puzzle",
     "ShieldCheck",
+    "Terminal",
   ],
   configure: ["FolderOpen", "Tag"],
   schedule: ["Calendar"],
@@ -127,5 +136,7 @@ export const ICON_CATEGORIES: Record<string, IconName[]> = {
     "Bell",
     "Key",
     "CreditCard",
+    "Brain",
+    "Webhook",
   ],
 };
