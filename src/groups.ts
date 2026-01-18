@@ -121,12 +121,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
 
 export const OBSERVE_ITEMS: NavigationItem[] = [
   {
-    id: "general-logs",
-    label: "General Logs",
-    icon: "ScrollText",
-    description: "Application logs",
-  },
-  {
     id: "session",
     label: "Session",
     icon: "LayoutDashboard",
@@ -138,9 +132,9 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
   // Session children are handled separately for the secondary sidebar
   {
     id: "learning",
-    label: "Learning Insights",
+    label: "AI Task Analytics",
     icon: "Brain",
-    description: "AI learning patterns and performance",
+    description: "Patterns and performance from AI task executions",
     platforms: ["runner"],
     modes: ["developer"],
   },
@@ -154,9 +148,9 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
   },
   {
     id: "discoveries",
-    label: "Discoveries",
+    label: "GUI Discoveries",
     icon: "Cloud",
-    description: "Sync queue for discoveries",
+    description: "Patterns detected from GUI automation runs",
     modes: ["developer"],
   },
 ];
@@ -234,12 +228,6 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     label: "Task Builder",
     icon: "FileText",
     description: "Create single-step AI tasks",
-  },
-  {
-    id: "workflow-builder",
-    label: "AI Workflow Builder (Legacy)",
-    icon: "Bot",
-    description: "Legacy multi-step AI workflows",
   },
   {
     id: "gui-workflow-builder",
