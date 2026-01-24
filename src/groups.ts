@@ -45,16 +45,10 @@ export const RUN_GROUP: NavigationGroup = {
 
 export const SESSION_ITEMS: NavigationItem[] = [
   {
-    id: "run-dashboard",
-    label: "Dashboard",
-    icon: "LayoutDashboard",
-    description: "Session overview and status",
-  },
-  {
     id: "run-recap",
-    label: "Recap",
+    label: "Summary",
     icon: "ClipboardCheck",
-    description: "Quick overview of what happened",
+    description: "Overview, AI summary, and run details",
   },
   {
     id: "run-actions",
@@ -67,12 +61,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Image Recognition",
     icon: "Image",
     description: "Visual recognition results",
-  },
-  {
-    id: "run-summary",
-    label: "Summary",
-    icon: "ClipboardList",
-    description: "Execution summary",
   },
   {
     id: "run-findings",
@@ -115,6 +103,13 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Accessibility Explorer",
     icon: "Accessibility",
     description: "Explore browser accessibility tree via CDP",
+    platforms: ["runner"],
+  },
+  {
+    id: "run-ui-bridge",
+    label: "UI Bridge Inspector",
+    icon: "Puzzle",
+    description: "Inspect and control UI Bridge elements",
     platforms: ["runner"],
   },
 ];
@@ -186,10 +181,10 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
     description: "Legacy multi-step AI workflows",
   },
   {
-    id: "library-gui-workflows",
-    label: "GUI Workflows",
-    icon: "MousePointer2",
-    description: "Sequential GUI automation",
+    id: "library-macros",
+    label: "Macros",
+    icon: "Layers",
+    description: "Deterministic action sequences",
   },
   {
     id: "library-scripts",
@@ -230,10 +225,10 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     description: "Create single-step AI tasks",
   },
   {
-    id: "gui-workflow-builder",
-    label: "GUI Workflow Builder",
-    icon: "MousePointer2",
-    description: "Create sequential GUI automation",
+    id: "macro-builder",
+    label: "Macro Builder",
+    icon: "Layers",
+    description: "Create deterministic action sequences",
     platforms: ["runner"],
   },
   {

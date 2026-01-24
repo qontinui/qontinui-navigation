@@ -40,6 +40,7 @@ export type IconName =
   | "BookOpen"
   | "Sparkles"
   | "MousePointer2"
+  | "Layers"
   | "FlaskConical"
   | "Camera"
   | "GitBranch"
