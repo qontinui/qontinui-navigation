@@ -219,6 +219,13 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
 
 export const BUILDER_ITEMS: NavigationItem[] = [
   {
+    id: "live-page-generator",
+    label: "Live Page Generator",
+    icon: "Globe",
+    description: "Connect to live pages via UI Bridge to generate tests and tasks",
+    platforms: ["runner"],
+  },
+  {
     id: "task-builder",
     label: "Task Builder",
     icon: "FileText",
