@@ -16,6 +16,27 @@ import type {
 import { NAVIGATION_GROUPS, CHILDREN_MAP } from "./groups";
 
 // ============================================================================
+// Development Mode
+// ============================================================================
+
+let _isDevelopmentMode = false;
+
+/**
+ * Set whether the app is running in development mode.
+ * Call this at app startup to enable showing hidden navigation items.
+ */
+export function setDevelopmentMode(isDev: boolean): void {
+  _isDevelopmentMode = isDev;
+}
+
+/**
+ * Check if running in development mode.
+ */
+export function isDevelopmentMode(): boolean {
+  return _isDevelopmentMode;
+}
+
+// ============================================================================
 // Platform Filtering
 // ============================================================================
 
@@ -25,8 +46,12 @@ import { NAVIGATION_GROUPS, CHILDREN_MAP } from "./groups";
  */
 export function isItemAvailable(
   item: NavigationItem,
-  platform: Platform
+  platform: Platform,
 ): boolean {
+  // Exclude hidden items in production (show in development)
+  if (item.hidden && !isDevelopmentMode()) {
+    return false;
+  }
   // If no platform restriction, show everywhere
   if (!item.platforms || item.platforms.length === 0) {
     return true;
@@ -39,7 +64,7 @@ export function isItemAvailable(
  */
 export function filterItemsForPlatform(
   items: NavigationItem[],
-  platform: Platform
+  platform: Platform,
 ): NavigationItem[] {
   return items.filter((item) => isItemAvailable(item, platform));
 }
@@ -49,7 +74,7 @@ export function filterItemsForPlatform(
  */
 export function filterGroupForPlatform(
   group: NavigationGroup,
-  platform: Platform
+  platform: Platform,
 ): NavigationGroup {
   // Check if the group itself is platform-specific
   if (group.platforms && !group.platforms.includes(platform)) {
@@ -67,7 +92,7 @@ export function filterGroupForPlatform(
  */
 export function filterGroupsForPlatform(
   groups: NavigationGroup[],
-  platform: Platform
+  platform: Platform,
 ): NavigationGroup[] {
   return groups
     .map((group) => filterGroupForPlatform(group, platform))
@@ -84,8 +109,12 @@ export function filterGroupsForPlatform(
  */
 export function isItemAvailableForMode(
   item: NavigationItem,
-  mode: AppMode
+  mode: AppMode,
 ): boolean {
+  // Exclude hidden items in production (show in development)
+  if (item.hidden && !isDevelopmentMode()) {
+    return false;
+  }
   // If no mode restriction, show in all modes
   if (!item.modes || item.modes.length === 0) {
     return true;
@@ -98,7 +127,7 @@ export function isItemAvailableForMode(
  */
 export function filterItemsForMode(
   items: NavigationItem[],
-  mode: AppMode
+  mode: AppMode,
 ): NavigationItem[] {
   return items.filter((item) => isItemAvailableForMode(item, mode));
 }
@@ -108,7 +137,7 @@ export function filterItemsForMode(
  */
 export function filterGroupForMode(
   group: NavigationGroup,
-  mode: AppMode
+  mode: AppMode,
 ): NavigationGroup {
   // Check if the group itself is mode-specific
   if (group.modes && !group.modes.includes(mode)) {
@@ -126,7 +155,7 @@ export function filterGroupForMode(
  */
 export function filterGroupsForMode(
   groups: NavigationGroup[],
-  mode: AppMode
+  mode: AppMode,
 ): NavigationGroup[] {
   return groups
     .map((group) => filterGroupForMode(group, mode))
@@ -138,7 +167,7 @@ export function filterGroupsForMode(
  */
 export function getChildrenForMode(
   parentId: string,
-  mode: AppMode
+  mode: AppMode,
 ): NavigationItem[] {
   const children = CHILDREN_MAP[parentId] || [];
   return filterItemsForMode(children, mode);
@@ -150,7 +179,7 @@ export function getChildrenForMode(
 export function getNavigationGroupsForMode(
   platform: Platform,
   mode: AppMode,
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationGroup[] {
   // First filter by platform
   let groups = filterGroupsForPlatform(NAVIGATION_GROUPS, platform);
@@ -171,7 +200,7 @@ export function getNavigationGroupsForMode(
  */
 export function getRunnerNavigationForMode(
   mode: AppMode,
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationGroup[] {
   return getNavigationGroupsForMode("runner", mode, extensions);
 }
@@ -182,11 +211,12 @@ export function getRunnerNavigationForMode(
 export function getChildrenForPlatformAndMode(
   parentId: string,
   platform: Platform,
-  mode: AppMode
+  mode: AppMode,
 ): NavigationItem[] {
   const children = CHILDREN_MAP[parentId] || [];
   return children.filter(
-    (item) => isItemAvailable(item, platform) && isItemAvailableForMode(item, mode)
+    (item) =>
+      isItemAvailable(item, platform) && isItemAvailableForMode(item, mode),
   );
 }
 
@@ -200,7 +230,7 @@ export function getChildrenForPlatformAndMode(
 export function applyItemExtensions(
   items: NavigationItem[],
   groupId: string,
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationItem[] {
   if (!extensions) {
     return items;
@@ -245,7 +275,7 @@ export function applyItemExtensions(
  */
 export function applyGroupExtensions(
   group: NavigationGroup,
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationGroup {
   return {
     ...group,
@@ -258,7 +288,7 @@ export function applyGroupExtensions(
  */
 export function applyExtensions(
   groups: NavigationGroup[],
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationGroup[] {
   return groups.map((group) => applyGroupExtensions(group, extensions));
 }
@@ -276,7 +306,7 @@ export function buildNavigationConfig(
     extensions?: NavigationExtensions;
     isDevelopment?: boolean;
     features?: Record<string, boolean>;
-  }
+  },
 ): NavigationConfig {
   // Start with base groups
   let groups = [...NAVIGATION_GROUPS];
@@ -305,7 +335,7 @@ export function buildNavigationConfig(
  */
 export function getNavigationGroups(
   platform: Platform,
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationGroup[] {
   let groups = filterGroupsForPlatform(NAVIGATION_GROUPS, platform);
 
@@ -321,7 +351,7 @@ export function getNavigationGroups(
  */
 export function getChildrenForPlatform(
   parentId: string,
-  platform: Platform
+  platform: Platform,
 ): NavigationItem[] {
   const children = CHILDREN_MAP[parentId] || [];
   return filterItemsForPlatform(children, platform);
@@ -342,7 +372,10 @@ export function detectPlatform(): Platform {
   }
 
   // Check for mobile
-  if (typeof navigator !== "undefined" && /Mobi|Android/i.test(navigator.userAgent)) {
+  if (
+    typeof navigator !== "undefined" &&
+    /Mobi|Android/i.test(navigator.userAgent)
+  ) {
     return "mobile";
   }
 
@@ -358,7 +391,7 @@ export function detectPlatform(): Platform {
  * Pre-built navigation config for the runner application.
  */
 export function getRunnerNavigation(
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationGroup[] {
   return getNavigationGroups("runner", extensions);
 }
@@ -367,7 +400,7 @@ export function getRunnerNavigation(
  * Pre-built navigation config for the web application.
  */
 export function getWebNavigation(
-  extensions?: NavigationExtensions
+  extensions?: NavigationExtensions,
 ): NavigationGroup[] {
   return getNavigationGroups("web", extensions);
 }

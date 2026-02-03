@@ -44,6 +44,7 @@ export {
   // Individual group items
   RUN_ITEMS,
   SESSION_ITEMS,
+  ANALYSIS_ITEMS,
   OBSERVE_ITEMS,
   LIBRARY_ITEMS,
   BUILDER_ITEMS,
@@ -73,12 +74,7 @@ export {
 // Icon Utilities
 // ============================================================================
 
-export {
-  Icons,
-  ICON_NAMES,
-  ICON_CATEGORIES,
-  isValidIconName,
-} from "./icons";
+export { Icons, ICON_NAMES, ICON_CATEGORIES, isValidIconName } from "./icons";
 
 export type { IconKey } from "./icons";
 
@@ -87,6 +83,9 @@ export type { IconKey } from "./icons";
 // ============================================================================
 
 export {
+  // Development mode
+  setDevelopmentMode,
+  isDevelopmentMode,
   // Platform filtering
   isItemAvailable,
   filterItemsForPlatform,

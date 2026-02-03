@@ -13,22 +13,24 @@ import type { NavigationGroup, NavigationItem } from "./types";
 
 export const RUN_ITEMS: NavigationItem[] = [
   {
-    id: "run",
-    label: "Execute",
+    id: "workflow-queue",
+    label: "Workflow Queue",
+    icon: "Layers",
+    description: "Queue and execute workflow sequences",
+    platforms: ["runner"],
+    modes: ["developer"],
+  },
+  {
+    id: "gui-automation",
+    label: "GUI Automation",
     icon: "Play",
-    description: "Run workflows and automation",
+    description: "Run GUI automation workflows",
   },
   {
     id: "active",
     label: "Active",
     icon: "Activity",
     description: "Monitor active executions",
-  },
-  {
-    id: "history",
-    label: "History",
-    icon: "History",
-    description: "View execution history",
   },
 ];
 
@@ -98,6 +100,13 @@ export const SESSION_ITEMS: NavigationItem[] = [
     icon: "Database",
     description: "Structured AI data",
   },
+];
+
+// ============================================================================
+// OBSERVE Group - Analysis Sub-items
+// ============================================================================
+
+export const ANALYSIS_ITEMS: NavigationItem[] = [
   {
     id: "run-accessibility",
     label: "Accessibility Explorer",
@@ -116,6 +125,12 @@ export const SESSION_ITEMS: NavigationItem[] = [
 
 export const OBSERVE_ITEMS: NavigationItem[] = [
   {
+    id: "runs",
+    label: "Runs",
+    icon: "History",
+    description: "Browse and manage all runs",
+  },
+  {
     id: "session",
     label: "Session",
     icon: "LayoutDashboard",
@@ -124,7 +139,22 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     description: "Current execution session",
     modes: ["developer"],
   },
+  {
+    id: "analysis",
+    label: "Analysis",
+    icon: "FileSearch",
+    hasChildren: true,
+    selectsFirstChild: false,
+    description: "Live inspection tools",
+  },
   // Session children are handled separately for the secondary sidebar
+  {
+    id: "error-monitor",
+    label: "Error Monitor",
+    icon: "AlertCircle",
+    description: "Monitor and fix application errors from log sources",
+    platforms: ["runner"],
+  },
   {
     id: "learning",
     label: "AI Task Analytics",
@@ -132,6 +162,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     description: "Patterns and performance from AI task executions",
     platforms: ["runner"],
     modes: ["developer"],
+    hidden: true,
   },
   {
     id: "checkpoints",
@@ -140,6 +171,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     description: "Time-travel debugging with checkpoints",
     platforms: ["runner"],
     modes: ["developer"],
+    hidden: true,
   },
   {
     id: "discoveries",
@@ -147,6 +179,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     icon: "Cloud",
     description: "Patterns detected from GUI automation runs",
     modes: ["developer"],
+    hidden: true,
   },
 ];
 
@@ -173,12 +206,6 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
     label: "Workflows",
     icon: "Sparkles",
     description: "Phase-based automation workflows",
-  },
-  {
-    id: "library-workflows-legacy",
-    label: "AI Workflows (Legacy)",
-    icon: "Sparkles",
-    description: "Legacy multi-step AI workflows",
   },
   {
     id: "library-macros",
@@ -222,7 +249,8 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     id: "live-page-generator",
     label: "Live Page Generator",
     icon: "Globe",
-    description: "Connect to live pages via UI Bridge to generate tests and tasks",
+    description:
+      "Connect to live pages via UI Bridge to generate tests and tasks",
     platforms: ["runner"],
   },
   {
@@ -268,6 +296,7 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     icon: "Wifi",
     description: "Create AWAS web automation configs",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "test-builder",
@@ -302,6 +331,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     icon: "GitBranch",
     description: "Visual editor for deterministic workflows",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "builders",
@@ -357,6 +387,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     icon: "Webhook",
     description: "Configure execution event triggers",
     platforms: ["runner"],
+    hidden: true,
   },
 ];
 
@@ -378,6 +409,7 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     label: "Scheduled Tasks",
     icon: "Calendar",
     description: "Manage scheduled automation",
+    hidden: true,
   },
 ];
 
@@ -535,6 +567,7 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
  */
 export const CHILDREN_MAP: Record<string, NavigationItem[]> = {
   session: SESSION_ITEMS,
+  analysis: ANALYSIS_ITEMS,
   library: LIBRARY_ITEMS,
   builders: BUILDER_ITEMS,
   settings: SETTINGS_ITEMS,

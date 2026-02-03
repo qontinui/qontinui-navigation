@@ -26,7 +26,7 @@ export function createInitialState(
     expandedItems: string[];
     isCollapsed: boolean;
     appMode: AppMode;
-  }>
+  }>,
 ): NavigationState {
   return {
     activeItemId: options?.activeItemId ?? null,
@@ -51,7 +51,7 @@ export function createInitialState(
  */
 export function navigationReducer(
   state: NavigationState,
-  action: NavigationAction
+  action: NavigationAction,
 ): NavigationState {
   switch (action.type) {
     case "SET_ACTIVE":
@@ -182,7 +182,7 @@ export const navigationActions = {
 
   openSecondary: (
     parentId: string,
-    items: NavigationItem[]
+    items: NavigationItem[],
   ): NavigationAction => ({
     type: "OPEN_SECONDARY",
     parentId,
@@ -215,14 +215,20 @@ export const navigationActions = {
 /**
  * Check if a group is expanded.
  */
-export function isGroupExpanded(state: NavigationState, groupId: string): boolean {
+export function isGroupExpanded(
+  state: NavigationState,
+  groupId: string,
+): boolean {
   return state.expandedGroups.has(groupId);
 }
 
 /**
  * Check if an item is expanded (for items with children).
  */
-export function isItemExpanded(state: NavigationState, itemId: string): boolean {
+export function isItemExpanded(
+  state: NavigationState,
+  itemId: string,
+): boolean {
   return state.expandedItems.has(itemId);
 }
 
@@ -238,9 +244,12 @@ export function isItemActive(state: NavigationState, itemId: string): boolean {
  */
 export function isSecondaryOpenFor(
   state: NavigationState,
-  parentId: string
+  parentId: string,
 ): boolean {
-  return state.secondarySidebar.isOpen && state.secondarySidebar.parentId === parentId;
+  return (
+    state.secondarySidebar.isOpen &&
+    state.secondarySidebar.parentId === parentId
+  );
 }
 
 // ============================================================================
@@ -263,7 +272,9 @@ export function serializeState(state: NavigationState): string {
 /**
  * Deserialize navigation state from localStorage.
  */
-export function deserializeState(json: string): Partial<NavigationState> | null {
+export function deserializeState(
+  json: string,
+): Partial<NavigationState> | null {
   try {
     const data = JSON.parse(json);
     return {

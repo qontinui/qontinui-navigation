@@ -21,6 +21,7 @@ export const Icons = {
   HelpCircle: "HelpCircle" as const,
   ChevronDown: "ChevronDown" as const,
   ChevronRight: "ChevronRight" as const,
+  AlertCircle: "AlertCircle" as const,
 
   // Observe/Session
   ScrollText: "ScrollText" as const,
@@ -41,6 +42,7 @@ export const Icons = {
   BookOpen: "BookOpen" as const,
   Sparkles: "Sparkles" as const,
   MousePointer2: "MousePointer2" as const,
+  Layers: "Layers" as const,
   FlaskConical: "FlaskConical" as const,
   Camera: "Camera" as const,
   GitBranch: "GitBranch" as const,
@@ -109,6 +111,7 @@ export const ICON_CATEGORIES: Record<string, IconName[]> = {
     "Database",
     "Cloud",
     "Accessibility",
+    "AlertCircle",
   ],
   build: [
     "BookOpen",

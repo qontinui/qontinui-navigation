@@ -36,6 +36,7 @@ export type IconName =
   | "Database"
   | "Cloud"
   | "Accessibility"
+  | "AlertCircle"
   // Build
   | "BookOpen"
   | "Sparkles"
@@ -103,6 +104,8 @@ export interface NavigationItem {
   disabled?: boolean;
   /** Keyboard shortcut hint (e.g., "Ctrl+N") */
   shortcut?: string;
+  /** Hide from navigation (for unreleased features) */
+  hidden?: boolean;
 }
 
 /**
