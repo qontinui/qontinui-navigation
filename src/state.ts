@@ -8,7 +8,6 @@ import type {
   NavigationState,
   NavigationAction,
   NavigationItem,
-  SecondarySidebarState,
   AppMode,
 } from "./types";
 

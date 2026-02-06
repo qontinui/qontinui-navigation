@@ -9,7 +9,6 @@ import type {
   NavigationItem,
   NavigationExtensions,
   Platform,
-  PlatformConfig,
   NavigationConfig,
   AppMode,
 } from "./types";

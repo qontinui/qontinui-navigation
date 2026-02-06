@@ -246,11 +246,11 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
 
 export const BUILDER_ITEMS: NavigationItem[] = [
   {
-    id: "live-page-generator",
-    label: "Live Page Generator",
+    id: "spec-discovery",
+    label: "Spec Discovery",
     icon: "Globe",
     description:
-      "Connect to live pages via UI Bridge to generate tests and tasks",
+      "Discover specs from live pages and generate workflows",
     platforms: ["runner"],
   },
   {

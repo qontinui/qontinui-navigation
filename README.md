@@ -77,7 +77,7 @@ state = navigationReducer(state, navigationActions.setActive("history"));
 state = navigationReducer(state, navigationActions.toggleGroup("observe"));
 state = navigationReducer(
   state,
-  navigationActions.openSecondary("session", sessionItems)
+  navigationActions.openSecondary("session", sessionItems),
 );
 ```
 
