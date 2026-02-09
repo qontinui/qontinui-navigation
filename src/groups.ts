@@ -21,10 +21,18 @@ export const RUN_ITEMS: NavigationItem[] = [
     modes: ["developer"],
   },
   {
+    id: "run-plan",
+    label: "Run Plan",
+    icon: "ListChecks",
+    description: "Execute structured implementation plans",
+    platforms: ["runner"],
+  },
+  {
     id: "gui-automation",
     label: "GUI Automation",
     icon: "Play",
     description: "Run GUI automation workflows",
+    hidden: true,
   },
   {
     id: "active",
@@ -57,12 +65,14 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Actions",
     icon: "Zap",
     description: "Action execution log",
+    hidden: true,
   },
   {
     id: "run-image",
     label: "Image Recognition",
     icon: "Image",
     description: "Visual recognition results",
+    hidden: true,
   },
   {
     id: "run-findings",
@@ -75,6 +85,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "State Exploration",
     icon: "FileSearch",
     description: "State exploration results",
+    hidden: true,
   },
   {
     id: "run-tests",
@@ -212,6 +223,7 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
     label: "Macros",
     icon: "Layers",
     description: "Deterministic action sequences",
+    hidden: true,
   },
   {
     id: "library-scripts",
@@ -230,6 +242,7 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
     label: "State Explorer",
     icon: "ShieldCheck",
     description: "Saved state exploration configs",
+    hidden: true,
   },
   {
     id: "library-api-requests",
@@ -249,8 +262,7 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     id: "spec-discovery",
     label: "Spec Discovery",
     icon: "Globe",
-    description:
-      "Discover specs from live pages and generate workflows",
+    description: "Discover specs from live pages and generate workflows",
     platforms: ["runner"],
   },
   {
@@ -265,6 +277,7 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     icon: "Layers",
     description: "Create deterministic action sequences",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "script-builder",
@@ -283,6 +296,7 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     label: "State Explorer Builder",
     icon: "ShieldCheck",
     description: "Create state exploration configs",
+    hidden: true,
   },
   {
     id: "api-request-builder",
@@ -353,6 +367,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     icon: "Camera",
     description: "Capture screen elements",
     platforms: ["runner"],
+    hidden: true,
   },
 ];
 
@@ -470,6 +485,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     description: "Mobile device (ADB) settings",
     platforms: ["runner"],
     modes: ["developer"],
+    hidden: true,
   },
   {
     id: "settings-mcp",

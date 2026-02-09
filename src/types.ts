@@ -51,6 +51,7 @@ export type IconName =
   | "ShieldCheck"
   | "Wifi"
   | "Terminal"
+  | "ListChecks"
   // Configure
   | "FolderOpen"
   | "Tag"

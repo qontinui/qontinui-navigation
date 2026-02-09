@@ -50,6 +50,7 @@ export const Icons = {
   Code: "Code" as const,
   Puzzle: "Puzzle" as const,
   ShieldCheck: "ShieldCheck" as const,
+  ListChecks: "ListChecks" as const,
 
   // Configure
   FolderOpen: "FolderOpen" as const,
@@ -124,6 +125,7 @@ export const ICON_CATEGORIES: Record<string, IconName[]> = {
     "Code",
     "Puzzle",
     "ShieldCheck",
+    "ListChecks",
     "Terminal",
   ],
   configure: ["FolderOpen", "Tag"],
