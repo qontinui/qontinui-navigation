@@ -266,6 +266,13 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
+    id: "app-comparison",
+    label: "App Comparison",
+    icon: "BarChart3",
+    description: "Compare two apps to discover structural differences",
+    platforms: ["runner"],
+  },
+  {
     id: "task-builder",
     label: "Task Builder",
     icon: "FileText",
