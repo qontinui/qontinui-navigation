@@ -18,7 +18,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     icon: "Layers",
     description: "Queue and execute workflow sequences",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "run-plan",
@@ -148,7 +148,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     hasChildren: true,
     selectsFirstChild: false,
     description: "Current execution session",
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "analysis",
@@ -172,7 +172,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     icon: "Brain",
     description: "Patterns and performance from AI task executions",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
     hidden: true,
   },
   {
@@ -181,7 +181,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     icon: "History",
     description: "Time-travel debugging with checkpoints",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
     hidden: true,
   },
   {
@@ -189,7 +189,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "GUI Discoveries",
     icon: "Cloud",
     description: "Patterns detected from GUI automation runs",
-    modes: ["developer"],
+    modes: ["advanced"],
     hidden: true,
   },
 ];
@@ -361,12 +361,14 @@ export const BUILD_ITEMS: NavigationItem[] = [
     hasChildren: true,
     selectsFirstChild: false,
     description: "Create tasks, scripts, and other assets",
+    modes: ["advanced"],
   },
   {
     id: "library",
     label: "Library",
     icon: "BookOpen",
     description: "Browse saved automation assets",
+    modes: ["advanced"],
   },
   {
     id: "capture",
@@ -383,7 +385,6 @@ export const BUILD_GROUP: NavigationGroup = {
   label: "BUILD",
   items: BUILD_ITEMS,
   defaultExpanded: false,
-  modes: ["developer"],
 };
 
 // ============================================================================
@@ -418,7 +419,7 @@ export const CONFIGURE_GROUP: NavigationGroup = {
   label: "CONFIGURE",
   items: CONFIGURE_ITEMS,
   defaultExpanded: false,
-  modes: ["developer"],
+  modes: ["advanced"],
 };
 
 // ============================================================================
@@ -440,7 +441,7 @@ export const SCHEDULE_GROUP: NavigationGroup = {
   label: "SCHEDULE",
   items: SCHEDULE_ITEMS,
   defaultExpanded: false,
-  modes: ["developer"],
+  modes: ["advanced"],
 };
 
 // ============================================================================
@@ -459,7 +460,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "AI Providers",
     icon: "Bot",
     description: "Configure AI providers and models",
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "settings-agentic",
@@ -467,7 +468,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Brain",
     description: "Memory compression, retry, and task routing",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "settings-self-healing",
@@ -475,7 +476,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "ShieldCheck",
     description: "Self-healing automation settings",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "settings-playwright",
@@ -483,7 +484,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "FlaskConical",
     description: "Playwright configuration",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "settings-mobile",
@@ -491,7 +492,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Monitor",
     description: "Mobile device (ADB) settings",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
     hidden: true,
   },
   {
@@ -500,7 +501,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Wifi",
     description: "Model Context Protocol server configuration",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "settings-log-sources",
@@ -508,7 +509,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "FolderOpen",
     description: "Global log source configuration with AI selection",
     platforms: ["runner"],
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "settings-general",
@@ -527,7 +528,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Backup",
     icon: "Archive",
     description: "Backup and restore",
-    modes: ["developer"],
+    modes: ["advanced"],
   },
   {
     id: "settings-updates",
@@ -541,7 +542,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Debug",
     icon: "FlaskConical",
     description: "Debug and diagnostics",
-    modes: ["developer"],
+    modes: ["advanced"],
   },
 ];
 

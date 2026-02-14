@@ -37,7 +37,7 @@ export function createInitialState(
       items: [],
     },
     isCollapsed: options?.isCollapsed ?? false,
-    appMode: options?.appMode ?? "developer",
+    appMode: options?.appMode ?? "advanced",
   };
 }
 
@@ -276,12 +276,16 @@ export function deserializeState(
 ): Partial<NavigationState> | null {
   try {
     const data = JSON.parse(json);
+    // Migrate old mode values
+    let appMode: AppMode = data.appMode ?? "advanced";
+    if (appMode === ("automation" as string)) appMode = "simple";
+    if (appMode === ("developer" as string)) appMode = "advanced";
     return {
       activeItemId: data.activeItemId ?? null,
       expandedGroups: new Set(data.expandedGroups ?? []),
       expandedItems: new Set(data.expandedItems ?? []),
       isCollapsed: data.isCollapsed ?? false,
-      appMode: data.appMode ?? "developer",
+      appMode,
     };
   } catch {
     return null;

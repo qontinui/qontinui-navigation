@@ -159,11 +159,11 @@ export type Platform = "web" | "runner" | "desktop" | "mobile";
 // ============================================================================
 
 /**
- * Application mode for role-based navigation filtering.
- * - automation: Minimal UI for executing pre-built workflows
- * - developer: Full UI for building and debugging workflows
+ * Application mode for progressive disclosure navigation filtering.
+ * - simple: Essential UI for running workflows and viewing results
+ * - advanced: Full UI with builders, debugging tools, and configuration
  */
-export type AppMode = "automation" | "developer";
+export type AppMode = "simple" | "advanced";
 
 /**
  * Platform-specific configuration.
@@ -257,7 +257,7 @@ export interface NavigationState {
   secondarySidebar: SecondarySidebarState;
   /** Whether the main sidebar is collapsed */
   isCollapsed: boolean;
-  /** Current application mode (automation or developer) */
+  /** Current application mode (simple or advanced) */
   appMode: AppMode;
 }
 
