@@ -167,6 +167,13 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
+    id: "reflection",
+    label: "Reflection",
+    icon: "RotateCcw",
+    description: "Reflection fix effectiveness and history",
+    platforms: ["runner"],
+  },
+  {
     id: "learning",
     label: "AI Task Analytics",
     icon: "Brain",

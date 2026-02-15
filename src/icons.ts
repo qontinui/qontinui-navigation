@@ -74,6 +74,7 @@ export const Icons = {
   Webhook: "Webhook" as const,
   Wifi: "Wifi" as const,
   Terminal: "Terminal" as const,
+  RotateCcw: "RotateCcw" as const,
 } satisfies Record<string, IconName>;
 
 /**
@@ -113,6 +114,7 @@ export const ICON_CATEGORIES: Record<string, IconName[]> = {
     "Cloud",
     "Accessibility",
     "AlertCircle",
+    "RotateCcw",
   ],
   build: [
     "BookOpen",

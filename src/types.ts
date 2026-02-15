@@ -69,7 +69,8 @@ export type IconName =
   | "Key"
   | "CreditCard"
   | "Brain"
-  | "Webhook";
+  | "Webhook"
+  | "RotateCcw";
 
 // ============================================================================
 // Navigation Item Types
