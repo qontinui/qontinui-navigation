@@ -10,7 +10,6 @@ import type {
   NavigationExtensions,
   Platform,
   NavigationConfig,
-  AppMode,
 } from "./types";
 import { NAVIGATION_GROUPS, CHILDREN_MAP } from "./groups";
 
@@ -96,127 +95,6 @@ export function filterGroupsForPlatform(
   return groups
     .map((group) => filterGroupForPlatform(group, platform))
     .filter((group) => group.items.length > 0);
-}
-
-// ============================================================================
-// App Mode Filtering
-// ============================================================================
-
-/**
- * Check if a navigation item is available for a specific app mode.
- * Returns true if the item should be shown in the given mode.
- */
-export function isItemAvailableForMode(
-  item: NavigationItem,
-  mode: AppMode,
-): boolean {
-  // Exclude hidden items in production (show in development)
-  if (item.hidden && !isDevelopmentMode()) {
-    return false;
-  }
-  // If no mode restriction, show in all modes
-  if (!item.modes || item.modes.length === 0) {
-    return true;
-  }
-  return item.modes.includes(mode);
-}
-
-/**
- * Filter navigation items for a specific app mode.
- */
-export function filterItemsForMode(
-  items: NavigationItem[],
-  mode: AppMode,
-): NavigationItem[] {
-  return items.filter((item) => isItemAvailableForMode(item, mode));
-}
-
-/**
- * Filter a navigation group for a specific app mode.
- */
-export function filterGroupForMode(
-  group: NavigationGroup,
-  mode: AppMode,
-): NavigationGroup {
-  // Check if the group itself is mode-specific
-  if (group.modes && !group.modes.includes(mode)) {
-    return { ...group, items: [] };
-  }
-
-  return {
-    ...group,
-    items: filterItemsForMode(group.items, mode),
-  };
-}
-
-/**
- * Filter all navigation groups for a specific app mode.
- */
-export function filterGroupsForMode(
-  groups: NavigationGroup[],
-  mode: AppMode,
-): NavigationGroup[] {
-  return groups
-    .map((group) => filterGroupForMode(group, mode))
-    .filter((group) => group.items.length > 0);
-}
-
-/**
- * Get children items for a parent, filtered by app mode.
- */
-export function getChildrenForMode(
-  parentId: string,
-  mode: AppMode,
-): NavigationItem[] {
-  const children = CHILDREN_MAP[parentId] || [];
-  return filterItemsForMode(children, mode);
-}
-
-/**
- * Get navigation groups filtered by both platform and app mode.
- */
-export function getNavigationGroupsForMode(
-  platform: Platform,
-  mode: AppMode,
-  extensions?: NavigationExtensions,
-): NavigationGroup[] {
-  // First filter by platform
-  let groups = filterGroupsForPlatform(NAVIGATION_GROUPS, platform);
-
-  // Then filter by mode
-  groups = filterGroupsForMode(groups, mode);
-
-  // Apply extensions
-  if (extensions) {
-    groups = applyExtensions(groups, extensions);
-  }
-
-  return groups;
-}
-
-/**
- * Pre-built navigation config for the runner application with mode filtering.
- */
-export function getRunnerNavigationForMode(
-  mode: AppMode,
-  extensions?: NavigationExtensions,
-): NavigationGroup[] {
-  return getNavigationGroupsForMode("runner", mode, extensions);
-}
-
-/**
- * Get children items for a parent, filtered by both platform and mode.
- */
-export function getChildrenForPlatformAndMode(
-  parentId: string,
-  platform: Platform,
-  mode: AppMode,
-): NavigationItem[] {
-  const children = CHILDREN_MAP[parentId] || [];
-  return children.filter(
-    (item) =>
-      isItemAvailable(item, platform) && isItemAvailableForMode(item, mode),
-  );
 }
 
 // ============================================================================

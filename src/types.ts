@@ -98,8 +98,6 @@ export interface NavigationItem {
   selectsFirstChild?: boolean;
   /** Platform availability - if not set, available on all platforms */
   platforms?: Platform[];
-  /** App mode availability - if not set, available in all modes */
-  modes?: AppMode[];
   /** Badge count or status to show on this item */
   badge?: NavigationBadge;
   /** Whether this item is disabled */
@@ -142,8 +140,6 @@ export interface NavigationGroup {
   icon?: IconName;
   /** Platform availability - if not set, available on all platforms */
   platforms?: Platform[];
-  /** App mode availability - if not set, available in all modes */
-  modes?: AppMode[];
 }
 
 // ============================================================================
@@ -154,17 +150,6 @@ export interface NavigationGroup {
  * Platform identifiers for conditional navigation items.
  */
 export type Platform = "web" | "runner" | "desktop" | "mobile";
-
-// ============================================================================
-// App Mode Types
-// ============================================================================
-
-/**
- * Application mode for progressive disclosure navigation filtering.
- * - simple: Essential UI for running workflows and viewing results
- * - advanced: Full UI with builders, debugging tools, and configuration
- */
-export type AppMode = "simple" | "advanced";
 
 /**
  * Platform-specific configuration.
@@ -258,8 +243,6 @@ export interface NavigationState {
   secondarySidebar: SecondarySidebarState;
   /** Whether the main sidebar is collapsed */
   isCollapsed: boolean;
-  /** Current application mode (simple or advanced) */
-  appMode: AppMode;
 }
 
 /**
@@ -274,5 +257,4 @@ export type NavigationAction =
   | { type: "OPEN_SECONDARY"; parentId: string; items: NavigationItem[] }
   | { type: "CLOSE_SECONDARY" }
   | { type: "TOGGLE_SIDEBAR_COLLAPSE" }
-  | { type: "SET_SIDEBAR_COLLAPSED"; collapsed: boolean }
-  | { type: "SET_APP_MODE"; mode: AppMode };
+  | { type: "SET_SIDEBAR_COLLAPSED"; collapsed: boolean };

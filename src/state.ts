@@ -8,7 +8,6 @@ import type {
   NavigationState,
   NavigationAction,
   NavigationItem,
-  AppMode,
 } from "./types";
 
 // ============================================================================
@@ -24,7 +23,6 @@ export function createInitialState(
     expandedGroups: string[];
     expandedItems: string[];
     isCollapsed: boolean;
-    appMode: AppMode;
   }>,
 ): NavigationState {
   return {
@@ -37,7 +35,6 @@ export function createInitialState(
       items: [],
     },
     isCollapsed: options?.isCollapsed ?? false,
-    appMode: options?.appMode ?? "advanced",
   };
 }
 
@@ -135,12 +132,6 @@ export function navigationReducer(
         isCollapsed: action.collapsed,
       };
 
-    case "SET_APP_MODE":
-      return {
-        ...state,
-        appMode: action.mode,
-      };
-
     default:
       return state;
   }
@@ -199,11 +190,6 @@ export const navigationActions = {
   setSidebarCollapsed: (collapsed: boolean): NavigationAction => ({
     type: "SET_SIDEBAR_COLLAPSED",
     collapsed,
-  }),
-
-  setAppMode: (mode: AppMode): NavigationAction => ({
-    type: "SET_APP_MODE",
-    mode,
   }),
 };
 
@@ -264,7 +250,6 @@ export function serializeState(state: NavigationState): string {
     expandedGroups: Array.from(state.expandedGroups),
     expandedItems: Array.from(state.expandedItems),
     isCollapsed: state.isCollapsed,
-    appMode: state.appMode,
   });
 }
 
@@ -276,16 +261,11 @@ export function deserializeState(
 ): Partial<NavigationState> | null {
   try {
     const data = JSON.parse(json);
-    // Migrate old mode values
-    let appMode: AppMode = data.appMode ?? "advanced";
-    if (appMode === ("automation" as string)) appMode = "simple";
-    if (appMode === ("developer" as string)) appMode = "advanced";
     return {
       activeItemId: data.activeItemId ?? null,
       expandedGroups: new Set(data.expandedGroups ?? []),
       expandedItems: new Set(data.expandedItems ?? []),
       isCollapsed: data.isCollapsed ?? false,
-      appMode,
     };
   } catch {
     return null;
@@ -300,5 +280,4 @@ export const STORAGE_KEYS = {
   collapsed: "qontinui-sidebar-collapsed",
   expandedGroups: "qontinui-sidebar-groups",
   activeTab: "qontinui-active-tab",
-  appMode: "qontinui-app-mode",
 } as const;
