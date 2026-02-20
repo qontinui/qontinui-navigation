@@ -234,9 +234,9 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
   },
   {
     id: "library-scripts",
-    label: "Scripts",
+    label: "Playwright Tests",
     icon: "TestTube",
-    description: "Playwright scripts",
+    description: "Playwright tests",
     hidden: true,
   },
   {
@@ -296,10 +296,10 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     hidden: true,
   },
   {
-    id: "script-builder",
-    label: "Script Builder",
+    id: "playwright-test-builder",
+    label: "Playwright Test Builder",
     icon: "TestTube",
-    description: "Create Playwright scripts",
+    description: "Create Playwright tests",
     hidden: true,
   },
   {
