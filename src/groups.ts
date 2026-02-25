@@ -113,27 +113,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
   },
 ];
 
-// ============================================================================
-// OBSERVE Group - Analysis Sub-items
-// ============================================================================
-
-export const ANALYSIS_ITEMS: NavigationItem[] = [
-  {
-    id: "run-accessibility",
-    label: "Accessibility Explorer",
-    icon: "Accessibility",
-    description: "Explore browser accessibility tree via CDP",
-    platforms: ["runner"],
-  },
-  {
-    id: "run-ui-bridge",
-    label: "UI Bridge Inspector",
-    icon: "Puzzle",
-    description: "Inspect and control UI Bridge elements",
-    platforms: ["runner"],
-  },
-];
-
 export const OBSERVE_ITEMS: NavigationItem[] = [
   {
     id: "runs",
@@ -150,14 +129,6 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     description: "Current execution session",
 
   },
-  {
-    id: "analysis",
-    label: "Analysis",
-    icon: "FileSearch",
-    hasChildren: true,
-    selectsFirstChild: false,
-    description: "Live inspection tools",
-  },
   // Session children are handled separately for the secondary sidebar
   {
     id: "error-monitor",
@@ -172,32 +143,6 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
     platforms: ["runner"],
-  },
-  {
-    id: "learning",
-    label: "AI Task Analytics",
-    icon: "Brain",
-    description: "Patterns and performance from AI task executions",
-    platforms: ["runner"],
-
-    hidden: true,
-  },
-  {
-    id: "checkpoints",
-    label: "Checkpoints",
-    icon: "History",
-    description: "Time-travel debugging with checkpoints",
-    platforms: ["runner"],
-
-    hidden: true,
-  },
-  {
-    id: "discoveries",
-    label: "GUI Discoveries",
-    icon: "Cloud",
-    description: "Patterns detected from GUI automation runs",
-
-    hidden: true,
   },
 ];
 
@@ -226,38 +171,10 @@ export const LIBRARY_ITEMS: NavigationItem[] = [
     description: "Phase-based automation workflows",
   },
   {
-    id: "library-macros",
-    label: "Macros",
-    icon: "Layers",
-    description: "Deterministic action sequences",
-    hidden: true,
-  },
-  {
-    id: "library-scripts",
-    label: "Playwright Tests",
-    icon: "TestTube",
-    description: "Playwright tests",
-    hidden: true,
-  },
-  {
     id: "library-contexts",
     label: "Contexts",
     icon: "BookOpen",
     description: "AI knowledge base",
-  },
-  {
-    id: "library-state-explorer",
-    label: "State Explorer",
-    icon: "ShieldCheck",
-    description: "Saved state exploration configs",
-    hidden: true,
-  },
-  {
-    id: "library-api-requests",
-    label: "API Requests",
-    icon: "Globe",
-    description: "Saved HTTP request templates",
-    hidden: true,
   },
 ];
 
@@ -282,73 +199,17 @@ export const BUILDER_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
-    id: "task-builder",
-    label: "Task Builder",
-    icon: "FileText",
-    description: "Create single-step AI tasks",
-  },
-  {
-    id: "macro-builder",
-    label: "Macro Builder",
-    icon: "Layers",
-    description: "Create deterministic action sequences",
-    platforms: ["runner"],
-    hidden: true,
-  },
-  {
-    id: "playwright-test-builder",
-    label: "Playwright Test Builder",
-    icon: "TestTube",
-    description: "Create Playwright tests",
-    hidden: true,
-  },
-  {
     id: "context-builder",
     label: "Context Builder",
     icon: "BookOpen",
     description: "Create AI knowledge base entries",
   },
   {
-    id: "state-explorer-builder",
-    label: "State Explorer Builder",
-    icon: "ShieldCheck",
-    description: "Create state exploration configs",
-    hidden: true,
-  },
-  {
-    id: "api-request-builder",
-    label: "API Request Builder",
+    id: "page-sweep",
+    label: "Page Sweep",
     icon: "Globe",
-    description: "Create HTTP request templates",
-    hidden: true,
-  },
-  {
-    id: "awas-builder",
-    label: "AWAS Builder",
-    icon: "Wifi",
-    description: "Create AWAS web automation configs",
+    description: "Batch-generate verification workflows across multiple pages",
     platforms: ["runner"],
-    hidden: true,
-  },
-  {
-    id: "test-builder",
-    label: "Test Builder",
-    icon: "FlaskConical",
-    description: "Create verification tests",
-  },
-  {
-    id: "check-builder",
-    label: "Check Builder",
-    icon: "ShieldCheck",
-    description: "Create code quality checks (lint, format, type check)",
-    hidden: true,
-  },
-  {
-    id: "shell-command-builder",
-    label: "Shell Command Builder",
-    icon: "Terminal",
-    description: "Create reusable shell commands for workflows",
-    hidden: true,
   },
 ];
 
@@ -358,14 +219,6 @@ export const BUILD_ITEMS: NavigationItem[] = [
     label: "Workflows",
     icon: "Sparkles",
     description: "Build phase-based automation workflows",
-  },
-  {
-    id: "flow-designer",
-    label: "Flow Designer",
-    icon: "GitBranch",
-    description: "Visual editor for deterministic workflows",
-    platforms: ["runner"],
-    hidden: true,
   },
   {
     id: "builders",
@@ -382,14 +235,6 @@ export const BUILD_ITEMS: NavigationItem[] = [
     icon: "BookOpen",
     description: "Browse saved automation assets",
 
-  },
-  {
-    id: "capture",
-    label: "Capture",
-    icon: "Camera",
-    description: "Capture screen elements",
-    platforms: ["runner"],
-    hidden: true,
   },
 ];
 
@@ -604,7 +449,6 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
  */
 export const CHILDREN_MAP: Record<string, NavigationItem[]> = {
   session: SESSION_ITEMS,
-  analysis: ANALYSIS_ITEMS,
   library: LIBRARY_ITEMS,
   builders: BUILDER_ITEMS,
   settings: SETTINGS_ITEMS,

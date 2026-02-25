@@ -42,7 +42,6 @@ export {
   // Individual group items
   RUN_ITEMS,
   SESSION_ITEMS,
-  ANALYSIS_ITEMS,
   OBSERVE_ITEMS,
   LIBRARY_ITEMS,
   BUILDER_ITEMS,
