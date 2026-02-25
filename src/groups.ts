@@ -18,7 +18,6 @@ export const RUN_ITEMS: NavigationItem[] = [
     icon: "Layers",
     description: "Queue and execute workflow sequences",
     platforms: ["runner"],
-
   },
   {
     id: "run-plan",
@@ -127,7 +126,6 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     hasChildren: true,
     selectsFirstChild: false,
     description: "Current execution session",
-
   },
   // Session children are handled separately for the secondary sidebar
   {
@@ -153,20 +151,6 @@ export const OBSERVE_GROUP: NavigationGroup = {
   defaultExpanded: false,
 };
 
-// ============================================================================
-// BUILD Group - Builder Categories (flyout items)
-// ============================================================================
-
-export const BUILDER_ITEMS: NavigationItem[] = [
-  {
-    id: "page-sweep",
-    label: "Page Sweep",
-    icon: "Globe",
-    description: "Batch-generate verification workflows across multiple pages",
-    platforms: ["runner"],
-  },
-];
-
 export const BUILD_ITEMS: NavigationItem[] = [
   {
     id: "unified-workflow-builder",
@@ -175,20 +159,10 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Build phase-based automation workflows",
   },
   {
-    id: "builders",
-    label: "Builders",
-    icon: "Wrench",
-    hasChildren: true,
-    selectsFirstChild: false,
-    description: "Create tasks, scripts, and other assets",
-
-  },
-  {
     id: "library",
     label: "Library",
     icon: "BookOpen",
     description: "Browse saved automation assets",
-
   },
 ];
 
@@ -231,7 +205,6 @@ export const CONFIGURE_GROUP: NavigationGroup = {
   label: "CONFIGURE",
   items: CONFIGURE_ITEMS,
   defaultExpanded: false,
-
 };
 
 // ============================================================================
@@ -253,7 +226,6 @@ export const SCHEDULE_GROUP: NavigationGroup = {
   label: "SCHEDULE",
   items: SCHEDULE_ITEMS,
   defaultExpanded: false,
-
 };
 
 // ============================================================================
@@ -272,7 +244,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "AI Providers",
     icon: "Bot",
     description: "Configure AI providers and models",
-
   },
   {
     id: "settings-agentic",
@@ -280,7 +251,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Brain",
     description: "Memory compression, retry, and task routing",
     platforms: ["runner"],
-
   },
   {
     id: "settings-self-healing",
@@ -288,7 +258,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "ShieldCheck",
     description: "Self-healing automation settings",
     platforms: ["runner"],
-
   },
   {
     id: "settings-playwright",
@@ -296,7 +265,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "FlaskConical",
     description: "Playwright configuration",
     platforms: ["runner"],
-
   },
   {
     id: "settings-mobile",
@@ -313,7 +281,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Wifi",
     description: "Model Context Protocol server configuration",
     platforms: ["runner"],
-
   },
   {
     id: "settings-log-sources",
@@ -321,7 +288,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "FolderOpen",
     description: "Global log source configuration with AI selection",
     platforms: ["runner"],
-
   },
   {
     id: "settings-general",
@@ -340,7 +306,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Backup",
     icon: "Archive",
     description: "Backup and restore",
-
   },
   {
     id: "settings-updates",
@@ -354,7 +319,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Debug",
     icon: "FlaskConical",
     description: "Debug and diagnostics",
-
   },
 ];
 
@@ -403,7 +367,6 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
  */
 export const CHILDREN_MAP: Record<string, NavigationItem[]> = {
   session: SESSION_ITEMS,
-  builders: BUILDER_ITEMS,
   settings: SETTINGS_ITEMS,
 };
 
