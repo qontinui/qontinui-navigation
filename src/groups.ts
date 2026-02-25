@@ -154,56 +154,10 @@ export const OBSERVE_GROUP: NavigationGroup = {
 };
 
 // ============================================================================
-// BUILD Group - Library Categories
-// ============================================================================
-
-export const LIBRARY_ITEMS: NavigationItem[] = [
-  {
-    id: "library-tasks",
-    label: "Tasks",
-    icon: "FileText",
-    description: "Single-step AI tasks",
-  },
-  {
-    id: "library-workflows",
-    label: "Workflows",
-    icon: "Sparkles",
-    description: "Phase-based automation workflows",
-  },
-  {
-    id: "library-contexts",
-    label: "Contexts",
-    icon: "BookOpen",
-    description: "AI knowledge base",
-  },
-];
-
-// ============================================================================
 // BUILD Group - Builder Categories (flyout items)
-// Matches 1:1 with Library categories
 // ============================================================================
 
 export const BUILDER_ITEMS: NavigationItem[] = [
-  {
-    id: "spec-discovery",
-    label: "Spec Discovery",
-    icon: "Globe",
-    description: "Discover specs from live pages and generate workflows",
-    platforms: ["runner"],
-  },
-  {
-    id: "app-comparison",
-    label: "App Comparison",
-    icon: "BarChart3",
-    description: "Compare two apps to discover structural differences",
-    platforms: ["runner"],
-  },
-  {
-    id: "context-builder",
-    label: "Context Builder",
-    icon: "BookOpen",
-    description: "Create AI knowledge base entries",
-  },
   {
     id: "page-sweep",
     label: "Page Sweep",
@@ -449,7 +403,6 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
  */
 export const CHILDREN_MAP: Record<string, NavigationItem[]> = {
   session: SESSION_ITEMS,
-  library: LIBRARY_ITEMS,
   builders: BUILDER_ITEMS,
   settings: SETTINGS_ITEMS,
 };
