@@ -276,6 +276,13 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     hidden: true,
   },
   {
+    id: "settings-cloud-relay",
+    label: "Cloud Relay",
+    icon: "Cloud",
+    description: "Remote access via cloud relay connection",
+    platforms: ["runner"],
+  },
+  {
     id: "settings-mcp",
     label: "MCP Servers",
     icon: "Wifi",
