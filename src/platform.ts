@@ -1,16 +1,10 @@
 /**
  * Platform Utilities
  *
- * Functions for filtering and extending navigation based on platform.
+ * Functions for filtering navigation based on platform.
  */
 
-import type {
-  NavigationGroup,
-  NavigationItem,
-  NavigationExtensions,
-  Platform,
-  NavigationConfig,
-} from "./types";
+import type { NavigationGroup, NavigationItem, Platform } from "./types";
 import { NAVIGATION_GROUPS, CHILDREN_MAP } from "./groups";
 
 // ============================================================================
@@ -97,130 +91,11 @@ export function filterGroupsForPlatform(
     .filter((group) => group.items.length > 0);
 }
 
-// ============================================================================
-// Navigation Extensions
-// ============================================================================
-
 /**
- * Apply extensions to a list of navigation items.
+ * Get navigation groups filtered for a specific platform.
  */
-export function applyItemExtensions(
-  items: NavigationItem[],
-  groupId: string,
-  extensions?: NavigationExtensions,
-): NavigationItem[] {
-  if (!extensions) {
-    return items;
-  }
-
-  let result = [...items];
-
-  // Remove items
-  if (extensions.remove) {
-    result = result.filter((item) => !extensions.remove!.includes(item.id));
-  }
-
-  // Prepend items
-  if (extensions.prepend?.[groupId]) {
-    result = [...extensions.prepend[groupId], ...result];
-  }
-
-  // Append items
-  if (extensions.append?.[groupId]) {
-    result = [...result, ...extensions.append[groupId]];
-  }
-
-  // Insert after specific items
-  if (extensions.insertAfter) {
-    for (const [afterId, newItems] of Object.entries(extensions.insertAfter)) {
-      const index = result.findIndex((item) => item.id === afterId);
-      if (index !== -1) {
-        result = [
-          ...result.slice(0, index + 1),
-          ...newItems,
-          ...result.slice(index + 1),
-        ];
-      }
-    }
-  }
-
-  return result;
-}
-
-/**
- * Apply extensions to a navigation group.
- */
-export function applyGroupExtensions(
-  group: NavigationGroup,
-  extensions?: NavigationExtensions,
-): NavigationGroup {
-  return {
-    ...group,
-    items: applyItemExtensions(group.items, group.id, extensions),
-  };
-}
-
-/**
- * Apply extensions to all navigation groups.
- */
-export function applyExtensions(
-  groups: NavigationGroup[],
-  extensions?: NavigationExtensions,
-): NavigationGroup[] {
-  return groups.map((group) => applyGroupExtensions(group, extensions));
-}
-
-// ============================================================================
-// Complete Configuration Builder
-// ============================================================================
-
-/**
- * Build a complete navigation configuration for a platform.
- */
-export function buildNavigationConfig(
-  platform: Platform,
-  options?: {
-    extensions?: NavigationExtensions;
-    isDevelopment?: boolean;
-    features?: Record<string, boolean>;
-  },
-): NavigationConfig {
-  // Start with base groups
-  let groups = [...NAVIGATION_GROUPS];
-
-  // Filter for platform
-  groups = filterGroupsForPlatform(groups, platform);
-
-  // Apply extensions
-  if (options?.extensions) {
-    groups = applyExtensions(groups, options.extensions);
-  }
-
-  return {
-    groups,
-    platform: {
-      platform,
-      isDevelopment: options?.isDevelopment,
-      features: options?.features,
-    },
-    extensions: options?.extensions,
-  };
-}
-
-/**
- * Get navigation groups for a platform with extensions applied.
- */
-export function getNavigationGroups(
-  platform: Platform,
-  extensions?: NavigationExtensions,
-): NavigationGroup[] {
-  let groups = filterGroupsForPlatform(NAVIGATION_GROUPS, platform);
-
-  if (extensions) {
-    groups = applyExtensions(groups, extensions);
-  }
-
-  return groups;
+export function getNavigationGroups(platform: Platform): NavigationGroup[] {
+  return filterGroupsForPlatform(NAVIGATION_GROUPS, platform);
 }
 
 /**
@@ -235,49 +110,19 @@ export function getChildrenForPlatform(
 }
 
 // ============================================================================
-// Platform Detection
-// ============================================================================
-
-/**
- * Detect the current platform based on environment.
- * This is a simple heuristic - apps should override this with their known platform.
- */
-export function detectPlatform(): Platform {
-  // Check for Tauri (runner)
-  if (typeof window !== "undefined" && "__TAURI__" in window) {
-    return "runner";
-  }
-
-  // Check for mobile
-  if (
-    typeof navigator !== "undefined" &&
-    /Mobi|Android/i.test(navigator.userAgent)
-  ) {
-    return "mobile";
-  }
-
-  // Default to web
-  return "web";
-}
-
-// ============================================================================
 // Presets
 // ============================================================================
 
 /**
  * Pre-built navigation config for the runner application.
  */
-export function getRunnerNavigation(
-  extensions?: NavigationExtensions,
-): NavigationGroup[] {
-  return getNavigationGroups("runner", extensions);
+export function getRunnerNavigation(): NavigationGroup[] {
+  return getNavigationGroups("runner");
 }
 
 /**
  * Pre-built navigation config for the web application.
  */
-export function getWebNavigation(
-  extensions?: NavigationExtensions,
-): NavigationGroup[] {
-  return getNavigationGroups("web", extensions);
+export function getWebNavigation(): NavigationGroup[] {
+  return getNavigationGroups("web");
 }

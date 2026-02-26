@@ -22,12 +22,7 @@ export type {
   NavigationGroup,
   // Platform types
   Platform,
-  PlatformConfig,
-  // Configuration types
-  NavigationConfig,
-  NavigationExtensions,
   // Secondary sidebar types
-  SecondarySidebarConfig,
   SecondarySidebarState,
   // State types
   NavigationState,
@@ -42,6 +37,7 @@ export {
   // Individual group items
   RUN_ITEMS,
   SESSION_ITEMS,
+  RUNS_ITEMS,
   OBSERVE_ITEMS,
   BUILD_ITEMS,
   CONFIGURE_ITEMS,
@@ -69,9 +65,7 @@ export {
 // Icon Utilities
 // ============================================================================
 
-export { Icons, ICON_NAMES, ICON_CATEGORIES, isValidIconName } from "./icons";
-
-export type { IconKey } from "./icons";
+export { ICON_NAMES, isValidIconName } from "./icons";
 
 // ============================================================================
 // Platform Utilities
@@ -86,16 +80,9 @@ export {
   filterItemsForPlatform,
   filterGroupForPlatform,
   filterGroupsForPlatform,
-  // Extensions
-  applyItemExtensions,
-  applyGroupExtensions,
-  applyExtensions,
-  // Configuration builders
-  buildNavigationConfig,
+  // Navigation builders
   getNavigationGroups,
   getChildrenForPlatform,
-  // Platform detection
-  detectPlatform,
   // Presets
   getRunnerNavigation,
   getWebNavigation,

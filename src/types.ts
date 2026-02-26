@@ -39,6 +39,8 @@ export type IconName =
   | "AlertCircle"
   // Build
   | "BookOpen"
+  | "BookText"
+  | "CheckCircle2"
   | "Sparkles"
   | "MousePointer2"
   | "Layers"
@@ -70,7 +72,12 @@ export type IconName =
   | "CreditCard"
   | "Brain"
   | "Webhook"
-  | "RotateCcw";
+  | "RotateCcw"
+  | "Cpu"
+  // Web / shared
+  | "MessageSquare"
+  | "Server"
+  | "Workflow";
 
 // ============================================================================
 // Navigation Item Types
@@ -106,6 +113,12 @@ export interface NavigationItem {
   shortcut?: string;
   /** Hide from navigation (for unreleased features) */
   hidden?: boolean;
+  /** URL path for web routing (e.g., "/build/workflows") */
+  route?: string;
+  /** Accent color CSS value (e.g., "#9333EA" or "var(--brand-secondary)") */
+  color?: string;
+  /** Requires superuser access (web-only concept) */
+  adminOnly?: boolean;
 }
 
 /**
@@ -149,69 +162,11 @@ export interface NavigationGroup {
 /**
  * Platform identifiers for conditional navigation items.
  */
-export type Platform = "web" | "runner" | "desktop" | "mobile";
-
-/**
- * Platform-specific configuration.
- */
-export interface PlatformConfig {
-  /** Current platform */
-  platform: Platform;
-  /** Whether the app is in development mode */
-  isDevelopment?: boolean;
-  /** Feature flags that affect navigation */
-  features?: Record<string, boolean>;
-}
-
-// ============================================================================
-// Navigation Configuration Types
-// ============================================================================
-
-/**
- * Complete navigation configuration for an application.
- */
-export interface NavigationConfig {
-  /** Navigation groups */
-  groups: NavigationGroup[];
-  /** Platform configuration */
-  platform: PlatformConfig;
-  /** Custom items to add to specific groups */
-  extensions?: NavigationExtensions;
-}
-
-/**
- * Extensions to add platform-specific items to groups.
- */
-export interface NavigationExtensions {
-  /** Items to prepend to a group */
-  prepend?: Record<string, NavigationItem[]>;
-  /** Items to append to a group */
-  append?: Record<string, NavigationItem[]>;
-  /** Items to insert after a specific item */
-  insertAfter?: Record<string, NavigationItem[]>;
-  /** Items to remove by ID */
-  remove?: string[];
-}
+export type Platform = "web" | "runner";
 
 // ============================================================================
 // Secondary Sidebar Types
 // ============================================================================
-
-/**
- * Configuration for the secondary sidebar behavior.
- */
-export interface SecondarySidebarConfig {
-  /** Whether to show the secondary sidebar */
-  enabled: boolean;
-  /** Width of the secondary sidebar in pixels */
-  width?: number;
-  /** Whether to auto-collapse when an item is selected */
-  autoCollapse?: boolean;
-  /** Whether to collapse the main sidebar when secondary is open */
-  collapseMain?: boolean;
-  /** Animation duration in milliseconds */
-  animationDuration?: number;
-}
 
 /**
  * State for the secondary sidebar.

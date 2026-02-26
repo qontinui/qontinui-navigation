@@ -14,17 +14,19 @@ import type { NavigationGroup, NavigationItem } from "./types";
 export const RUN_ITEMS: NavigationItem[] = [
   {
     id: "workflow-queue",
-    label: "Workflow Queue",
-    icon: "Layers",
-    description: "Queue and execute workflow sequences",
-    platforms: ["runner"],
+    label: "Execute",
+    icon: "Play",
+    description: "Run and schedule workflows",
+    route: "/execute",
+    color: "#10B981",
   },
   {
     id: "run-plan",
-    label: "Run Plan",
-    icon: "ListChecks",
-    description: "Execute structured implementation plans",
-    platforms: ["runner"],
+    label: "Chat",
+    icon: "MessageSquare",
+    description: "Plan features with AI, generate workflows",
+    route: "/chat",
+    color: "#9333EA",
   },
   {
     id: "gui-automation",
@@ -38,6 +40,8 @@ export const RUN_ITEMS: NavigationItem[] = [
     label: "Active",
     icon: "Activity",
     description: "Monitor active executions",
+    route: "/runs/active",
+    color: "#4A90D9",
   },
 ];
 
@@ -49,7 +53,7 @@ export const RUN_GROUP: NavigationGroup = {
 };
 
 // ============================================================================
-// OBSERVE Group - Session Sub-items
+// OBSERVE Group - Runs Sub-items (runner secondary sidebar)
 // ============================================================================
 
 export const SESSION_ITEMS: NavigationItem[] = [
@@ -58,12 +62,16 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Summary",
     icon: "ClipboardCheck",
     description: "Overview, AI summary, and run details",
+    route: "/runs/summary",
+    color: "#4A90D9",
   },
   {
     id: "run-actions",
     label: "Actions",
     icon: "Zap",
     description: "Action execution log",
+    route: "/runs/actions",
+    color: "#4A90D9",
     hidden: true,
   },
   {
@@ -71,6 +79,8 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Image Recognition",
     icon: "Image",
     description: "Visual recognition results",
+    route: "/runs/image-recognition",
+    color: "#4A90D9",
     hidden: true,
   },
   {
@@ -78,12 +88,16 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Findings",
     icon: "FileText",
     description: "Detected findings and issues",
+    route: "/runs/findings",
+    color: "#4A90D9",
   },
   {
-    id: "run-exploration",
-    label: "State Exploration",
+    id: "run-state-explorer",
+    label: "State Explorer",
     icon: "FileSearch",
     description: "State exploration results",
+    route: "/runs/state-exploration",
+    color: "#4A90D9",
     hidden: true,
   },
   {
@@ -91,24 +105,56 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Test Results",
     icon: "TestTube",
     description: "Playwright test results",
+    route: "/runs/test-results",
+    color: "#4A90D9",
   },
   {
     id: "run-ai-output",
     label: "AI Output",
     icon: "Bot",
     description: "AI conversation and responses",
+    route: "/runs/ai-output",
+    color: "#4A90D9",
   },
   {
     id: "run-statistics",
     label: "Statistics",
     icon: "BarChart3",
     description: "Performance metrics",
+    route: "/runs/statistics",
+    color: "#4A90D9",
   },
   {
     id: "run-ai-data",
     label: "AI Data View",
     icon: "Database",
     description: "Structured AI data",
+    route: "/runs/ai-data",
+    color: "#4A90D9",
+  },
+  {
+    id: "capture",
+    label: "Capture",
+    icon: "Camera",
+    description: "Screenshot capture tool",
+    platforms: ["runner"],
+    hidden: true,
+  },
+];
+
+// ============================================================================
+// OBSERVE Group - Runs Children (web sidebar collapsible)
+// ============================================================================
+
+export const RUNS_ITEMS: NavigationItem[] = [
+  {
+    id: "runs-history",
+    label: "History",
+    icon: "History",
+    description: "Run history browser",
+    route: "/runs",
+    color: "#4A90D9",
+    platforms: ["web"],
   },
 ];
 
@@ -118,22 +164,26 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "Runs",
     icon: "History",
     description: "Browse and manage all runs",
-  },
-  {
-    id: "session",
-    label: "Session",
-    icon: "LayoutDashboard",
     hasChildren: true,
     selectsFirstChild: false,
-    description: "Current execution session",
+    route: "/runs",
+    color: "#4A90D9",
   },
-  // Session children are handled separately for the secondary sidebar
   {
     id: "error-monitor",
     label: "Error Monitor",
     icon: "AlertCircle",
     description: "Monitor and fix application errors from log sources",
+    route: "/tools/error-monitor",
+    color: "#4A90D9",
+  },
+  {
+    id: "processes",
+    label: "Processes",
+    icon: "Cpu",
+    description: "Manage and monitor spawned child processes",
     platforms: ["runner"],
+    color: "#06B6D4",
   },
   {
     id: "reflection",
@@ -157,12 +207,24 @@ export const BUILD_ITEMS: NavigationItem[] = [
     label: "Workflows",
     icon: "Sparkles",
     description: "Build phase-based automation workflows",
+    route: "/build/workflows",
+    color: "var(--brand-secondary)",
+  },
+  {
+    id: "step-builders",
+    label: "Step Builders",
+    icon: "Layers",
+    description: "Build and browse step templates",
+    route: "/build/templates",
+    color: "var(--brand-secondary)",
   },
   {
     id: "library",
     label: "Library",
     icon: "BookOpen",
     description: "Browse saved automation assets",
+    route: "/library",
+    color: "var(--brand-secondary)",
   },
 ];
 
@@ -179,16 +241,12 @@ export const BUILD_GROUP: NavigationGroup = {
 
 export const CONFIGURE_ITEMS: NavigationItem[] = [
   {
-    id: "config-log-sources",
-    label: "Log Sources",
-    icon: "FolderOpen",
-    description: "Configure log file locations",
-  },
-  {
     id: "config-findings",
     label: "Findings",
     icon: "Tag",
     description: "Configure finding patterns",
+    route: "/settings/finding-rules",
+    color: "#FFD700",
   },
   {
     id: "config-hooks",
@@ -238,33 +296,40 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Account",
     icon: "User",
     description: "User account settings",
+    route: "/settings/account",
+    color: "#FFD700",
   },
   {
     id: "settings-ai",
     label: "AI Providers",
     icon: "Bot",
     description: "Configure AI providers and models",
+    route: "/settings/ai",
+    color: "#FFD700",
   },
   {
     id: "settings-agentic",
     label: "Advanced AI",
     icon: "Brain",
     description: "Memory compression, retry, and task routing",
-    platforms: ["runner"],
+    route: "/settings/agentic",
+    color: "#FFD700",
   },
   {
     id: "settings-self-healing",
     label: "Self-Healing",
     icon: "ShieldCheck",
     description: "Self-healing automation settings",
-    platforms: ["runner"],
+    route: "/settings/self-healing",
+    color: "#FFD700",
   },
   {
     id: "settings-playwright",
     label: "Playwright",
     icon: "FlaskConical",
     description: "Playwright configuration",
-    platforms: ["runner"],
+    route: "/settings/playwright",
+    color: "#FFD700",
   },
   {
     id: "settings-mobile",
@@ -272,8 +337,9 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Monitor",
     description: "Mobile device (ADB) settings",
     platforms: ["runner"],
-
     hidden: true,
+    route: "/settings/mobile",
+    color: "#FFD700",
   },
   {
     id: "settings-cloud-relay",
@@ -281,55 +347,86 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Cloud",
     description: "Remote access via cloud relay connection",
     platforms: ["runner"],
+    route: "/settings/cloud-relay",
+    color: "#FFD700",
   },
   {
     id: "settings-mcp",
     label: "MCP Servers",
     icon: "Wifi",
     description: "Model Context Protocol server configuration",
-    platforms: ["runner"],
+    route: "/settings/mcp",
+    color: "#FFD700",
   },
   {
     id: "settings-log-sources",
     label: "Log Sources",
     icon: "FolderOpen",
     description: "Global log source configuration with AI selection",
-    platforms: ["runner"],
+    route: "/settings/log-sources",
+    color: "#FFD700",
+  },
+  {
+    id: "settings-execution-variables",
+    label: "Execution Variables",
+    icon: "Code",
+    description: "Configure execution variables",
+    hidden: true,
+    route: "/settings/execution-variables",
+    color: "#FFD700",
   },
   {
     id: "settings-general",
     label: "General",
     icon: "Wrench",
     description: "General application settings",
+    route: "/settings/general",
+    color: "#FFD700",
   },
   {
     id: "settings-storage",
     label: "Storage",
     icon: "HardDrive",
     description: "Data storage settings",
+    route: "/settings/storage",
+    color: "#FFD700",
   },
   {
     id: "settings-backup",
     label: "Backup",
     icon: "Archive",
     description: "Backup and restore",
+    route: "/settings/backup",
+    color: "#FFD700",
   },
   {
     id: "settings-updates",
     label: "Updates",
     icon: "Download",
     description: "Check for updates",
-    platforms: ["runner"],
+    route: "/settings/updates",
+    color: "#FFD700",
   },
   {
     id: "settings-debug",
     label: "Debug",
     icon: "FlaskConical",
     description: "Debug and diagnostics",
+    route: "/settings/debug",
+    color: "#FFD700",
   },
 ];
 
 export const SYSTEM_ITEMS: NavigationItem[] = [
+  {
+    id: "runners",
+    label: "Runners",
+    icon: "Server",
+    description: "Connected desktop runners",
+    platforms: ["web"],
+    route: "/runners",
+    color: "#10B981",
+  },
   {
     id: "settings",
     label: "Settings",
@@ -337,12 +434,16 @@ export const SYSTEM_ITEMS: NavigationItem[] = [
     hasChildren: true,
     selectsFirstChild: true,
     description: "Application settings",
+    route: "/settings",
+    color: "#FFD700",
   },
   {
     id: "help",
     label: "Help",
     icon: "HelpCircle",
     description: "Documentation and support",
+    route: "/help",
+    color: "#9CA3AF",
   },
 ];
 
@@ -373,7 +474,7 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
  * Map of parent IDs to their children for secondary sidebar.
  */
 export const CHILDREN_MAP: Record<string, NavigationItem[]> = {
-  session: SESSION_ITEMS,
+  runs: [...SESSION_ITEMS, ...RUNS_ITEMS],
   settings: SETTINGS_ITEMS,
 };
 

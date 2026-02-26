@@ -209,6 +209,8 @@ export function isGroupExpanded(
 
 /**
  * Check if an item is expanded (for items with children).
+ *
+ * Currently unused by consumers. Available for future use.
  */
 export function isItemExpanded(
   state: NavigationState,
@@ -219,6 +221,8 @@ export function isItemExpanded(
 
 /**
  * Check if an item is active.
+ *
+ * Currently unused by consumers. Available for future use.
  */
 export function isItemActive(state: NavigationState, itemId: string): boolean {
   return state.activeItemId === itemId;
@@ -226,6 +230,10 @@ export function isItemActive(state: NavigationState, itemId: string): boolean {
 
 /**
  * Check if the secondary sidebar is open for a specific parent.
+ *
+ * Currently unused by consumers. The runner manages flyout state
+ * independently via local React state rather than through the
+ * shared navigation reducer.
  */
 export function isSecondaryOpenFor(
   state: NavigationState,
