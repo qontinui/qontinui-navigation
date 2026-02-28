@@ -15,7 +15,7 @@ let _isDevelopmentMode = false;
 
 /**
  * Set whether the app is running in development mode.
- * Call this at app startup to enable showing hidden navigation items.
+ * Call this at app startup to enable showing dev-only navigation items.
  */
 export function setDevelopmentMode(isDev: boolean): void {
   _isDevelopmentMode = isDev;
@@ -40,8 +40,8 @@ export function isItemAvailable(
   item: NavigationItem,
   platform: Platform,
 ): boolean {
-  // Exclude hidden items in production (show in development)
-  if (item.hidden && !isDevelopmentMode()) {
+  // Exclude hiddenInProd items in production (show in development)
+  if (item.hiddenInProd && !isDevelopmentMode()) {
     return false;
   }
   // If no platform restriction, show everywhere

@@ -33,7 +33,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     label: "GUI Automation",
     icon: "Play",
     description: "Run GUI automation workflows",
-    hidden: true,
+    hiddenInProd: true,
   },
   {
     id: "active",
@@ -72,7 +72,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Action execution log",
     route: "/runs/actions",
     color: "#4A90D9",
-    hidden: true,
+    hiddenInProd: true,
   },
   {
     id: "run-image",
@@ -81,7 +81,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Visual recognition results",
     route: "/runs/image-recognition",
     color: "#4A90D9",
-    hidden: true,
+    hiddenInProd: true,
   },
   {
     id: "run-findings",
@@ -98,7 +98,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "State exploration results",
     route: "/runs/state-exploration",
     color: "#4A90D9",
-    hidden: true,
+    hiddenInProd: true,
   },
   {
     id: "run-tests",
@@ -138,7 +138,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     icon: "Camera",
     description: "Screenshot capture tool",
     platforms: ["runner"],
-    hidden: true,
+    hiddenInProd: true,
   },
 ];
 
@@ -191,6 +191,15 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
     platforms: ["runner"],
+  },
+  {
+    id: "generator-eval",
+    label: "Generator Eval",
+    icon: "FlaskConical",
+    description: "Evaluate and improve workflow generation accuracy",
+    platforms: ["runner"],
+    hiddenInProd: true,
+    color: "#8B5CF6",
   },
 ];
 
@@ -254,7 +263,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     icon: "Webhook",
     description: "Configure execution event triggers",
     platforms: ["runner"],
-    hidden: true,
+    hiddenInProd: true,
   },
 ];
 
@@ -275,7 +284,7 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     label: "Scheduled Tasks",
     icon: "Calendar",
     description: "Manage scheduled automation",
-    hidden: true,
+    hiddenInProd: true,
   },
 ];
 
@@ -337,7 +346,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Monitor",
     description: "Mobile device (ADB) settings",
     platforms: ["runner"],
-    hidden: true,
+    hiddenInProd: true,
     route: "/settings/mobile",
     color: "#FFD700",
   },
@@ -371,7 +380,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Execution Variables",
     icon: "Code",
     description: "Configure execution variables",
-    hidden: true,
+    hiddenInProd: true,
     route: "/settings/execution-variables",
     color: "#FFD700",
   },

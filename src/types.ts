@@ -111,8 +111,8 @@ export interface NavigationItem {
   disabled?: boolean;
   /** Keyboard shortcut hint (e.g., "Ctrl+N") */
   shortcut?: string;
-  /** Hide from navigation (for unreleased features) */
-  hidden?: boolean;
+  /** Hide from navigation in production (visible in dev mode with a badge) */
+  hiddenInProd?: boolean;
   /** URL path for web routing (e.g., "/build/workflows") */
   route?: string;
   /** Accent color CSS value (e.g., "#9333EA" or "var(--brand-secondary)") */
