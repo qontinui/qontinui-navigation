@@ -310,6 +310,14 @@ var CONFIGURE_GROUP = {
 };
 var SCHEDULE_ITEMS = [
   {
+    id: "triggers",
+    label: "Triggers",
+    icon: "Zap",
+    description: "Event-driven workflow automation",
+    hiddenInProd: true,
+    platforms: ["runner"]
+  },
+  {
     id: "tasks",
     label: "Scheduled Tasks",
     icon: "Calendar",

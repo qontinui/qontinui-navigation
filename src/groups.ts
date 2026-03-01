@@ -280,6 +280,14 @@ export const CONFIGURE_GROUP: NavigationGroup = {
 
 export const SCHEDULE_ITEMS: NavigationItem[] = [
   {
+    id: "triggers",
+    label: "Triggers",
+    icon: "Zap",
+    description: "Event-driven workflow automation",
+    hiddenInProd: true,
+    platforms: ["runner"],
+  },
+  {
     id: "tasks",
     label: "Scheduled Tasks",
     icon: "Calendar",
