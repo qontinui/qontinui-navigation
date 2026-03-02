@@ -43,6 +43,15 @@ export const RUN_ITEMS: NavigationItem[] = [
     route: "/runs/active",
     color: "#4A90D9",
   },
+  {
+    id: "terminal",
+    label: "Terminal",
+    icon: "Terminal",
+    description: "Embedded PTY terminal for Claude Code and shell commands",
+    route: "/terminal",
+    color: "#9CA3AF",
+    platforms: ["runner"],
+  },
 ];
 
 export const RUN_GROUP: NavigationGroup = {
@@ -423,6 +432,16 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     description: "Check for updates",
     route: "/settings/updates",
     color: "#FFD700",
+  },
+  {
+    id: "settings-instances",
+    label: "Instances",
+    icon: "Monitor",
+    description: "Manage runner instances",
+    route: "/settings/instances",
+    color: "#FFD700",
+    hiddenInProd: true,
+    platforms: ["runner"],
   },
   {
     id: "settings-debug",
