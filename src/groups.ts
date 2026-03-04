@@ -21,14 +21,6 @@ export const RUN_ITEMS: NavigationItem[] = [
     color: "#10B981",
   },
   {
-    id: "run-plan",
-    label: "Chat",
-    icon: "MessageSquare",
-    description: "Plan features with AI, generate workflows",
-    route: "/chat",
-    color: "#9333EA",
-  },
-  {
     id: "gui-automation",
     label: "GUI Automation",
     icon: "Play",
@@ -47,7 +39,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     id: "terminal",
     label: "Terminal",
     icon: "Terminal",
-    description: "Embedded PTY terminal for Claude Code and shell commands",
+    description: "Terminal, Claude Code sessions, and workflow generation",
     route: "/terminal",
     color: "#9CA3AF",
     platforms: ["runner"],
@@ -139,6 +131,14 @@ export const SESSION_ITEMS: NavigationItem[] = [
     icon: "Database",
     description: "Structured AI data",
     route: "/runs/ai-data",
+    color: "#4A90D9",
+  },
+  {
+    id: "run-traces",
+    label: "Traces",
+    icon: "Activity",
+    description: "Execution trace waterfall",
+    route: "/runs/traces",
     color: "#4A90D9",
   },
   {
@@ -273,6 +273,13 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     description: "Configure execution event triggers",
     platforms: ["runner"],
     hiddenInProd: true,
+  },
+  {
+    id: "config-ui-bridge",
+    label: "UI Bridge",
+    icon: "Plug",
+    description: "Manage UI Bridge integrations for external apps",
+    platforms: ["runner"],
   },
 ];
 
