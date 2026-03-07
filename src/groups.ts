@@ -200,6 +200,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
     platforms: ["runner"],
+    hiddenInProd: true,
   },
   {
     id: "generator-eval",
@@ -242,6 +243,14 @@ export const BUILD_ITEMS: NavigationItem[] = [
     icon: "BookOpen",
     description: "Browse saved automation assets",
     route: "/library",
+    color: "var(--brand-secondary)",
+  },
+  {
+    id: "specs",
+    label: "Specs",
+    icon: "ShieldCheck",
+    description: "View and edit project specifications",
+    route: "/build/specs",
     color: "var(--brand-secondary)",
   },
 ];

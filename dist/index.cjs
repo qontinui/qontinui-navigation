@@ -243,7 +243,8 @@ var OBSERVE_ITEMS = [
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
-    platforms: ["runner"]
+    platforms: ["runner"],
+    hiddenInProd: true
   },
   {
     id: "generator-eval",
@@ -284,6 +285,14 @@ var BUILD_ITEMS = [
     icon: "BookOpen",
     description: "Browse saved automation assets",
     route: "/library",
+    color: "var(--brand-secondary)"
+  },
+  {
+    id: "specs",
+    label: "Specs",
+    icon: "ShieldCheck",
+    description: "View and edit project specifications",
+    route: "/build/specs",
     color: "var(--brand-secondary)"
   }
 ];
