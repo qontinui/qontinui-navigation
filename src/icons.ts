@@ -20,6 +20,7 @@ export const ICON_NAMES: IconName[] = [
   "ChevronDown",
   "ChevronRight",
   "AlertCircle",
+  "Bug",
   // Observe/Session
   "ScrollText",
   "LayoutDashboard",

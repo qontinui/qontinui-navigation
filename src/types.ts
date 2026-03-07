@@ -37,6 +37,7 @@ export type IconName =
   | "Cloud"
   | "Accessibility"
   | "AlertCircle"
+  | "Bug"
   // Build
   | "BookOpen"
   | "BookText"

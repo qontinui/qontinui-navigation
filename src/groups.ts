@@ -187,6 +187,14 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     color: "#4A90D9",
   },
   {
+    id: "known-issues",
+    label: "Known Issues",
+    icon: "Bug",
+    description: "Track and manage known application issues",
+    route: "/observe/known-issues",
+    color: "#F59E0B",
+  },
+  {
     id: "processes",
     label: "Processes",
     icon: "Cpu",
