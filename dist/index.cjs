@@ -620,6 +620,7 @@ var ICON_NAMES = [
   // Configure
   "FolderOpen",
   "Tag",
+  "Plug",
   // Schedule
   "Calendar",
   // System/Settings

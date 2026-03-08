@@ -55,6 +55,7 @@ export const ICON_NAMES: IconName[] = [
   // Configure
   "FolderOpen",
   "Tag",
+  "Plug",
   // Schedule
   "Calendar",
   // System/Settings
