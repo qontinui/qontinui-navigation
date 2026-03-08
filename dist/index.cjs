@@ -231,14 +231,6 @@ var OBSERVE_ITEMS = [
     color: "#4A90D9"
   },
   {
-    id: "known-issues",
-    label: "Known Issues",
-    icon: "Bug",
-    description: "Track and manage known application issues",
-    route: "/observe/known-issues",
-    color: "#F59E0B"
-  },
-  {
     id: "processes",
     label: "Processes",
     icon: "Cpu",
@@ -299,7 +291,7 @@ var BUILD_ITEMS = [
     id: "specs",
     label: "Specs",
     icon: "ShieldCheck",
-    description: "View and edit project specifications",
+    description: "View and edit specifications, and manage known issues",
     route: "/build/specs",
     color: "var(--brand-secondary)"
   }
