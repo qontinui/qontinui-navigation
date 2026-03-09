@@ -246,6 +246,15 @@ export const BUILD_ITEMS: NavigationItem[] = [
     color: "var(--brand-secondary)",
   },
   {
+    id: "state-machine",
+    label: "State Machine",
+    icon: "GitBranch",
+    description: "Design and manage state machine configs",
+    route: "/build/state-machine",
+    color: "var(--brand-secondary)",
+    platforms: ["runner"],
+  },
+  {
     id: "specs",
     label: "Specs",
     icon: "ShieldCheck",
