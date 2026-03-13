@@ -203,6 +203,13 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     hiddenInProd: true,
   },
   {
+    id: "architecture",
+    label: "Architecture",
+    icon: "GitBranch",
+    description: "Component dependency graph from reflection data",
+    platforms: ["runner"],
+  },
+  {
     id: "generator-eval",
     label: "Generator Eval",
     icon: "FlaskConical",
