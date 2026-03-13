@@ -251,8 +251,7 @@ var OBSERVE_ITEMS = [
     label: "Architecture",
     icon: "GitBranch",
     description: "Component dependency graph from reflection data",
-    platforms: ["runner"],
-    hiddenInProd: true
+    platforms: ["runner"]
   },
   {
     id: "generator-eval",
