@@ -48,6 +48,7 @@ export type IconName =
   | "FlaskConical"
   | "Camera"
   | "GitBranch"
+  | "Network"
   | "Globe"
   | "Code"
   | "Puzzle"

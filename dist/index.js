@@ -229,9 +229,9 @@ var BUILD_ITEMS = [
   },
   {
     id: "state-machine",
-    label: "State Machine",
-    icon: "GitBranch",
-    description: "Design and manage state machine configs",
+    label: "UI Bridge States",
+    icon: "Network",
+    description: "Build state machines from UI Bridge SDK apps",
     route: "/build/state-machine",
     color: "var(--brand-secondary)",
     platforms: ["runner"]
