@@ -45,6 +45,7 @@ export const ICON_NAMES: IconName[] = [
   "FlaskConical",
   "Camera",
   "GitBranch",
+  "Network",
   "Globe",
   "Code",
   "Puzzle",
