@@ -74,7 +74,8 @@ var RUN_ITEMS = [
     icon: "Play",
     description: "Run and schedule workflows",
     route: "/execute",
-    color: "#10B981"
+    color: "#10B981",
+    productMode: "ai"
   },
   {
     id: "gui-automation",
@@ -82,7 +83,8 @@ var RUN_ITEMS = [
     icon: "Play",
     description: "Run GUI automation workflows",
     productMode: "visual",
-    route: "/tools/visual-automation"
+    route: "/tools/visual-automation",
+    platforms: ["runner"]
   },
   {
     id: "active",
@@ -90,7 +92,8 @@ var RUN_ITEMS = [
     icon: "Activity",
     description: "Monitor active executions",
     route: "/runs/active",
-    color: "#4A90D9"
+    color: "#4A90D9",
+    productMode: "ai"
   },
   {
     id: "terminal",
@@ -123,8 +126,7 @@ var SESSION_ITEMS = [
     icon: "Zap",
     description: "Action execution log",
     route: "/runs/actions",
-    color: "#4A90D9",
-    productMode: "visual"
+    color: "#4A90D9"
   },
   {
     id: "run-image",
@@ -132,8 +134,7 @@ var SESSION_ITEMS = [
     icon: "Image",
     description: "Visual recognition results",
     route: "/runs/image-recognition",
-    color: "#4A90D9",
-    productMode: "visual"
+    color: "#4A90D9"
   },
   {
     id: "run-findings",
@@ -149,8 +150,7 @@ var SESSION_ITEMS = [
     icon: "FileSearch",
     description: "State exploration results",
     route: "/runs/state-exploration",
-    color: "#4A90D9",
-    productMode: "visual"
+    color: "#4A90D9"
   },
   {
     id: "run-tests",
@@ -221,7 +221,8 @@ var OBSERVE_ITEMS = [
     hasChildren: true,
     selectsFirstChild: false,
     route: "/runs",
-    color: "#4A90D9"
+    color: "#4A90D9",
+    productMode: "ai"
   },
   {
     id: "error-monitor",
@@ -229,7 +230,8 @@ var OBSERVE_ITEMS = [
     icon: "AlertCircle",
     description: "Monitor and fix application errors from log sources",
     route: "/tools/error-monitor",
-    color: "#4A90D9"
+    color: "#4A90D9",
+    productMode: "ai"
   },
   {
     id: "processes",
@@ -244,8 +246,7 @@ var OBSERVE_ITEMS = [
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
-    platforms: ["runner"],
-    hiddenInProd: true
+    platforms: ["runner"]
   },
   {
     id: "architecture",
@@ -277,7 +278,8 @@ var BUILD_ITEMS = [
     icon: "Sparkles",
     description: "Build phase-based automation workflows",
     route: "/build/workflows",
-    color: "var(--brand-secondary)"
+    color: "var(--brand-secondary)",
+    productMode: "ai"
   },
   {
     id: "step-builders",
@@ -285,7 +287,8 @@ var BUILD_ITEMS = [
     icon: "Layers",
     description: "Build and browse step templates",
     route: "/build/templates",
-    color: "var(--brand-secondary)"
+    color: "var(--brand-secondary)",
+    productMode: "ai"
   },
   {
     id: "library",
@@ -293,7 +296,8 @@ var BUILD_ITEMS = [
     icon: "BookOpen",
     description: "Browse saved automation assets",
     route: "/library",
-    color: "var(--brand-secondary)"
+    color: "var(--brand-secondary)",
+    productMode: "ai"
   },
   {
     id: "state-machine",
@@ -302,7 +306,8 @@ var BUILD_ITEMS = [
     description: "Build state machines from UI Bridge SDK apps",
     route: "/build/state-machine",
     color: "var(--brand-secondary)",
-    platforms: ["runner"]
+    platforms: ["runner"],
+    productMode: "ai"
   },
   {
     id: "specs",
@@ -310,7 +315,8 @@ var BUILD_ITEMS = [
     icon: "ShieldCheck",
     description: "View and edit specifications, and manage known issues",
     route: "/build/specs",
-    color: "var(--brand-secondary)"
+    color: "var(--brand-secondary)",
+    productMode: "ai"
   }
 ];
 var BUILD_GROUP = {
@@ -326,7 +332,8 @@ var CONFIGURE_ITEMS = [
     icon: "Tag",
     description: "Configure finding patterns",
     route: "/settings/finding-rules",
-    color: "#FFD700"
+    color: "#FFD700",
+    productMode: "ai"
   },
   {
     id: "config-hooks",
@@ -334,14 +341,16 @@ var CONFIGURE_ITEMS = [
     icon: "Webhook",
     description: "Configure execution event triggers",
     platforms: ["runner"],
-    hiddenInProd: true
+    hiddenInProd: true,
+    productMode: "ai"
   },
   {
     id: "config-ui-bridge",
     label: "UI Bridge",
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
-    platforms: ["runner"]
+    platforms: ["runner"],
+    productMode: "ai"
   }
 ];
 var CONFIGURE_GROUP = {
@@ -357,14 +366,16 @@ var SCHEDULE_ITEMS = [
     icon: "Zap",
     description: "Event-driven workflow automation",
     hiddenInProd: true,
-    platforms: ["runner"]
+    platforms: ["runner"],
+    productMode: "ai"
   },
   {
     id: "tasks",
     label: "Scheduled Tasks",
     icon: "Calendar",
     description: "Manage scheduled automation",
-    hiddenInProd: true
+    hiddenInProd: true,
+    productMode: "ai"
   }
 ];
 var SCHEDULE_GROUP = {

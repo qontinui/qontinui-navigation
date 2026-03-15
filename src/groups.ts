@@ -19,6 +19,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     description: "Run and schedule workflows",
     route: "/execute",
     color: "#10B981",
+    productMode: "ai",
   },
   {
     id: "gui-automation",
@@ -27,6 +28,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     description: "Run GUI automation workflows",
     productMode: "visual",
     route: "/tools/visual-automation",
+    platforms: ["runner"],
   },
   {
     id: "active",
@@ -35,6 +37,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     description: "Monitor active executions",
     route: "/runs/active",
     color: "#4A90D9",
+    productMode: "ai",
   },
   {
     id: "terminal",
@@ -74,7 +77,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Action execution log",
     route: "/runs/actions",
     color: "#4A90D9",
-    productMode: "visual",
   },
   {
     id: "run-image",
@@ -83,7 +85,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Visual recognition results",
     route: "/runs/image-recognition",
     color: "#4A90D9",
-    productMode: "visual",
   },
   {
     id: "run-findings",
@@ -100,7 +101,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "State exploration results",
     route: "/runs/state-exploration",
     color: "#4A90D9",
-    productMode: "visual",
   },
   {
     id: "run-tests",
@@ -178,6 +178,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     selectsFirstChild: false,
     route: "/runs",
     color: "#4A90D9",
+    productMode: "ai",
   },
   {
     id: "error-monitor",
@@ -186,6 +187,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     description: "Monitor and fix application errors from log sources",
     route: "/tools/error-monitor",
     color: "#4A90D9",
+    productMode: "ai",
   },
   {
     id: "processes",
@@ -201,7 +203,6 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
     platforms: ["runner"],
-    hiddenInProd: true,
   },
   {
     id: "architecture",
@@ -236,6 +237,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Build phase-based automation workflows",
     route: "/build/workflows",
     color: "var(--brand-secondary)",
+    productMode: "ai",
   },
   {
     id: "step-builders",
@@ -244,6 +246,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Build and browse step templates",
     route: "/build/templates",
     color: "var(--brand-secondary)",
+    productMode: "ai",
   },
   {
     id: "library",
@@ -252,6 +255,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Browse saved automation assets",
     route: "/library",
     color: "var(--brand-secondary)",
+    productMode: "ai",
   },
   {
     id: "state-machine",
@@ -261,6 +265,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/build/state-machine",
     color: "var(--brand-secondary)",
     platforms: ["runner"],
+    productMode: "ai",
   },
   {
     id: "specs",
@@ -269,6 +274,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "View and edit specifications, and manage known issues",
     route: "/build/specs",
     color: "var(--brand-secondary)",
+    productMode: "ai",
   },
 ];
 
@@ -291,6 +297,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     description: "Configure finding patterns",
     route: "/settings/finding-rules",
     color: "#FFD700",
+    productMode: "ai",
   },
   {
     id: "config-hooks",
@@ -299,6 +306,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     description: "Configure execution event triggers",
     platforms: ["runner"],
     hiddenInProd: true,
+    productMode: "ai",
   },
   {
     id: "config-ui-bridge",
@@ -306,6 +314,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
     platforms: ["runner"],
+    productMode: "ai",
   },
 ];
 
@@ -328,6 +337,7 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     description: "Event-driven workflow automation",
     hiddenInProd: true,
     platforms: ["runner"],
+    productMode: "ai",
   },
   {
     id: "tasks",
@@ -335,6 +345,7 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     icon: "Calendar",
     description: "Manage scheduled automation",
     hiddenInProd: true,
+    productMode: "ai",
   },
 ];
 
