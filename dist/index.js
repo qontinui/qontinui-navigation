@@ -130,7 +130,8 @@ var SESSION_ITEMS = [
     icon: "Camera",
     description: "Screenshot capture tool",
     platforms: ["runner"],
-    hiddenInProd: true
+    hiddenInProd: true,
+    productMode: "visual"
   }
 ];
 var RUNS_ITEMS = [
@@ -616,8 +617,18 @@ function setDevelopmentMode(isDev) {
 function isDevelopmentMode() {
   return _isDevelopmentMode;
 }
+var _productMode = null;
+function setProductMode(mode) {
+  _productMode = mode;
+}
+function getProductMode() {
+  return _productMode;
+}
 function isItemAvailable(item, platform) {
   if (item.hiddenInProd && !isDevelopmentMode()) {
+    return false;
+  }
+  if (_productMode && item.productMode && item.productMode !== "both" && item.productMode !== _productMode) {
     return false;
   }
   if (!item.platforms || item.platforms.length === 0) {
@@ -854,6 +865,7 @@ export {
   getChildrenItems,
   getItemGroup,
   getNavigationGroups,
+  getProductMode,
   getRunnerNavigation,
   getWebNavigation,
   isDevelopmentMode,
@@ -866,5 +878,6 @@ export {
   navigationActions,
   navigationReducer,
   serializeState,
-  setDevelopmentMode
+  setDevelopmentMode,
+  setProductMode
 };

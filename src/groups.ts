@@ -149,6 +149,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Screenshot capture tool",
     platforms: ["runner"],
     hiddenInProd: true,
+    productMode: "visual",
   },
 ];
 

@@ -29,6 +29,28 @@ export function isDevelopmentMode(): boolean {
 }
 
 // ============================================================================
+// Product Mode
+// ============================================================================
+
+type ProductMode = "ai" | "visual" | null;
+let _productMode: ProductMode = null;
+
+/**
+ * Set the active product mode for navigation filtering.
+ * Pass null to show all items regardless of product mode.
+ */
+export function setProductMode(mode: ProductMode): void {
+  _productMode = mode;
+}
+
+/**
+ * Get the current product mode filter.
+ */
+export function getProductMode(): ProductMode {
+  return _productMode;
+}
+
+// ============================================================================
 // Platform Filtering
 // ============================================================================
 
@@ -42,6 +64,10 @@ export function isItemAvailable(
 ): boolean {
   // Exclude hiddenInProd items in production (show in development)
   if (item.hiddenInProd && !isDevelopmentMode()) {
+    return false;
+  }
+  // Filter by product mode if one is set
+  if (_productMode && item.productMode && item.productMode !== "both" && item.productMode !== _productMode) {
     return false;
   }
   // If no platform restriction, show everywhere

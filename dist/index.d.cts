@@ -213,6 +213,16 @@ declare function setDevelopmentMode(isDev: boolean): void;
  * Check if running in development mode.
  */
 declare function isDevelopmentMode(): boolean;
+type ProductMode = "ai" | "visual" | null;
+/**
+ * Set the active product mode for navigation filtering.
+ * Pass null to show all items regardless of product mode.
+ */
+declare function setProductMode(mode: ProductMode): void;
+/**
+ * Get the current product mode filter.
+ */
+declare function getProductMode(): ProductMode;
 /**
  * Filter a navigation item based on platform.
  * Returns true if the item should be shown on the given platform.
@@ -322,4 +332,4 @@ declare const STORAGE_KEYS: {
     readonly activeTab: "qontinui-active-tab";
 };
 
-export { BUILD_GROUP, BUILD_ITEMS, CHILDREN_MAP, CONFIGURE_GROUP, CONFIGURE_ITEMS, ICON_NAMES, type IconName, NAVIGATION_GROUPS, type NavigationAction, type NavigationBadge, type NavigationGroup, type NavigationItem, type NavigationState, OBSERVE_GROUP, OBSERVE_ITEMS, type Platform, RUNS_ITEMS, RUN_GROUP, RUN_ITEMS, SCHEDULE_GROUP, SCHEDULE_ITEMS, SESSION_ITEMS, SETTINGS_ITEMS, STORAGE_KEYS, SYSTEM_GROUP, SYSTEM_ITEMS, type SecondarySidebarState, createInitialState, deserializeState, filterGroupForPlatform, filterGroupsForPlatform, filterItemsForPlatform, findItemById, getAllItems, getChildrenForPlatform, getChildrenItems, getItemGroup, getNavigationGroups, getRunnerNavigation, getWebNavigation, isDevelopmentMode, isGroupExpanded, isItemActive, isItemAvailable, isItemExpanded, isSecondaryOpenFor, isValidIconName, navigationActions, navigationReducer, serializeState, setDevelopmentMode };
+export { BUILD_GROUP, BUILD_ITEMS, CHILDREN_MAP, CONFIGURE_GROUP, CONFIGURE_ITEMS, ICON_NAMES, type IconName, NAVIGATION_GROUPS, type NavigationAction, type NavigationBadge, type NavigationGroup, type NavigationItem, type NavigationState, OBSERVE_GROUP, OBSERVE_ITEMS, type Platform, RUNS_ITEMS, RUN_GROUP, RUN_ITEMS, SCHEDULE_GROUP, SCHEDULE_ITEMS, SESSION_ITEMS, SETTINGS_ITEMS, STORAGE_KEYS, SYSTEM_GROUP, SYSTEM_ITEMS, type SecondarySidebarState, createInitialState, deserializeState, filterGroupForPlatform, filterGroupsForPlatform, filterItemsForPlatform, findItemById, getAllItems, getChildrenForPlatform, getChildrenItems, getItemGroup, getNavigationGroups, getProductMode, getRunnerNavigation, getWebNavigation, isDevelopmentMode, isGroupExpanded, isItemActive, isItemAvailable, isItemExpanded, isSecondaryOpenFor, isValidIconName, navigationActions, navigationReducer, serializeState, setDevelopmentMode, setProductMode };

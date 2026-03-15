@@ -75,6 +75,9 @@ export {
   // Development mode
   setDevelopmentMode,
   isDevelopmentMode,
+  // Product mode
+  setProductMode,
+  getProductMode,
   // Platform filtering
   isItemAvailable,
   filterItemsForPlatform,

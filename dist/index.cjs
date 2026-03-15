@@ -50,6 +50,7 @@ __export(index_exports, {
   getChildrenItems: () => getChildrenItems,
   getItemGroup: () => getItemGroup,
   getNavigationGroups: () => getNavigationGroups,
+  getProductMode: () => getProductMode,
   getRunnerNavigation: () => getRunnerNavigation,
   getWebNavigation: () => getWebNavigation,
   isDevelopmentMode: () => isDevelopmentMode,
@@ -62,7 +63,8 @@ __export(index_exports, {
   navigationActions: () => navigationActions,
   navigationReducer: () => navigationReducer,
   serializeState: () => serializeState,
-  setDevelopmentMode: () => setDevelopmentMode
+  setDevelopmentMode: () => setDevelopmentMode,
+  setProductMode: () => setProductMode
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -198,7 +200,8 @@ var SESSION_ITEMS = [
     icon: "Camera",
     description: "Screenshot capture tool",
     platforms: ["runner"],
-    hiddenInProd: true
+    hiddenInProd: true,
+    productMode: "visual"
   }
 ];
 var RUNS_ITEMS = [
@@ -684,8 +687,18 @@ function setDevelopmentMode(isDev) {
 function isDevelopmentMode() {
   return _isDevelopmentMode;
 }
+var _productMode = null;
+function setProductMode(mode) {
+  _productMode = mode;
+}
+function getProductMode() {
+  return _productMode;
+}
 function isItemAvailable(item, platform) {
   if (item.hiddenInProd && !isDevelopmentMode()) {
+    return false;
+  }
+  if (_productMode && item.productMode && item.productMode !== "both" && item.productMode !== _productMode) {
     return false;
   }
   if (!item.platforms || item.platforms.length === 0) {
@@ -923,6 +936,7 @@ var STORAGE_KEYS = {
   getChildrenItems,
   getItemGroup,
   getNavigationGroups,
+  getProductMode,
   getRunnerNavigation,
   getWebNavigation,
   isDevelopmentMode,
@@ -935,5 +949,6 @@ var STORAGE_KEYS = {
   navigationActions,
   navigationReducer,
   serializeState,
-  setDevelopmentMode
+  setDevelopmentMode,
+  setProductMode
 });
