@@ -25,7 +25,8 @@ export const RUN_ITEMS: NavigationItem[] = [
     label: "GUI Automation",
     icon: "Play",
     description: "Run GUI automation workflows",
-    hiddenInProd: true,
+    productMode: "visual",
+    route: "/tools/visual-automation",
   },
   {
     id: "active",
@@ -73,7 +74,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Action execution log",
     route: "/runs/actions",
     color: "#4A90D9",
-    hiddenInProd: true,
+    productMode: "visual",
   },
   {
     id: "run-image",
@@ -82,7 +83,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Visual recognition results",
     route: "/runs/image-recognition",
     color: "#4A90D9",
-    hiddenInProd: true,
+    productMode: "visual",
   },
   {
     id: "run-findings",
@@ -99,7 +100,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "State exploration results",
     route: "/runs/state-exploration",
     color: "#4A90D9",
-    hiddenInProd: true,
+    productMode: "visual",
   },
   {
     id: "run-tests",

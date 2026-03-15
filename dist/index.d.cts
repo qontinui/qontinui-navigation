@@ -38,6 +38,8 @@ interface NavigationItem {
     shortcut?: string;
     /** Hide from navigation in production (visible in dev mode with a badge) */
     hiddenInProd?: boolean;
+    /** Product mode visibility - "ai", "visual", or "both" (default: shown in all modes) */
+    productMode?: "ai" | "visual" | "both";
     /** URL path for web routing (e.g., "/build/workflows") */
     route?: string;
     /** Accent color CSS value (e.g., "#9333EA" or "var(--brand-secondary)") */

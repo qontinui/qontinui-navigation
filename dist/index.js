@@ -13,7 +13,8 @@ var RUN_ITEMS = [
     label: "GUI Automation",
     icon: "Play",
     description: "Run GUI automation workflows",
-    hiddenInProd: true
+    productMode: "visual",
+    route: "/tools/visual-automation"
   },
   {
     id: "active",
@@ -55,7 +56,7 @@ var SESSION_ITEMS = [
     description: "Action execution log",
     route: "/runs/actions",
     color: "#4A90D9",
-    hiddenInProd: true
+    productMode: "visual"
   },
   {
     id: "run-image",
@@ -64,7 +65,7 @@ var SESSION_ITEMS = [
     description: "Visual recognition results",
     route: "/runs/image-recognition",
     color: "#4A90D9",
-    hiddenInProd: true
+    productMode: "visual"
   },
   {
     id: "run-findings",
@@ -81,7 +82,7 @@ var SESSION_ITEMS = [
     description: "State exploration results",
     route: "/runs/state-exploration",
     color: "#4A90D9",
-    hiddenInProd: true
+    productMode: "visual"
   },
   {
     id: "run-tests",
@@ -558,6 +559,7 @@ var ICON_NAMES = [
   "FlaskConical",
   "Camera",
   "GitBranch",
+  "Network",
   "Globe",
   "Code",
   "Puzzle",
