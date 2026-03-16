@@ -10,15 +10,6 @@ var RUN_ITEMS = [
     productMode: "ai"
   },
   {
-    id: "gui-automation",
-    label: "GUI Automation",
-    icon: "Play",
-    description: "Run GUI automation workflows",
-    productMode: "visual",
-    route: "/tools/visual-automation",
-    platforms: ["runner"]
-  },
-  {
     id: "active",
     label: "Active",
     icon: "Activity",
@@ -34,7 +25,7 @@ var RUN_ITEMS = [
     description: "Terminal, Claude Code sessions, and workflow generation",
     route: "/terminal",
     color: "#9CA3AF",
-    platforms: ["runner"]
+    productMode: "ai"
   }
 ];
 var RUN_GROUP = {
@@ -129,7 +120,6 @@ var SESSION_ITEMS = [
     label: "Capture",
     icon: "Camera",
     description: "Screenshot capture tool",
-    platforms: ["runner"],
     hiddenInProd: true,
     productMode: "visual"
   }
@@ -171,31 +161,31 @@ var OBSERVE_ITEMS = [
     label: "Processes",
     icon: "Cpu",
     description: "Manage and monitor spawned child processes",
-    platforms: ["runner"],
-    color: "#06B6D4"
+    color: "#06B6D4",
+    productMode: "ai"
   },
   {
     id: "reflection",
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
-    platforms: ["runner"]
+    productMode: "ai"
   },
   {
     id: "architecture",
     label: "Architecture",
     icon: "GitBranch",
     description: "Component dependency graph from reflection data",
-    platforms: ["runner"]
+    productMode: "ai"
   },
   {
     id: "generator-eval",
     label: "Generator Eval",
     icon: "FlaskConical",
     description: "Evaluate and improve workflow generation accuracy",
-    platforms: ["runner"],
     hiddenInProd: true,
-    color: "#8B5CF6"
+    color: "#8B5CF6",
+    productMode: "ai"
   }
 ];
 var OBSERVE_GROUP = {
@@ -239,7 +229,6 @@ var BUILD_ITEMS = [
     description: "Build state machines from UI Bridge SDK apps",
     route: "/build/state-machine",
     color: "var(--brand-secondary)",
-    platforms: ["runner"],
     productMode: "ai"
   },
   {
@@ -273,7 +262,6 @@ var CONFIGURE_ITEMS = [
     label: "Lifecycle Hooks",
     icon: "Webhook",
     description: "Configure execution event triggers",
-    platforms: ["runner"],
     hiddenInProd: true,
     productMode: "ai"
   },
@@ -282,7 +270,6 @@ var CONFIGURE_ITEMS = [
     label: "UI Bridge",
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
-    platforms: ["runner"],
     productMode: "ai"
   }
 ];
@@ -299,7 +286,6 @@ var SCHEDULE_ITEMS = [
     icon: "Zap",
     description: "Event-driven workflow automation",
     hiddenInProd: true,
-    platforms: ["runner"],
     productMode: "ai"
   },
   {
@@ -363,7 +349,6 @@ var SETTINGS_ITEMS = [
     label: "Mobile",
     icon: "Monitor",
     description: "Mobile device (ADB) settings",
-    platforms: ["runner"],
     hiddenInProd: true,
     route: "/settings/mobile",
     color: "#FFD700"
@@ -373,7 +358,6 @@ var SETTINGS_ITEMS = [
     label: "Cloud Relay",
     icon: "Cloud",
     description: "Remote access via cloud relay connection",
-    platforms: ["runner"],
     route: "/settings/cloud-relay",
     color: "#FFD700"
   },
@@ -441,8 +425,7 @@ var SETTINGS_ITEMS = [
     description: "Manage runner instances",
     route: "/settings/instances",
     color: "#FFD700",
-    hiddenInProd: true,
-    platforms: ["runner"]
+    hiddenInProd: true
   },
   {
     id: "settings-debug",

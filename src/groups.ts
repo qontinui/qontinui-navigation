@@ -3,6 +3,11 @@
  *
  * Shared navigation group definitions for Qontinui applications.
  * These define the structure and hierarchy of the sidebar navigation.
+ *
+ * Each item can have three orthogonal visibility dimensions:
+ *   - platform:    "runner" | "web" | both (default) — which app shows the item
+ *   - productMode: "ai" | "visual" | "both" | undefined (default=both) — which product mode
+ *   - hiddenInProd: true — dev-only items hidden in production
  */
 
 import type { NavigationGroup, NavigationItem } from "./types";
@@ -22,15 +27,6 @@ export const RUN_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
-    id: "gui-automation",
-    label: "GUI Automation",
-    icon: "Play",
-    description: "Run GUI automation workflows",
-    productMode: "visual",
-    route: "/tools/visual-automation",
-    platforms: ["runner"],
-  },
-  {
     id: "active",
     label: "Active",
     icon: "Activity",
@@ -46,7 +42,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     description: "Terminal, Claude Code sessions, and workflow generation",
     route: "/terminal",
     color: "#9CA3AF",
-    platforms: ["runner"],
+    productMode: "ai",
   },
 ];
 
@@ -147,7 +143,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
     label: "Capture",
     icon: "Camera",
     description: "Screenshot capture tool",
-    platforms: ["runner"],
     hiddenInProd: true,
     productMode: "visual",
   },
@@ -195,31 +190,31 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "Processes",
     icon: "Cpu",
     description: "Manage and monitor spawned child processes",
-    platforms: ["runner"],
     color: "#06B6D4",
+    productMode: "ai",
   },
   {
     id: "reflection",
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
-    platforms: ["runner"],
+    productMode: "ai",
   },
   {
     id: "architecture",
     label: "Architecture",
     icon: "GitBranch",
     description: "Component dependency graph from reflection data",
-    platforms: ["runner"],
+    productMode: "ai",
   },
   {
     id: "generator-eval",
     label: "Generator Eval",
     icon: "FlaskConical",
     description: "Evaluate and improve workflow generation accuracy",
-    platforms: ["runner"],
     hiddenInProd: true,
     color: "#8B5CF6",
+    productMode: "ai",
   },
 ];
 
@@ -265,7 +260,6 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Build state machines from UI Bridge SDK apps",
     route: "/build/state-machine",
     color: "var(--brand-secondary)",
-    platforms: ["runner"],
     productMode: "ai",
   },
   {
@@ -305,7 +299,6 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     label: "Lifecycle Hooks",
     icon: "Webhook",
     description: "Configure execution event triggers",
-    platforms: ["runner"],
     hiddenInProd: true,
     productMode: "ai",
   },
@@ -314,7 +307,6 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     label: "UI Bridge",
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
-    platforms: ["runner"],
     productMode: "ai",
   },
 ];
@@ -337,7 +329,6 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     icon: "Zap",
     description: "Event-driven workflow automation",
     hiddenInProd: true,
-    platforms: ["runner"],
     productMode: "ai",
   },
   {
@@ -407,7 +398,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Mobile",
     icon: "Monitor",
     description: "Mobile device (ADB) settings",
-    platforms: ["runner"],
     hiddenInProd: true,
     route: "/settings/mobile",
     color: "#FFD700",
@@ -417,7 +407,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Cloud Relay",
     icon: "Cloud",
     description: "Remote access via cloud relay connection",
-    platforms: ["runner"],
     route: "/settings/cloud-relay",
     color: "#FFD700",
   },
@@ -486,7 +475,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     route: "/settings/instances",
     color: "#FFD700",
     hiddenInProd: true,
-    platforms: ["runner"],
   },
   {
     id: "settings-debug",

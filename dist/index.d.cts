@@ -141,6 +141,11 @@ type NavigationAction = {
  *
  * Shared navigation group definitions for Qontinui applications.
  * These define the structure and hierarchy of the sidebar navigation.
+ *
+ * Each item can have three orthogonal visibility dimensions:
+ *   - platform:    "runner" | "web" | both (default) — which app shows the item
+ *   - productMode: "ai" | "visual" | "both" | undefined (default=both) — which product mode
+ *   - hiddenInProd: true — dev-only items hidden in production
  */
 
 declare const RUN_ITEMS: NavigationItem[];
