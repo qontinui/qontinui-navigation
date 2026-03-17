@@ -27,6 +27,15 @@ export const RUN_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
+    id: "gui-automation",
+    label: "GUI Automation",
+    icon: "MousePointer2",
+    description: "Load and run visual GUI automation configs",
+    route: "/execute/visual",
+    color: "#10B981",
+    productMode: "visual",
+  },
+  {
     id: "active",
     label: "Active",
     icon: "Activity",
@@ -137,14 +146,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Execution trace waterfall",
     route: "/runs/traces",
     color: "#4A90D9",
-  },
-  {
-    id: "capture",
-    label: "Capture",
-    icon: "Camera",
-    description: "Screenshot capture tool",
-    hiddenInProd: true,
-    productMode: "visual",
   },
 ];
 
@@ -270,6 +271,15 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/build/specs",
     color: "var(--brand-secondary)",
     productMode: "ai",
+  },
+  {
+    id: "capture",
+    label: "Capture",
+    icon: "Camera",
+    description: "Screenshot capture tool for visual automation",
+    route: "/build/capture",
+    color: "var(--brand-secondary)",
+    productMode: "visual",
   },
 ];
 
