@@ -7,7 +7,7 @@
  * Icon names that map to lucide-react icons.
  * Each app imports the actual icon component from lucide-react.
  */
-type IconName = "Play" | "Activity" | "History" | "Bot" | "Settings" | "HelpCircle" | "ChevronDown" | "ChevronRight" | "ScrollText" | "LayoutDashboard" | "ClipboardCheck" | "Zap" | "Image" | "ClipboardList" | "FileText" | "FileSearch" | "TestTube" | "BarChart3" | "Database" | "Cloud" | "Accessibility" | "AlertCircle" | "Bug" | "BookOpen" | "BookText" | "CheckCircle2" | "Sparkles" | "MousePointer2" | "Layers" | "FlaskConical" | "Camera" | "GitBranch" | "Network" | "Globe" | "Code" | "Puzzle" | "ShieldCheck" | "Wifi" | "Terminal" | "ListChecks" | "FolderOpen" | "Tag" | "Plug" | "Calendar" | "User" | "HardDrive" | "Wrench" | "Download" | "Archive" | "Monitor" | "Palette" | "Bell" | "Key" | "CreditCard" | "Brain" | "Webhook" | "RotateCcw" | "Cpu" | "MessageSquare" | "Server" | "Workflow";
+type IconName = "Play" | "Activity" | "History" | "Bot" | "Settings" | "HelpCircle" | "ChevronDown" | "ChevronRight" | "ScrollText" | "LayoutDashboard" | "ClipboardCheck" | "Zap" | "Image" | "ClipboardList" | "FileText" | "FileSearch" | "TestTube" | "BarChart3" | "Database" | "Cloud" | "Accessibility" | "AlertCircle" | "Bug" | "BookOpen" | "BookText" | "CheckCircle2" | "Sparkles" | "MousePointer2" | "Layers" | "FlaskConical" | "Camera" | "GitBranch" | "Network" | "Globe" | "Code" | "Puzzle" | "ShieldCheck" | "Wifi" | "Terminal" | "ListChecks" | "FolderOpen" | "Tag" | "Plug" | "Calendar" | "User" | "HardDrive" | "Wrench" | "Download" | "Archive" | "Monitor" | "Palette" | "Bell" | "Key" | "CreditCard" | "Brain" | "Webhook" | "RotateCcw" | "Cpu" | "Repeat" | "MessageSquare" | "Server" | "Workflow";
 /**
  * A single navigation item in the sidebar.
  */

@@ -77,6 +77,7 @@ export type IconName =
   | "Webhook"
   | "RotateCcw"
   | "Cpu"
+  | "Repeat"
   // Web / shared
   | "MessageSquare"
   | "Server"

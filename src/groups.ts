@@ -53,6 +53,16 @@ export const RUN_ITEMS: NavigationItem[] = [
     color: "#9CA3AF",
     productMode: "ai",
   },
+  {
+    id: "orchestration-loop",
+    label: "Orchestration",
+    icon: "Repeat",
+    description: "Iterative workflow loop with pipeline mode (build/reflect/fix)",
+    route: "/orchestration-loop",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    hiddenInProd: true,
+  },
 ];
 
 export const RUN_GROUP: NavigationGroup = {
@@ -484,7 +494,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     description: "Manage runner instances",
     route: "/settings/instances",
     color: "#FFD700",
-    hiddenInProd: true,
   },
   {
     id: "settings-debug",
