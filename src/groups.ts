@@ -227,6 +227,26 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     color: "#8B5CF6",
     productMode: "ai",
   },
+  {
+    id: "autoresearch",
+    label: "Autoresearch",
+    icon: "FlaskConical",
+    description: "Compare workflow architectures with statistical A/B testing",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
+  {
+    id: "meta-optimizer",
+    label: "Meta-Optimizer",
+    icon: "Sparkles",
+    description: "Review and apply AI-generated recommendations to improve prompts, architecture, and generation rules",
+    hiddenInProd: true,
+    color: "#D97706",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
 ];
 
 export const OBSERVE_GROUP: NavigationGroup = {
