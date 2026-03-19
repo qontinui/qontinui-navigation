@@ -242,6 +242,7 @@ var OBSERVE_ITEMS = [
     label: "Processes",
     icon: "Cpu",
     description: "Manage and monitor spawned child processes",
+    hiddenInProd: true,
     color: "#06B6D4",
     productMode: "ai"
   },
@@ -250,6 +251,7 @@ var OBSERVE_ITEMS = [
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
+    hiddenInProd: true,
     productMode: "ai"
   },
   {
@@ -257,6 +259,7 @@ var OBSERVE_ITEMS = [
     label: "Architecture",
     icon: "GitBranch",
     description: "Component dependency graph from reflection data",
+    hiddenInProd: true,
     productMode: "ai"
   },
   {
@@ -380,6 +383,7 @@ var CONFIGURE_ITEMS = [
     label: "UI Bridge",
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
+    hiddenInProd: true,
     productMode: "ai"
   }
 ];

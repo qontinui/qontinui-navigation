@@ -201,6 +201,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "Processes",
     icon: "Cpu",
     description: "Manage and monitor spawned child processes",
+    hiddenInProd: true,
     color: "#06B6D4",
     productMode: "ai",
   },
@@ -209,6 +210,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
+    hiddenInProd: true,
     productMode: "ai",
   },
   {
@@ -216,6 +218,7 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "Architecture",
     icon: "GitBranch",
     description: "Component dependency graph from reflection data",
+    hiddenInProd: true,
     productMode: "ai",
   },
   {
@@ -347,6 +350,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     label: "UI Bridge",
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
+    hiddenInProd: true,
     productMode: "ai",
   },
 ];
