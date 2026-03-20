@@ -11,6 +11,7 @@ import type { IconName } from "./types";
  */
 export const ICON_NAMES: IconName[] = [
   // Common
+  "Video",
   "Play",
   "Activity",
   "History",

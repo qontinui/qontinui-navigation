@@ -69,10 +69,27 @@ __export(index_exports, {
 module.exports = __toCommonJS(index_exports);
 
 // src/groups.ts
+var TOP_LEVEL_ITEMS = [
+  {
+    id: "visual-dashboard",
+    label: "Dashboard",
+    icon: "LayoutDashboard",
+    description: "Visual automation dashboard",
+    route: "/tools/visual-automation",
+    color: "#10B981",
+    productMode: "visual"
+  }
+];
+var TOP_LEVEL_GROUP = {
+  id: "top-level",
+  label: "",
+  items: TOP_LEVEL_ITEMS,
+  defaultExpanded: true
+};
 var RUN_ITEMS = [
   {
-    id: "workflow-queue",
-    label: "Execute",
+    id: "workflows",
+    label: "Workflows",
     icon: "Play",
     description: "Run and schedule workflows",
     route: "/execute",
@@ -104,7 +121,8 @@ var RUN_ITEMS = [
     description: "Terminal, Claude Code sessions, and workflow generation",
     route: "/terminal",
     color: "#9CA3AF",
-    productMode: "ai"
+    productMode: "ai",
+    platforms: ["runner"]
   },
   {
     id: "orchestration-loop",
@@ -290,6 +308,16 @@ var OBSERVE_ITEMS = [
     color: "#D97706",
     productMode: "ai",
     platforms: ["runner"]
+  },
+  {
+    id: "image-quality-tests",
+    label: "Image Quality",
+    icon: "Image",
+    description: "View and manage image quality test images",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai"
   }
 ];
 var OBSERVE_GROUP = {
@@ -331,7 +359,7 @@ var BUILD_ITEMS = [
     label: "UI Bridge States",
     icon: "Network",
     description: "Build state machines from UI Bridge SDK apps",
-    route: "/build/state-machine",
+    route: "/automation-builder/ui-bridge-states",
     color: "var(--brand-secondary)",
     productMode: "ai"
   },
@@ -366,7 +394,7 @@ var CONFIGURE_ITEMS = [
     label: "Findings",
     icon: "Tag",
     description: "Configure finding patterns",
-    route: "/settings/finding-rules",
+    route: "/configure/finding-rules",
     color: "#FFD700",
     productMode: "ai"
   },
@@ -492,15 +520,6 @@ var SETTINGS_ITEMS = [
     color: "#FFD700"
   },
   {
-    id: "settings-execution-variables",
-    label: "Execution Variables",
-    icon: "Code",
-    description: "Configure execution variables",
-    hiddenInProd: true,
-    route: "/settings/execution-variables",
-    color: "#FFD700"
-  },
-  {
     id: "settings-general",
     label: "General",
     icon: "Wrench",
@@ -585,6 +604,7 @@ var SYSTEM_GROUP = {
   defaultExpanded: true
 };
 var NAVIGATION_GROUPS = [
+  TOP_LEVEL_GROUP,
   RUN_GROUP,
   OBSERVE_GROUP,
   BUILD_GROUP,
@@ -633,6 +653,7 @@ function getItemGroup(itemId) {
 // src/icons.ts
 var ICON_NAMES = [
   // Common
+  "Video",
   "Play",
   "Activity",
   "History",

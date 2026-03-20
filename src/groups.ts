@@ -16,24 +16,35 @@ import type { NavigationGroup, NavigationItem } from "./types";
 // RUN Group
 // ============================================================================
 
+// Ungrouped top-level items (no group header rendered)
+export const TOP_LEVEL_ITEMS: NavigationItem[] = [
+  {
+    id: "visual-dashboard",
+    label: "Dashboard",
+    icon: "LayoutDashboard",
+    description: "Visual automation dashboard",
+    route: "/tools/visual-automation",
+    color: "#10B981",
+    productMode: "visual",
+  },
+];
+
+export const TOP_LEVEL_GROUP: NavigationGroup = {
+  id: "top-level",
+  label: "",
+  items: TOP_LEVEL_ITEMS,
+  defaultExpanded: true,
+};
+
 export const RUN_ITEMS: NavigationItem[] = [
   {
-    id: "workflow-queue",
-    label: "Execute",
+    id: "workflows",
+    label: "Workflows",
     icon: "Play",
     description: "Run and schedule workflows",
     route: "/execute",
     color: "#10B981",
     productMode: "ai",
-  },
-  {
-    id: "gui-automation",
-    label: "GUI Automation",
-    icon: "MousePointer2",
-    description: "Load and run visual GUI automation configs",
-    route: "/execute/visual",
-    color: "#10B981",
-    productMode: "visual",
   },
   {
     id: "active",
@@ -52,6 +63,7 @@ export const RUN_ITEMS: NavigationItem[] = [
     route: "/terminal",
     color: "#9CA3AF",
     productMode: "ai",
+    platforms: ["runner"],
   },
   {
     id: "orchestration-loop",
@@ -149,14 +161,6 @@ export const SESSION_ITEMS: NavigationItem[] = [
     route: "/runs/ai-data",
     color: "#4A90D9",
   },
-  {
-    id: "run-traces",
-    label: "Traces",
-    icon: "Activity",
-    description: "Execution trace waterfall",
-    route: "/runs/traces",
-    color: "#4A90D9",
-  },
 ];
 
 // ============================================================================
@@ -250,6 +254,16 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     productMode: "ai",
     platforms: ["runner"],
   },
+  {
+    id: "image-quality-tests",
+    label: "Image Quality",
+    icon: "Image",
+    description: "View and manage image quality test images",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
 ];
 
 export const OBSERVE_GROUP: NavigationGroup = {
@@ -292,27 +306,9 @@ export const BUILD_ITEMS: NavigationItem[] = [
     label: "UI Bridge States",
     icon: "Network",
     description: "Build state machines from UI Bridge SDK apps",
-    route: "/build/state-machine",
+    route: "/automation-builder/ui-bridge-states",
     color: "var(--brand-secondary)",
     productMode: "ai",
-  },
-  {
-    id: "specs",
-    label: "Specs",
-    icon: "ShieldCheck",
-    description: "View and edit specifications, and manage known issues",
-    route: "/build/specs",
-    color: "var(--brand-secondary)",
-    productMode: "ai",
-  },
-  {
-    id: "capture",
-    label: "Capture",
-    icon: "Camera",
-    description: "Screenshot capture tool for visual automation",
-    route: "/build/capture",
-    color: "var(--brand-secondary)",
-    productMode: "visual",
   },
 ];
 
@@ -333,7 +329,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     label: "Findings",
     icon: "Tag",
     description: "Configure finding patterns",
-    route: "/settings/finding-rules",
+    route: "/configure/finding-rules",
     color: "#FFD700",
     productMode: "ai",
   },
@@ -447,14 +443,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     color: "#FFD700",
   },
   {
-    id: "settings-cloud-relay",
-    label: "Cloud Relay",
-    icon: "Cloud",
-    description: "Remote access via cloud relay connection",
-    route: "/settings/cloud-relay",
-    color: "#FFD700",
-  },
-  {
     id: "settings-mcp",
     label: "MCP Servers",
     icon: "Wifi",
@@ -468,15 +456,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "FolderOpen",
     description: "Global log source configuration with AI selection",
     route: "/settings/log-sources",
-    color: "#FFD700",
-  },
-  {
-    id: "settings-execution-variables",
-    label: "Execution Variables",
-    icon: "Code",
-    description: "Configure execution variables",
-    hiddenInProd: true,
-    route: "/settings/execution-variables",
     color: "#FFD700",
   },
   {
@@ -509,14 +488,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     icon: "Download",
     description: "Check for updates",
     route: "/settings/updates",
-    color: "#FFD700",
-  },
-  {
-    id: "settings-instances",
-    label: "Instances",
-    icon: "Monitor",
-    description: "Manage runner instances",
-    route: "/settings/instances",
     color: "#FFD700",
   },
   {
@@ -574,6 +545,7 @@ export const SYSTEM_GROUP: NavigationGroup = {
  * All navigation groups in order.
  */
 export const NAVIGATION_GROUPS: NavigationGroup[] = [
+  TOP_LEVEL_GROUP,
   RUN_GROUP,
   OBSERVE_GROUP,
   BUILD_GROUP,
