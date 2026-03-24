@@ -264,6 +264,15 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
+  {
+    id: "llm-analytics",
+    label: "LLM Analytics",
+    icon: "CreditCard",
+    description: "Token usage, cost breakdown, and provider latency analytics",
+    color: "#D97706",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
 ];
 
 export const OBSERVE_GROUP: NavigationGroup = {

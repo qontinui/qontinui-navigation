@@ -27,7 +27,7 @@ export function createInitialState(
 ): NavigationState {
   return {
     activeItemId: options?.activeItemId ?? null,
-    expandedGroups: new Set(options?.expandedGroups ?? ["run", "system"]),
+    expandedGroups: new Set(options?.expandedGroups ?? ["run", "observe", "build", "configure", "system"]),
     expandedItems: new Set(options?.expandedItems ?? []),
     secondarySidebar: {
       isOpen: false,

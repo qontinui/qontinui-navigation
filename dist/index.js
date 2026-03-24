@@ -27,15 +27,6 @@ var RUN_ITEMS = [
     productMode: "ai"
   },
   {
-    id: "gui-automation",
-    label: "GUI Automation",
-    icon: "MousePointer2",
-    description: "Load and run visual GUI automation configs",
-    route: "/execute/visual",
-    color: "#10B981",
-    productMode: "visual"
-  },
-  {
     id: "active",
     label: "Active",
     icon: "Activity",
@@ -142,14 +133,6 @@ var SESSION_ITEMS = [
     icon: "Database",
     description: "Structured AI data",
     route: "/runs/ai-data",
-    color: "#4A90D9"
-  },
-  {
-    id: "run-traces",
-    label: "Traces",
-    icon: "Activity",
-    description: "Execution trace waterfall",
-    route: "/runs/traces",
     color: "#4A90D9"
   }
 ];
@@ -292,24 +275,6 @@ var BUILD_ITEMS = [
     route: "/automation-builder/ui-bridge-states",
     color: "var(--brand-secondary)",
     productMode: "ai"
-  },
-  {
-    id: "specs",
-    label: "Specs",
-    icon: "ShieldCheck",
-    description: "View and edit specifications, and manage known issues",
-    route: "/build/specs",
-    color: "var(--brand-secondary)",
-    productMode: "ai"
-  },
-  {
-    id: "capture",
-    label: "Capture",
-    icon: "Camera",
-    description: "Screenshot capture tool for visual automation",
-    route: "/build/capture",
-    color: "var(--brand-secondary)",
-    productMode: "visual"
   }
 ];
 var BUILD_GROUP = {
@@ -426,14 +391,6 @@ var SETTINGS_ITEMS = [
     color: "#FFD700"
   },
   {
-    id: "settings-cloud-relay",
-    label: "Cloud Relay",
-    icon: "Cloud",
-    description: "Remote access via cloud relay connection",
-    route: "/settings/cloud-relay",
-    color: "#FFD700"
-  },
-  {
     id: "settings-mcp",
     label: "MCP Servers",
     icon: "Wifi",
@@ -479,14 +436,6 @@ var SETTINGS_ITEMS = [
     icon: "Download",
     description: "Check for updates",
     route: "/settings/updates",
-    color: "#FFD700"
-  },
-  {
-    id: "settings-instances",
-    label: "Instances",
-    icon: "Monitor",
-    description: "Manage runner instances",
-    route: "/settings/instances",
     color: "#FFD700"
   },
   {
@@ -716,7 +665,7 @@ function getWebNavigation() {
 function createInitialState(options) {
   return {
     activeItemId: options?.activeItemId ?? null,
-    expandedGroups: new Set(options?.expandedGroups ?? ["run", "system"]),
+    expandedGroups: new Set(options?.expandedGroups ?? ["run", "observe", "build", "configure", "system"]),
     expandedItems: new Set(options?.expandedItems ?? []),
     secondarySidebar: {
       isOpen: false,
