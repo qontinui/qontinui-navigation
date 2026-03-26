@@ -256,6 +256,15 @@ var OBSERVE_ITEMS = [
     productMode: "ai"
   },
   {
+    id: "observations",
+    label: "Memory",
+    icon: "Brain",
+    description: "Cross-session observation memory from past runs",
+    route: "/observe/memory",
+    color: "#8B5CF6",
+    productMode: "ai"
+  },
+  {
     id: "architecture",
     label: "Architecture",
     icon: "GitBranch",
@@ -293,12 +302,40 @@ var OBSERVE_ITEMS = [
     platforms: ["runner"]
   },
   {
+    id: "skills",
+    label: "Skills",
+    icon: "Zap",
+    description: "Review and approve auto-extracted procedural skills learned from successful workflow runs",
+    hiddenInProd: true,
+    color: "#F59E0B",
+    productMode: "ai",
+    platforms: ["runner"]
+  },
+  {
     id: "image-quality-tests",
     label: "Image Quality",
     icon: "Image",
     description: "View and manage image quality test images",
     hiddenInProd: true,
     color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai"
+  },
+  {
+    id: "llm-analytics",
+    label: "LLM Analytics",
+    icon: "CreditCard",
+    description: "Token usage, cost breakdown, and provider latency analytics",
+    color: "#D97706",
+    platforms: ["runner"],
+    productMode: "ai"
+  },
+  {
+    id: "automation-health",
+    label: "Automation Health",
+    icon: "Activity",
+    description: "UI Bridge automation quality, selector reliability, and improvement recommendations",
+    color: "#10B981",
     platforms: ["runner"],
     productMode: "ai"
   }

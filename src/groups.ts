@@ -260,6 +260,16 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
+    id: "skills",
+    label: "Skills",
+    icon: "Zap",
+    description: "Review and approve auto-extracted procedural skills learned from successful workflow runs",
+    hiddenInProd: true,
+    color: "#F59E0B",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
+  {
     id: "image-quality-tests",
     label: "Image Quality",
     icon: "Image",
