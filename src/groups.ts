@@ -73,7 +73,6 @@ export const RUN_ITEMS: NavigationItem[] = [
     route: "/orchestration-loop",
     color: "#8B5CF6",
     platforms: ["runner"],
-    hiddenInProd: true,
   },
 ];
 
@@ -205,7 +204,6 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "Processes",
     icon: "Cpu",
     description: "Manage and monitor spawned child processes",
-    hiddenInProd: true,
     color: "#06B6D4",
     productMode: "ai",
   },
@@ -214,15 +212,13 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
-    hiddenInProd: true,
     productMode: "ai",
   },
   {
     id: "architecture",
     label: "Architecture",
     icon: "GitBranch",
-    description: "Component dependency graph from reflection data",
-    hiddenInProd: true,
+    description: "Component dependency graph and SDK project architecture",
     productMode: "ai",
   },
   {
@@ -347,7 +343,6 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     label: "Lifecycle Hooks",
     icon: "Webhook",
     description: "Configure execution event triggers",
-    hiddenInProd: true,
     productMode: "ai",
   },
   {
@@ -355,7 +350,6 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     label: "UI Bridge",
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
-    hiddenInProd: true,
     productMode: "ai",
   },
 ];
@@ -377,7 +371,6 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     label: "Triggers",
     icon: "Zap",
     description: "Event-driven workflow automation",
-    hiddenInProd: true,
     productMode: "ai",
   },
   {
@@ -385,7 +378,6 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     label: "Scheduled Tasks",
     icon: "Calendar",
     description: "Manage scheduled automation",
-    hiddenInProd: true,
     productMode: "ai",
   },
 ];
@@ -447,7 +439,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     label: "Mobile",
     icon: "Monitor",
     description: "Mobile device (ADB) settings",
-    hiddenInProd: true,
     route: "/settings/mobile",
     color: "#FFD700",
   },
