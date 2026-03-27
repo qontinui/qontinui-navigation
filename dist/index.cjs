@@ -122,8 +122,7 @@ var RUN_ITEMS = [
     description: "Iterative workflow loop with pipeline mode (build/reflect/fix)",
     route: "/orchestration-loop",
     color: "#8B5CF6",
-    platforms: ["runner"],
-    hiddenInProd: true
+    platforms: ["runner"]
   }
 ];
 var RUN_GROUP = {
@@ -243,7 +242,6 @@ var OBSERVE_ITEMS = [
     label: "Processes",
     icon: "Cpu",
     description: "Manage and monitor spawned child processes",
-    hiddenInProd: true,
     color: "#06B6D4",
     productMode: "ai"
   },
@@ -252,7 +250,6 @@ var OBSERVE_ITEMS = [
     label: "Reflection",
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
-    hiddenInProd: true,
     productMode: "ai"
   },
   {
@@ -286,8 +283,7 @@ var OBSERVE_ITEMS = [
     id: "architecture",
     label: "Architecture",
     icon: "GitBranch",
-    description: "Component dependency graph from reflection data",
-    hiddenInProd: true,
+    description: "Component dependency graph and SDK project architecture",
     productMode: "ai"
   },
   {
@@ -410,6 +406,16 @@ var BUILD_ITEMS = [
     route: "/automation-builder/ui-bridge-states",
     color: "var(--brand-secondary)",
     productMode: "ai"
+  },
+  {
+    id: "demo-video",
+    label: "Demo Videos",
+    icon: "Video",
+    description: "Generate demo videos from UI Bridge page specs with AI narration",
+    route: "/build/demo-videos",
+    color: "var(--brand-secondary)",
+    platforms: ["runner"],
+    productMode: "ai"
   }
 ];
 var BUILD_GROUP = {
@@ -433,7 +439,6 @@ var CONFIGURE_ITEMS = [
     label: "Lifecycle Hooks",
     icon: "Webhook",
     description: "Configure execution event triggers",
-    hiddenInProd: true,
     productMode: "ai"
   },
   {
@@ -441,7 +446,6 @@ var CONFIGURE_ITEMS = [
     label: "UI Bridge",
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
-    hiddenInProd: true,
     productMode: "ai"
   }
 ];
@@ -457,7 +461,6 @@ var SCHEDULE_ITEMS = [
     label: "Triggers",
     icon: "Zap",
     description: "Event-driven workflow automation",
-    hiddenInProd: true,
     productMode: "ai"
   },
   {
@@ -473,7 +476,6 @@ var SCHEDULE_ITEMS = [
     label: "Scheduled Tasks",
     icon: "Calendar",
     description: "Manage scheduled automation",
-    hiddenInProd: true,
     productMode: "ai"
   }
 ];
@@ -529,7 +531,6 @@ var SETTINGS_ITEMS = [
     label: "Mobile",
     icon: "Monitor",
     description: "Mobile device (ADB) settings",
-    hiddenInProd: true,
     route: "/settings/mobile",
     color: "#FFD700"
   },
