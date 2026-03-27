@@ -224,6 +224,24 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
+    id: "activity-timeline",
+    label: "Activity Timeline",
+    icon: "Activity",
+    description: "Searchable capture history — everything seen on screen during automation",
+    route: "/observe/activity-timeline",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+  {
+    id: "watchers",
+    label: "Watchers",
+    icon: "Eye",
+    description: "Scheduled reactive agents that monitor the activity timeline",
+    route: "/observe/watchers",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+  {
     id: "architecture",
     label: "Architecture",
     icon: "GitBranch",
@@ -297,6 +315,16 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
+  {
+    id: "knowledge-explorer",
+    label: "Knowledge",
+    icon: "Globe",
+    description: "Search external knowledge sources and view acquisition stats — web search, vulnerability intelligence, API docs",
+    route: "/observe/knowledge",
+    color: "#F97316",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
 ];
 
 export const OBSERVE_GROUP: NavigationGroup = {
@@ -341,6 +369,16 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Build state machines from UI Bridge SDK apps",
     route: "/automation-builder/ui-bridge-states",
     color: "var(--brand-secondary)",
+    productMode: "ai",
+  },
+  {
+    id: "demo-video",
+    label: "Demo Videos",
+    icon: "Video",
+    description: "Generate demo videos from UI Bridge page specs with AI narration",
+    route: "/build/demo-videos",
+    color: "var(--brand-secondary)",
+    platforms: ["runner"],
     productMode: "ai",
   },
 ];
@@ -399,6 +437,14 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     label: "Triggers",
     icon: "Zap",
     description: "Event-driven workflow automation",
+    productMode: "ai",
+  },
+  {
+    id: "event-history",
+    label: "Event History",
+    icon: "Radio",
+    description: "Workflow event bus, queue status, circuit breaker",
+    hiddenInProd: true,
     productMode: "ai",
   },
   {

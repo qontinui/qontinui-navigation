@@ -265,6 +265,24 @@ var OBSERVE_ITEMS = [
     productMode: "ai"
   },
   {
+    id: "activity-timeline",
+    label: "Activity Timeline",
+    icon: "Activity",
+    description: "Searchable capture history \u2014 everything seen on screen during automation",
+    route: "/observe/activity-timeline",
+    color: "#06B6D4",
+    platforms: ["runner"]
+  },
+  {
+    id: "watchers",
+    label: "Watchers",
+    icon: "Eye",
+    description: "Scheduled reactive agents that monitor the activity timeline",
+    route: "/observe/watchers",
+    color: "#06B6D4",
+    platforms: ["runner"]
+  },
+  {
     id: "architecture",
     label: "Architecture",
     icon: "GitBranch",
@@ -336,6 +354,16 @@ var OBSERVE_ITEMS = [
     icon: "Activity",
     description: "UI Bridge automation quality, selector reliability, and improvement recommendations",
     color: "#10B981",
+    platforms: ["runner"],
+    productMode: "ai"
+  },
+  {
+    id: "knowledge-explorer",
+    label: "Knowledge",
+    icon: "Globe",
+    description: "Search external knowledge sources and view acquisition stats \u2014 web search, vulnerability intelligence, API docs",
+    route: "/observe/knowledge",
+    color: "#F97316",
     platforms: ["runner"],
     productMode: "ai"
   }
@@ -429,6 +457,14 @@ var SCHEDULE_ITEMS = [
     label: "Triggers",
     icon: "Zap",
     description: "Event-driven workflow automation",
+    hiddenInProd: true,
+    productMode: "ai"
+  },
+  {
+    id: "event-history",
+    label: "Event History",
+    icon: "Radio",
+    description: "Workflow event bus, queue status, circuit breaker",
     hiddenInProd: true,
     productMode: "ai"
   },
@@ -655,6 +691,7 @@ var ICON_NAMES = [
   "LayoutDashboard",
   "ClipboardCheck",
   "Zap",
+  "Radio",
   "Image",
   "ClipboardList",
   "FileText",
