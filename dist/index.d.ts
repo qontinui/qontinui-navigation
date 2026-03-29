@@ -154,12 +154,16 @@ declare const SESSION_ITEMS: NavigationItem[];
 declare const RUNS_ITEMS: NavigationItem[];
 declare const OBSERVE_ITEMS: NavigationItem[];
 declare const OBSERVE_GROUP: NavigationGroup;
+declare const LEARN_ITEMS: NavigationItem[];
+declare const LEARN_GROUP: NavigationGroup;
 declare const BUILD_ITEMS: NavigationItem[];
 declare const BUILD_GROUP: NavigationGroup;
 declare const CONFIGURE_ITEMS: NavigationItem[];
 declare const CONFIGURE_GROUP: NavigationGroup;
 declare const SCHEDULE_ITEMS: NavigationItem[];
 declare const SCHEDULE_GROUP: NavigationGroup;
+declare const DEV_ITEMS: NavigationItem[];
+declare const DEV_GROUP: NavigationGroup;
 declare const SETTINGS_ITEMS: NavigationItem[];
 declare const SYSTEM_ITEMS: NavigationItem[];
 declare const SYSTEM_GROUP: NavigationGroup;
@@ -337,4 +341,4 @@ declare const STORAGE_KEYS: {
     readonly activeTab: "qontinui-active-tab";
 };
 
-export { BUILD_GROUP, BUILD_ITEMS, CHILDREN_MAP, CONFIGURE_GROUP, CONFIGURE_ITEMS, ICON_NAMES, type IconName, NAVIGATION_GROUPS, type NavigationAction, type NavigationBadge, type NavigationGroup, type NavigationItem, type NavigationState, OBSERVE_GROUP, OBSERVE_ITEMS, type Platform, RUNS_ITEMS, RUN_GROUP, RUN_ITEMS, SCHEDULE_GROUP, SCHEDULE_ITEMS, SESSION_ITEMS, SETTINGS_ITEMS, STORAGE_KEYS, SYSTEM_GROUP, SYSTEM_ITEMS, type SecondarySidebarState, createInitialState, deserializeState, filterGroupForPlatform, filterGroupsForPlatform, filterItemsForPlatform, findItemById, getAllItems, getChildrenForPlatform, getChildrenItems, getItemGroup, getNavigationGroups, getProductMode, getRunnerNavigation, getWebNavigation, isDevelopmentMode, isGroupExpanded, isItemActive, isItemAvailable, isItemExpanded, isSecondaryOpenFor, isValidIconName, navigationActions, navigationReducer, serializeState, setDevelopmentMode, setProductMode };
+export { BUILD_GROUP, BUILD_ITEMS, CHILDREN_MAP, CONFIGURE_GROUP, CONFIGURE_ITEMS, DEV_GROUP, DEV_ITEMS, ICON_NAMES, type IconName, LEARN_GROUP, LEARN_ITEMS, NAVIGATION_GROUPS, type NavigationAction, type NavigationBadge, type NavigationGroup, type NavigationItem, type NavigationState, OBSERVE_GROUP, OBSERVE_ITEMS, type Platform, RUNS_ITEMS, RUN_GROUP, RUN_ITEMS, SCHEDULE_GROUP, SCHEDULE_ITEMS, SESSION_ITEMS, SETTINGS_ITEMS, STORAGE_KEYS, SYSTEM_GROUP, SYSTEM_ITEMS, type SecondarySidebarState, createInitialState, deserializeState, filterGroupForPlatform, filterGroupsForPlatform, filterItemsForPlatform, findItemById, getAllItems, getChildrenForPlatform, getChildrenItems, getItemGroup, getNavigationGroups, getProductMode, getRunnerNavigation, getWebNavigation, isDevelopmentMode, isGroupExpanded, isItemActive, isItemAvailable, isItemExpanded, isSecondaryOpenFor, isValidIconName, navigationActions, navigationReducer, serializeState, setDevelopmentMode, setProductMode };

@@ -13,10 +13,9 @@
 import type { NavigationGroup, NavigationItem } from "./types";
 
 // ============================================================================
-// RUN Group
+// TOP-LEVEL (no group header rendered)
 // ============================================================================
 
-// Ungrouped top-level items (no group header rendered)
 export const TOP_LEVEL_ITEMS: NavigationItem[] = [
   {
     id: "visual-dashboard",
@@ -35,6 +34,10 @@ export const TOP_LEVEL_GROUP: NavigationGroup = {
   items: TOP_LEVEL_ITEMS,
   defaultExpanded: true,
 };
+
+// ============================================================================
+// RUN Group
+// ============================================================================
 
 export const RUN_ITEMS: NavigationItem[] = [
   {
@@ -84,9 +87,10 @@ export const RUN_GROUP: NavigationGroup = {
 };
 
 // ============================================================================
-// OBSERVE Group - Runs Sub-items (runner secondary sidebar)
+// OBSERVE Group — runtime monitoring (things happening now or recently)
 // ============================================================================
 
+// Runs Sub-items (runner secondary sidebar)
 export const SESSION_ITEMS: NavigationItem[] = [
   {
     id: "run-recap",
@@ -162,10 +166,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
   },
 ];
 
-// ============================================================================
-// OBSERVE Group - Runs Children (web sidebar collapsible)
-// ============================================================================
-
+// Runs Children (web sidebar collapsible)
 export const RUNS_ITEMS: NavigationItem[] = [
   {
     id: "runs-history",
@@ -208,22 +209,6 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
-    id: "reflection",
-    label: "Reflection",
-    icon: "RotateCcw",
-    description: "Reflection fix effectiveness and history",
-    productMode: "ai",
-  },
-  {
-    id: "observations",
-    label: "Memory",
-    icon: "Brain",
-    description: "Cross-session observation memory from past runs",
-    route: "/observe/memory",
-    color: "#8B5CF6",
-    productMode: "ai",
-  },
-  {
     id: "activity-timeline",
     label: "Activity Timeline",
     icon: "Activity",
@@ -233,67 +218,11 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
-    id: "watchers",
-    label: "Watchers",
-    icon: "Eye",
-    description: "Scheduled reactive agents that monitor the activity timeline",
-    route: "/observe/watchers",
-    color: "#06B6D4",
-    platforms: ["runner"],
-  },
-  {
-    id: "architecture",
-    label: "Architecture",
-    icon: "GitBranch",
-    description: "Component dependency graph and SDK project architecture",
-    productMode: "ai",
-  },
-  {
-    id: "generator-eval",
-    label: "Generator Eval",
-    icon: "FlaskConical",
-    description: "Evaluate and improve workflow generation accuracy",
-    hiddenInProd: true,
-    color: "#8B5CF6",
-    productMode: "ai",
-  },
-  {
-    id: "autoresearch",
-    label: "Autoresearch",
-    icon: "FlaskConical",
-    description: "Compare workflow architectures with statistical A/B testing",
-    hiddenInProd: true,
-    color: "#8B5CF6",
-    productMode: "ai",
-    platforms: ["runner"],
-  },
-  {
-    id: "meta-optimizer",
-    label: "Meta-Optimizer",
-    icon: "Sparkles",
-    description: "Review and apply AI-generated recommendations to improve prompts, architecture, and generation rules",
-    hiddenInProd: true,
-    color: "#D97706",
-    productMode: "ai",
-    platforms: ["runner"],
-  },
-  {
-    id: "skills",
-    label: "Skills",
-    icon: "Zap",
-    description: "Review and approve auto-extracted procedural skills learned from successful workflow runs",
-    hiddenInProd: true,
-    color: "#F59E0B",
-    productMode: "ai",
-    platforms: ["runner"],
-  },
-  {
-    id: "image-quality-tests",
-    label: "Image Quality",
-    icon: "Image",
-    description: "View and manage image quality test images",
-    hiddenInProd: true,
-    color: "#8B5CF6",
+    id: "automation-health",
+    label: "Automation Health",
+    icon: "Activity",
+    description: "UI Bridge automation quality, selector reliability, and improvement recommendations",
+    color: "#10B981",
     platforms: ["runner"],
     productMode: "ai",
   },
@@ -306,13 +235,27 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
+];
+
+export const OBSERVE_GROUP: NavigationGroup = {
+  id: "observe",
+  label: "OBSERVE",
+  items: OBSERVE_ITEMS,
+  defaultExpanded: false,
+};
+
+// ============================================================================
+// LEARN Group — accumulated intelligence (things the system knows)
+// ============================================================================
+
+export const LEARN_ITEMS: NavigationItem[] = [
   {
-    id: "automation-health",
-    label: "Automation Health",
-    icon: "Activity",
-    description: "UI Bridge automation quality, selector reliability, and improvement recommendations",
-    color: "#10B981",
-    platforms: ["runner"],
+    id: "observations",
+    label: "Memory",
+    icon: "Brain",
+    description: "Cross-session observation memory from past runs",
+    route: "/observe/memory",
+    color: "#8B5CF6",
     productMode: "ai",
   },
   {
@@ -325,14 +268,70 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
+  {
+    id: "decision-trail",
+    label: "Decision Trail",
+    icon: "ListChecks",
+    description: "Architectural decision history — what was decided, why, and what alternatives were considered",
+    route: "/observe/decision-trail",
+    color: "#8B5CF6",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
+  {
+    id: "session-recap",
+    label: "Session Recap",
+    icon: "GitBranch",
+    description: "Semantic dependency map of what was built — files, types, endpoints, and how they connect",
+    route: "/observe/session-recap",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
+  {
+    id: "reflection",
+    label: "Reflection",
+    icon: "RotateCcw",
+    description: "Reflection fix effectiveness and history",
+    productMode: "ai",
+  },
+  {
+    id: "architecture",
+    label: "Architecture",
+    icon: "GitBranch",
+    description: "Component dependency graph and SDK project architecture",
+    productMode: "ai",
+  },
+  {
+    id: "api-surface",
+    label: "API Surface",
+    icon: "Network",
+    description: "Interactive map of every endpoint, command, query, and their connections",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+  {
+    id: "development-intelligence",
+    label: "Dev Intelligence",
+    icon: "Brain",
+    description: "Coverage gap analysis, complexity scoring, drift detection, and dead feature identification",
+    route: "/observe/development-intelligence",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
 ];
 
-export const OBSERVE_GROUP: NavigationGroup = {
-  id: "observe",
-  label: "OBSERVE",
-  items: OBSERVE_ITEMS,
+export const LEARN_GROUP: NavigationGroup = {
+  id: "learn",
+  label: "LEARN",
+  items: LEARN_ITEMS,
   defaultExpanded: false,
 };
+
+// ============================================================================
+// BUILD Group
+// ============================================================================
 
 export const BUILD_ITEMS: NavigationItem[] = [
   {
@@ -377,6 +376,16 @@ export const BUILD_ITEMS: NavigationItem[] = [
     icon: "Video",
     description: "Generate demo videos from UI Bridge page specs with AI narration",
     route: "/build/demo-videos",
+    color: "var(--brand-secondary)",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
+  {
+    id: "product-tours",
+    label: "Product Tours",
+    icon: "MousePointer2",
+    description: "Generate interactive product tours that auto-demonstrate features",
+    route: "/build/product-tours",
     color: "var(--brand-secondary)",
     platforms: ["runner"],
     productMode: "ai",
@@ -428,7 +437,7 @@ export const CONFIGURE_GROUP: NavigationGroup = {
 };
 
 // ============================================================================
-// SCHEDULE Group
+// SCHEDULE Group — Watchers moved here (they are scheduled reactive agents)
 // ============================================================================
 
 export const SCHEDULE_ITEMS: NavigationItem[] = [
@@ -440,18 +449,27 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
+    id: "tasks",
+    label: "Scheduled Tasks",
+    icon: "Calendar",
+    description: "Manage scheduled automation",
+    productMode: "ai",
+  },
+  {
+    id: "watchers",
+    label: "Watchers",
+    icon: "Eye",
+    description: "Scheduled reactive agents that monitor the activity timeline",
+    route: "/observe/watchers",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+  {
     id: "event-history",
     label: "Event History",
     icon: "Radio",
     description: "Workflow event bus, queue status, circuit breaker",
     hiddenInProd: true,
-    productMode: "ai",
-  },
-  {
-    id: "tasks",
-    label: "Scheduled Tasks",
-    icon: "Calendar",
-    description: "Manage scheduled automation",
     productMode: "ai",
   },
 ];
@@ -464,7 +482,70 @@ export const SCHEDULE_GROUP: NavigationGroup = {
 };
 
 // ============================================================================
-// SYSTEM Group - Settings Sub-items
+// DEV Group — all dev-only items, entire group hidden in production
+// ============================================================================
+
+export const DEV_ITEMS: NavigationItem[] = [
+  {
+    id: "generator-eval",
+    label: "Generator Eval",
+    icon: "FlaskConical",
+    description: "Evaluate and improve workflow generation accuracy",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    productMode: "ai",
+  },
+  {
+    id: "autoresearch",
+    label: "Autoresearch",
+    icon: "FlaskConical",
+    description: "Compare workflow architectures with statistical A/B testing",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
+  {
+    id: "meta-optimizer",
+    label: "Meta-Optimizer",
+    icon: "Sparkles",
+    description: "Review and apply AI-generated recommendations to improve prompts, architecture, and generation rules",
+    hiddenInProd: true,
+    color: "#D97706",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
+  {
+    id: "skills",
+    label: "Skills",
+    icon: "Zap",
+    description: "Review and approve auto-extracted procedural skills learned from successful workflow runs",
+    hiddenInProd: true,
+    color: "#F59E0B",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
+  {
+    id: "image-quality-tests",
+    label: "Image Quality",
+    icon: "Image",
+    description: "View and manage image quality test images",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
+];
+
+export const DEV_GROUP: NavigationGroup = {
+  id: "dev",
+  label: "DEV",
+  items: DEV_ITEMS,
+  defaultExpanded: false,
+};
+
+// ============================================================================
+// SYSTEM Group
 // ============================================================================
 
 export const SETTINGS_ITEMS: NavigationItem[] = [
@@ -622,9 +703,11 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
   TOP_LEVEL_GROUP,
   RUN_GROUP,
   OBSERVE_GROUP,
+  LEARN_GROUP,
   BUILD_GROUP,
   CONFIGURE_GROUP,
   SCHEDULE_GROUP,
+  DEV_GROUP,
   SYSTEM_GROUP,
 ];
 

@@ -25,7 +25,11 @@ __export(index_exports, {
   CHILDREN_MAP: () => CHILDREN_MAP,
   CONFIGURE_GROUP: () => CONFIGURE_GROUP,
   CONFIGURE_ITEMS: () => CONFIGURE_ITEMS,
+  DEV_GROUP: () => DEV_GROUP,
+  DEV_ITEMS: () => DEV_ITEMS,
   ICON_NAMES: () => ICON_NAMES,
+  LEARN_GROUP: () => LEARN_GROUP,
+  LEARN_ITEMS: () => LEARN_ITEMS,
   NAVIGATION_GROUPS: () => NAVIGATION_GROUPS,
   OBSERVE_GROUP: () => OBSERVE_GROUP,
   OBSERVE_ITEMS: () => OBSERVE_ITEMS,
@@ -246,22 +250,6 @@ var OBSERVE_ITEMS = [
     productMode: "ai"
   },
   {
-    id: "reflection",
-    label: "Reflection",
-    icon: "RotateCcw",
-    description: "Reflection fix effectiveness and history",
-    productMode: "ai"
-  },
-  {
-    id: "observations",
-    label: "Memory",
-    icon: "Brain",
-    description: "Cross-session observation memory from past runs",
-    route: "/observe/memory",
-    color: "#8B5CF6",
-    productMode: "ai"
-  },
-  {
     id: "activity-timeline",
     label: "Activity Timeline",
     icon: "Activity",
@@ -269,80 +257,6 @@ var OBSERVE_ITEMS = [
     route: "/observe/activity-timeline",
     color: "#06B6D4",
     platforms: ["runner"]
-  },
-  {
-    id: "watchers",
-    label: "Watchers",
-    icon: "Eye",
-    description: "Scheduled reactive agents that monitor the activity timeline",
-    route: "/observe/watchers",
-    color: "#06B6D4",
-    platforms: ["runner"]
-  },
-  {
-    id: "architecture",
-    label: "Architecture",
-    icon: "GitBranch",
-    description: "Component dependency graph and SDK project architecture",
-    productMode: "ai"
-  },
-  {
-    id: "generator-eval",
-    label: "Generator Eval",
-    icon: "FlaskConical",
-    description: "Evaluate and improve workflow generation accuracy",
-    hiddenInProd: true,
-    color: "#8B5CF6",
-    productMode: "ai"
-  },
-  {
-    id: "autoresearch",
-    label: "Autoresearch",
-    icon: "FlaskConical",
-    description: "Compare workflow architectures with statistical A/B testing",
-    hiddenInProd: true,
-    color: "#8B5CF6",
-    productMode: "ai",
-    platforms: ["runner"]
-  },
-  {
-    id: "meta-optimizer",
-    label: "Meta-Optimizer",
-    icon: "Sparkles",
-    description: "Review and apply AI-generated recommendations to improve prompts, architecture, and generation rules",
-    hiddenInProd: true,
-    color: "#D97706",
-    productMode: "ai",
-    platforms: ["runner"]
-  },
-  {
-    id: "skills",
-    label: "Skills",
-    icon: "Zap",
-    description: "Review and approve auto-extracted procedural skills learned from successful workflow runs",
-    hiddenInProd: true,
-    color: "#F59E0B",
-    productMode: "ai",
-    platforms: ["runner"]
-  },
-  {
-    id: "image-quality-tests",
-    label: "Image Quality",
-    icon: "Image",
-    description: "View and manage image quality test images",
-    hiddenInProd: true,
-    color: "#8B5CF6",
-    platforms: ["runner"],
-    productMode: "ai"
-  },
-  {
-    id: "llm-analytics",
-    label: "LLM Analytics",
-    icon: "CreditCard",
-    description: "Token usage, cost breakdown, and provider latency analytics",
-    color: "#D97706",
-    platforms: ["runner"],
-    productMode: "ai"
   },
   {
     id: "automation-health",
@@ -354,12 +268,11 @@ var OBSERVE_ITEMS = [
     productMode: "ai"
   },
   {
-    id: "knowledge-explorer",
-    label: "Knowledge",
-    icon: "Globe",
-    description: "Search external knowledge sources and view acquisition stats \u2014 web search, vulnerability intelligence, API docs",
-    route: "/observe/knowledge",
-    color: "#F97316",
+    id: "llm-analytics",
+    label: "LLM Analytics",
+    icon: "CreditCard",
+    description: "Token usage, cost breakdown, and provider latency analytics",
+    color: "#D97706",
     platforms: ["runner"],
     productMode: "ai"
   }
@@ -368,6 +281,85 @@ var OBSERVE_GROUP = {
   id: "observe",
   label: "OBSERVE",
   items: OBSERVE_ITEMS,
+  defaultExpanded: false
+};
+var LEARN_ITEMS = [
+  {
+    id: "observations",
+    label: "Memory",
+    icon: "Brain",
+    description: "Cross-session observation memory from past runs",
+    route: "/observe/memory",
+    color: "#8B5CF6",
+    productMode: "ai"
+  },
+  {
+    id: "knowledge-explorer",
+    label: "Knowledge",
+    icon: "Globe",
+    description: "Search external knowledge sources and view acquisition stats \u2014 web search, vulnerability intelligence, API docs",
+    route: "/observe/knowledge",
+    color: "#F97316",
+    platforms: ["runner"],
+    productMode: "ai"
+  },
+  {
+    id: "decision-trail",
+    label: "Decision Trail",
+    icon: "ListChecks",
+    description: "Architectural decision history \u2014 what was decided, why, and what alternatives were considered",
+    route: "/observe/decision-trail",
+    color: "#8B5CF6",
+    productMode: "ai",
+    platforms: ["runner"]
+  },
+  {
+    id: "session-recap",
+    label: "Session Recap",
+    icon: "GitBranch",
+    description: "Semantic dependency map of what was built \u2014 files, types, endpoints, and how they connect",
+    route: "/observe/session-recap",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai"
+  },
+  {
+    id: "reflection",
+    label: "Reflection",
+    icon: "RotateCcw",
+    description: "Reflection fix effectiveness and history",
+    productMode: "ai"
+  },
+  {
+    id: "architecture",
+    label: "Architecture",
+    icon: "GitBranch",
+    description: "Component dependency graph and SDK project architecture",
+    productMode: "ai"
+  },
+  {
+    id: "api-surface",
+    label: "API Surface",
+    icon: "Network",
+    description: "Interactive map of every endpoint, command, query, and their connections",
+    color: "#06B6D4",
+    platforms: ["runner"]
+  },
+  {
+    id: "development-intelligence",
+    label: "Dev Intelligence",
+    icon: "Brain",
+    description: "Coverage gap analysis, complexity scoring, drift detection, and dead feature identification",
+    route: "/observe/development-intelligence",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai"
+  }
+];
+var LEARN_GROUP = {
+  id: "learn",
+  label: "LEARN",
+  items: LEARN_ITEMS,
   defaultExpanded: false
 };
 var BUILD_ITEMS = [
@@ -413,6 +405,16 @@ var BUILD_ITEMS = [
     icon: "Video",
     description: "Generate demo videos from UI Bridge page specs with AI narration",
     route: "/build/demo-videos",
+    color: "var(--brand-secondary)",
+    platforms: ["runner"],
+    productMode: "ai"
+  },
+  {
+    id: "product-tours",
+    label: "Product Tours",
+    icon: "MousePointer2",
+    description: "Generate interactive product tours that auto-demonstrate features",
+    route: "/build/product-tours",
     color: "var(--brand-secondary)",
     platforms: ["runner"],
     productMode: "ai"
@@ -464,18 +466,27 @@ var SCHEDULE_ITEMS = [
     productMode: "ai"
   },
   {
+    id: "tasks",
+    label: "Scheduled Tasks",
+    icon: "Calendar",
+    description: "Manage scheduled automation",
+    productMode: "ai"
+  },
+  {
+    id: "watchers",
+    label: "Watchers",
+    icon: "Eye",
+    description: "Scheduled reactive agents that monitor the activity timeline",
+    route: "/observe/watchers",
+    color: "#06B6D4",
+    platforms: ["runner"]
+  },
+  {
     id: "event-history",
     label: "Event History",
     icon: "Radio",
     description: "Workflow event bus, queue status, circuit breaker",
     hiddenInProd: true,
-    productMode: "ai"
-  },
-  {
-    id: "tasks",
-    label: "Scheduled Tasks",
-    icon: "Calendar",
-    description: "Manage scheduled automation",
     productMode: "ai"
   }
 ];
@@ -483,6 +494,63 @@ var SCHEDULE_GROUP = {
   id: "schedule",
   label: "SCHEDULE",
   items: SCHEDULE_ITEMS,
+  defaultExpanded: false
+};
+var DEV_ITEMS = [
+  {
+    id: "generator-eval",
+    label: "Generator Eval",
+    icon: "FlaskConical",
+    description: "Evaluate and improve workflow generation accuracy",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    productMode: "ai"
+  },
+  {
+    id: "autoresearch",
+    label: "Autoresearch",
+    icon: "FlaskConical",
+    description: "Compare workflow architectures with statistical A/B testing",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    productMode: "ai",
+    platforms: ["runner"]
+  },
+  {
+    id: "meta-optimizer",
+    label: "Meta-Optimizer",
+    icon: "Sparkles",
+    description: "Review and apply AI-generated recommendations to improve prompts, architecture, and generation rules",
+    hiddenInProd: true,
+    color: "#D97706",
+    productMode: "ai",
+    platforms: ["runner"]
+  },
+  {
+    id: "skills",
+    label: "Skills",
+    icon: "Zap",
+    description: "Review and approve auto-extracted procedural skills learned from successful workflow runs",
+    hiddenInProd: true,
+    color: "#F59E0B",
+    productMode: "ai",
+    platforms: ["runner"]
+  },
+  {
+    id: "image-quality-tests",
+    label: "Image Quality",
+    icon: "Image",
+    description: "View and manage image quality test images",
+    hiddenInProd: true,
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai"
+  }
+];
+var DEV_GROUP = {
+  id: "dev",
+  label: "DEV",
+  items: DEV_ITEMS,
   defaultExpanded: false
 };
 var SETTINGS_ITEMS = [
@@ -630,9 +698,11 @@ var NAVIGATION_GROUPS = [
   TOP_LEVEL_GROUP,
   RUN_GROUP,
   OBSERVE_GROUP,
+  LEARN_GROUP,
   BUILD_GROUP,
   CONFIGURE_GROUP,
   SCHEDULE_GROUP,
+  DEV_GROUP,
   SYSTEM_GROUP
 ];
 var CHILDREN_MAP = {
@@ -810,7 +880,7 @@ function getWebNavigation() {
 function createInitialState(options) {
   return {
     activeItemId: options?.activeItemId ?? null,
-    expandedGroups: new Set(options?.expandedGroups ?? ["run", "observe", "build", "configure", "system"]),
+    expandedGroups: new Set(options?.expandedGroups ?? ["run", "observe", "learn", "build", "configure", "system"]),
     expandedItems: new Set(options?.expandedItems ?? []),
     secondarySidebar: {
       isOpen: false,
@@ -982,7 +1052,11 @@ var STORAGE_KEYS = {
   CHILDREN_MAP,
   CONFIGURE_GROUP,
   CONFIGURE_ITEMS,
+  DEV_GROUP,
+  DEV_ITEMS,
   ICON_NAMES,
+  LEARN_GROUP,
+  LEARN_ITEMS,
   NAVIGATION_GROUPS,
   OBSERVE_GROUP,
   OBSERVE_ITEMS,
