@@ -646,6 +646,15 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     color: "#FFD700",
   },
   {
+    id: "settings-security",
+    label: "Security",
+    icon: "Shield",
+    description: "Sandboxing, policies, and audit",
+    route: "/settings/security",
+    color: "#FFD700",
+    platforms: ["runner"],
+  },
+  {
     id: "settings-debug",
     label: "Debug",
     icon: "FlaskConical",
