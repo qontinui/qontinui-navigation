@@ -536,6 +536,16 @@ var DEV_ITEMS = [
     platforms: ["runner"]
   },
   {
+    id: "online-learning",
+    label: "Online Learning",
+    icon: "Brain",
+    description: "Monitor bandit model routing, drift detection, step credit attribution, and strategy evolution",
+    hiddenInProd: true,
+    color: "#06B6D4",
+    productMode: "ai",
+    platforms: ["runner"]
+  },
+  {
     id: "skills",
     label: "Skills",
     icon: "Zap",
@@ -554,6 +564,14 @@ var DEV_ITEMS = [
     color: "#8B5CF6",
     platforms: ["runner"],
     productMode: "ai"
+  },
+  {
+    id: "accessibility-explorer",
+    label: "Accessibility",
+    icon: "Accessibility",
+    description: "Inspect and interact with native desktop accessibility trees via UIA, AT-SPI, or AX APIs",
+    color: "#06B6D4",
+    platforms: ["runner"]
   }
 ];
 var DEV_GROUP = {
