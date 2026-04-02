@@ -55,6 +55,7 @@ export type IconName =
   | "Code"
   | "Puzzle"
   | "ShieldCheck"
+  | "ShieldAlert"
   | "Wifi"
   | "Terminal"
   | "ListChecks"

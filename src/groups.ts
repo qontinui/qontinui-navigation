@@ -235,6 +235,15 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
+  {
+    id: "cost-control",
+    label: "Cost Control",
+    icon: "ShieldAlert",
+    description: "Real-time budget tracking, circuit breakers, and cost anomaly detection",
+    color: "#EF4444",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
 ];
 
 export const OBSERVE_GROUP: NavigationGroup = {
@@ -648,7 +657,7 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
   {
     id: "settings-security",
     label: "Security",
-    icon: "Shield",
+    icon: "ShieldAlert",
     description: "Sandboxing, policies, and audit",
     route: "/settings/security",
     color: "#FFD700",

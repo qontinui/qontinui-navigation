@@ -201,6 +201,15 @@ var OBSERVE_ITEMS = [
     color: "#D97706",
     platforms: ["runner"],
     productMode: "ai"
+  },
+  {
+    id: "cost-control",
+    label: "Cost Control",
+    icon: "ShieldAlert",
+    description: "Real-time budget tracking, circuit breakers, and cost anomaly detection",
+    color: "#EF4444",
+    platforms: ["runner"],
+    productMode: "ai"
   }
 ];
 var OBSERVE_GROUP = {
@@ -575,6 +584,15 @@ var SETTINGS_ITEMS = [
     description: "Check for updates",
     route: "/settings/updates",
     color: "#FFD700"
+  },
+  {
+    id: "settings-security",
+    label: "Security",
+    icon: "ShieldAlert",
+    description: "Sandboxing, policies, and audit",
+    route: "/settings/security",
+    color: "#FFD700",
+    platforms: ["runner"]
   },
   {
     id: "settings-debug",
