@@ -18,6 +18,15 @@ var TOP_LEVEL_GROUP = {
 };
 var RUN_ITEMS = [
   {
+    id: "prompt-home",
+    label: "Home",
+    icon: "Sparkles",
+    description: "Tell the runner what to do in plain English",
+    route: "/prompt-home",
+    color: "#8B5CF6",
+    productMode: "ai"
+  },
+  {
     id: "workflows",
     label: "Workflows",
     icon: "Play",
