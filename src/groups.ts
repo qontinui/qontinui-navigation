@@ -50,8 +50,8 @@ export const RUN_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
-    id: "workflows",
-    label: "Workflows",
+    id: "gui-automation",
+    label: "Execute",
     icon: "Play",
     description: "Run and schedule workflows",
     route: "/execute",
