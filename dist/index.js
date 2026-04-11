@@ -27,8 +27,8 @@ var RUN_ITEMS = [
     productMode: "ai"
   },
   {
-    id: "workflows",
-    label: "Workflows",
+    id: "gui-automation",
+    label: "Execute",
     icon: "Play",
     description: "Run and schedule workflows",
     route: "/execute",
@@ -549,6 +549,14 @@ var SETTINGS_ITEMS = [
     color: "#FFD700"
   },
   {
+    id: "settings-world-state-verifier",
+    label: "World State Verifier",
+    icon: "Eye",
+    description: "VLM judge for agentic action verification (CUA-WSM)",
+    route: "/settings/world-state-verifier",
+    color: "#FFD700"
+  },
+  {
     id: "settings-playwright",
     label: "Playwright",
     icon: "FlaskConical",
@@ -779,6 +787,7 @@ var ICON_NAMES = [
   "Key",
   "CreditCard",
   "Brain",
+  "Eye",
   "Webhook",
   "RotateCcw",
   "Cpu",

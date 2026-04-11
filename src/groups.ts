@@ -618,6 +618,14 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     color: "#FFD700",
   },
   {
+    id: "settings-world-state-verifier",
+    label: "World State Verifier",
+    icon: "Eye",
+    description: "VLM judge for agentic action verification (CUA-WSM)",
+    route: "/settings/world-state-verifier",
+    color: "#FFD700",
+  },
+  {
     id: "settings-playwright",
     label: "Playwright",
     icon: "FlaskConical",

@@ -73,6 +73,7 @@ export const ICON_NAMES: IconName[] = [
   "Key",
   "CreditCard",
   "Brain",
+  "Eye",
   "Webhook",
   "RotateCcw",
   "Cpu",
