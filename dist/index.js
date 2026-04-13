@@ -317,6 +317,16 @@ var BUILD_ITEMS = [
     productMode: "ai"
   },
   {
+    id: "dag-workflow-editor",
+    label: "DAG Editor",
+    icon: "GitBranch",
+    description: "Visual DAG workflow editor with YAML syntax and graph visualization",
+    route: "/build/dag-editor",
+    color: "#6366f1",
+    platforms: ["runner"],
+    productMode: "ai"
+  },
+  {
     id: "step-builders",
     label: "Step Builders",
     icon: "Layers",
