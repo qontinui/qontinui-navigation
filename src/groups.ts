@@ -399,6 +399,15 @@ export const BUILD_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
+    id: "specs",
+    label: "Specs",
+    icon: "ClipboardCheck",
+    description: "Manage and generate UI Bridge page specs for testing and automation",
+    route: "/build/specs",
+    color: "var(--brand-secondary)",
+    productMode: "ai",
+  },
+  {
     id: "demo-video",
     label: "Demo Videos",
     icon: "Video",
