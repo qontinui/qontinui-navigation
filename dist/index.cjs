@@ -242,6 +242,15 @@ var OBSERVE_ITEMS = [
     productMode: "ai"
   },
   {
+    id: "run-findings",
+    label: "Findings",
+    icon: "FileText",
+    description: "Review findings and HITL questions across runs",
+    route: "/runs/findings",
+    color: "#4A90D9",
+    productMode: "ai"
+  },
+  {
     id: "error-monitor",
     label: "Error Monitor",
     icon: "AlertCircle",
