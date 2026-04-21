@@ -417,6 +417,15 @@ export const BUILD_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
+    id: "vga",
+    label: "Visual GUI",
+    icon: "Target",
+    description: "Visual GUI automation — build state machines and inspect runs",
+    route: "/vga",
+    color: "var(--brand-secondary)",
+    productMode: "ai",
+  },
+  {
     id: "demo-video",
     label: "Demo Videos",
     icon: "Video",

@@ -82,6 +82,7 @@ export type IconName =
   | "RotateCcw"
   | "Cpu"
   | "Repeat"
+  | "Target"
   // Web / shared
   | "MessageSquare"
   | "Server"

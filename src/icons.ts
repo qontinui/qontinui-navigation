@@ -77,6 +77,7 @@ export const ICON_NAMES: IconName[] = [
   "Webhook",
   "RotateCcw",
   "Cpu",
+  "Target",
   // Web / shared
   "MessageSquare",
   "Server",

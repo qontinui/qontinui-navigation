@@ -372,6 +372,15 @@ var BUILD_ITEMS = [
     productMode: "ai"
   },
   {
+    id: "vga",
+    label: "Visual GUI",
+    icon: "Target",
+    description: "Visual GUI automation \u2014 build state machines and inspect runs",
+    route: "/vga",
+    color: "var(--brand-secondary)",
+    productMode: "ai"
+  },
+  {
     id: "demo-video",
     label: "Demo Videos",
     icon: "Video",
@@ -819,6 +828,7 @@ var ICON_NAMES = [
   "Webhook",
   "RotateCcw",
   "Cpu",
+  "Target",
   // Web / shared
   "MessageSquare",
   "Server",
