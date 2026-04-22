@@ -452,7 +452,7 @@ var BUILD_ITEMS = [
     description: "Visual GUI automation \u2014 build state machines and inspect runs",
     route: "/vga",
     color: "var(--brand-secondary)",
-    productMode: "ai"
+    productMode: "both"
   },
   {
     id: "demo-video",
