@@ -277,7 +277,7 @@ export const OBSERVE_GROUP: NavigationGroup = {
 
 export const LEARN_ITEMS: NavigationItem[] = [
   {
-    id: "observations",
+    id: "memory",
     label: "Memory",
     icon: "Brain",
     description: "Cross-session observation memory from past runs",

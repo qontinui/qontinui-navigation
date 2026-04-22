@@ -312,7 +312,7 @@ var OBSERVE_GROUP = {
 };
 var LEARN_ITEMS = [
   {
-    id: "observations",
+    id: "memory",
     label: "Memory",
     icon: "Brain",
     description: "Cross-session observation memory from past runs",
