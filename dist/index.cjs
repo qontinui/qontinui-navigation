@@ -107,7 +107,7 @@ var RUN_ITEMS = [
     description: "Run and schedule workflows",
     route: "/execute",
     color: "#10B981",
-    productMode: "ai"
+    productMode: "visual"
   },
   {
     id: "active",
