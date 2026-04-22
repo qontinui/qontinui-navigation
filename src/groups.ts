@@ -347,6 +347,15 @@ export const LEARN_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
+  {
+    id: "project-explainer",
+    label: "Explainer",
+    icon: "BookOpen",
+    description: "Hierarchical explainer for any project: overview, per-cluster narratives, and per-page deep dives with embedded architecture diagrams. AI side panel for asking questions while reading.",
+    route: "/observe/explainer",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
 ];
 
 export const LEARN_GROUP: NavigationGroup = {
