@@ -688,6 +688,14 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     color: "#FFD700",
   },
   {
+    id: "settings-discovery",
+    label: "App Discovery",
+    icon: "Radar",
+    description: "Custom ports for the UI Bridge app scanner",
+    route: "/settings/discovery",
+    color: "#FFD700",
+  },
+  {
     id: "settings-mcp",
     label: "MCP Servers",
     icon: "Wifi",

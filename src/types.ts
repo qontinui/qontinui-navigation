@@ -29,6 +29,7 @@ export type IconName =
   | "ClipboardCheck"
   | "Zap"
   | "Radio"
+  | "Radar"
   | "Image"
   | "ClipboardList"
   | "FileText"

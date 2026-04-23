@@ -28,6 +28,7 @@ export const ICON_NAMES: IconName[] = [
   "ClipboardCheck",
   "Zap",
   "Radio",
+  "Radar",
   "Image",
   "ClipboardList",
   "FileText",
