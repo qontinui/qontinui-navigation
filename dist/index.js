@@ -1081,6 +1081,96 @@ var STORAGE_KEYS = {
   expandedGroups: "qontinui-sidebar-groups",
   activeTab: "qontinui-active-tab"
 };
+
+// src/react.tsx
+import * as React from "react";
+import { Fragment, jsx } from "react/jsx-runtime";
+var cachedUseUIElement = void 0;
+function resolveUseUIElement() {
+  if (cachedUseUIElement !== void 0) return cachedUseUIElement;
+  try {
+    const g = globalThis;
+    const maybeRequire = g.require;
+    const dynamicRequire = typeof maybeRequire === "function" ? maybeRequire : (
+      // Last-resort: build a require via Function. Works in classic Node
+      // CJS contexts; throws in bare-ESM, caught below.
+      (() => {
+        try {
+          return new Function("m", "return require(m)");
+        } catch {
+          return null;
+        }
+      })()
+    );
+    if (!dynamicRequire) {
+      cachedUseUIElement = null;
+      return null;
+    }
+    let mod;
+    try {
+      mod = dynamicRequire("@qontinui/ui-bridge/react");
+    } catch {
+      mod = dynamicRequire("@qontinui/ui-bridge");
+    }
+    const m = mod;
+    const fn = m && m.useUIElement || m && m.default && m.default.useUIElement || null;
+    cachedUseUIElement = typeof fn === "function" ? fn : null;
+  } catch {
+    cachedUseUIElement = null;
+  }
+  return cachedUseUIElement;
+}
+function useNavigationItem(item, onActivate) {
+  const activateRef = React.useRef(onActivate);
+  React.useEffect(() => {
+    activateRef.current = onActivate;
+  }, [onActivate]);
+  const useUIElementFn = resolveUseUIElement();
+  const hookFn = useUIElementFn ?? ((_opts) => void 0);
+  const handleClick = React.useCallback(() => {
+    activateRef.current();
+  }, []);
+  const options = React.useMemo(
+    () => ({
+      id: `nav:${item.id}`,
+      type: "menuitem",
+      label: item.label,
+      // Standard click action — the registry and control executor both
+      // understand this keyword. The actual handler lives in customActions
+      // so the executor can dispatch it without a DOM element reference.
+      actions: ["click"],
+      customActions: {
+        click: {
+          id: "click",
+          label: `Activate ${item.label}`,
+          description: item.description,
+          handler: handleClick
+        }
+      },
+      // Semantic hint for the Phase 1 content-element discovery pass.
+      // The registry carries this verbatim; snapshots expose it to UI
+      // Bridge clients.
+      variant: "navigation-item",
+      // Richer disambiguation hints — harmless for apps that don't use
+      // them, valuable for NL-based agents.
+      contextPath: item.description ? `navigation > ${item.label}` : void 0,
+      // Don't attempt auto-register via a ref (we don't have one here);
+      // the hook falls back to data-ui-bridge-id polling which is what the
+      // existing nav buttons already stamp.
+      autoRegister: true
+    }),
+    [item.id, item.label, item.description, handleClick]
+  );
+  hookFn(options);
+}
+function NavigationItemShell({
+  item,
+  onActivate,
+  children
+}) {
+  useNavigationItem(item, onActivate);
+  return /* @__PURE__ */ jsx(Fragment, { children });
+}
 export {
   BUILD_GROUP,
   BUILD_ITEMS,
@@ -1093,6 +1183,7 @@ export {
   LEARN_GROUP,
   LEARN_ITEMS,
   NAVIGATION_GROUPS,
+  NavigationItemShell,
   OBSERVE_GROUP,
   OBSERVE_ITEMS,
   RUNS_ITEMS,
@@ -1130,5 +1221,6 @@ export {
   navigationReducer,
   serializeState,
   setDevelopmentMode,
-  setProductMode
+  setProductMode,
+  useNavigationItem
 };

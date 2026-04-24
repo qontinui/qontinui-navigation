@@ -116,3 +116,16 @@ export {
   deserializeState,
   STORAGE_KEYS,
 } from "./state";
+
+// ============================================================================
+// React Integration (optional — requires @qontinui/ui-bridge peer)
+// ============================================================================
+
+export {
+  useNavigationItem,
+  NavigationItemShell,
+} from "./react";
+export type {
+  NavigationItemLike,
+  NavigationItemShellProps,
+} from "./react";

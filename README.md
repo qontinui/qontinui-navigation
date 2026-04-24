@@ -131,6 +131,29 @@ npm run typecheck
 npm run lint
 ```
 
+### Stale `dist/*.d.ts` Trap
+
+If `npm run build` completes but a consumer's `tsc --noEmit` reports
+"module has no exported member `useNavigationItem`" (or any other newly-
+added symbol), check **`ignoreDeprecations`** in `tsconfig.json`.
+
+tsup's dts build runs in a worker. When TypeScript rejects a config option
+(e.g. a stale `"ignoreDeprecations": "5.0"` on TS 6), the worker dies
+silently and `dist/index.d.ts` is left stale — but the JS outputs still
+succeed and `npm run build` exits 0. The symptom is only visible when a
+consumer types-imports from the package.
+
+Guardrails (Phase 3 Item 8):
+
+- `package.json`'s `build` script ends with `&& test -s dist/index.d.ts`
+  so an empty/missing dts is a hard error even when tsup doesn't flag it.
+- `tsup --dts` with `{ resolve: true }` surfaces type-resolution failures
+  as build errors.
+- A repo-wide freshness check lives in
+  `qontinui-claude-config/scripts/pre-commit-dts-freshness.sh`. Run it
+  anytime you want to verify every shared package's dist is newer than its
+  src; the Claude Code `git commit` hook runs it automatically.
+
 ## License
 
 MIT

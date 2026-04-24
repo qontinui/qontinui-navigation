@@ -20,6 +20,13 @@ repos:
         pass_filenames: false
         stages: [pre-commit]
 
+      - id: check-dts-freshness
+        name: Check dist/index.d.ts is fresh relative to src/
+        entry: .pre-commit-hooks/check-dts-freshness.sh
+        language: script
+        pass_filenames: false
+        stages: [pre-commit]
+
   - repo: local
     hooks:
       - id: block-claude-attribution

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 /**
  * Navigation Types
  *
@@ -341,4 +343,73 @@ declare const STORAGE_KEYS: {
     readonly activeTab: "qontinui-active-tab";
 };
 
-export { BUILD_GROUP, BUILD_ITEMS, CHILDREN_MAP, CONFIGURE_GROUP, CONFIGURE_ITEMS, DEV_GROUP, DEV_ITEMS, ICON_NAMES, type IconName, LEARN_GROUP, LEARN_ITEMS, NAVIGATION_GROUPS, type NavigationAction, type NavigationBadge, type NavigationGroup, type NavigationItem, type NavigationState, OBSERVE_GROUP, OBSERVE_ITEMS, type Platform, RUNS_ITEMS, RUN_GROUP, RUN_ITEMS, SCHEDULE_GROUP, SCHEDULE_ITEMS, SESSION_ITEMS, SETTINGS_ITEMS, STORAGE_KEYS, SYSTEM_GROUP, SYSTEM_ITEMS, type SecondarySidebarState, createInitialState, deserializeState, filterGroupForPlatform, filterGroupsForPlatform, filterItemsForPlatform, findItemById, getAllItems, getChildrenForPlatform, getChildrenItems, getItemGroup, getNavigationGroups, getProductMode, getRunnerNavigation, getWebNavigation, isDevelopmentMode, isGroupExpanded, isItemActive, isItemAvailable, isItemExpanded, isSecondaryOpenFor, isValidIconName, navigationActions, navigationReducer, serializeState, setDevelopmentMode, setProductMode };
+/**
+ * React Integration for qontinui-navigation
+ *
+ * Exposes a lightweight hook and a thin shell component so every navigation
+ * item rendered by a consumer automatically registers itself with the UI
+ * Bridge as a first-class element. That makes sidebar / secondary-nav
+ * entries discoverable via `/control/snapshot` and actionable via
+ * `/control/action`, using a stable, predictable id scheme:
+ *
+ *   nav:<item.id>   (e.g. "nav:settings-discovery", "nav:build")
+ *
+ * The hook resolves `useUIElement` from `@qontinui/ui-bridge` lazily so this
+ * package remains usable in environments where the UI Bridge isn't
+ * installed (tests, Storybook, CLI tooling) — the hook degrades to a no-op
+ * rather than crashing.
+ */
+
+/**
+ * Minimal subset of `NavigationItem` the hook needs. Accepting this wider
+ * type lets consumer apps that have their own richer nav-item shape (e.g.
+ * qontinui-web's `NavItem` with `icon: React.ReactNode`) hand us an object
+ * directly without a mapping step — as long as `id` and `label` exist.
+ */
+interface NavigationItemLike {
+    id: string;
+    label: string;
+    description?: string;
+}
+/**
+ * Register a navigation item with the UI Bridge.
+ *
+ * - Always assigns `id: nav:<item.id>` (stable, predictable for test scripts
+ *   and agent-driven workflows).
+ * - Exposes a single `click` custom action that invokes the caller-supplied
+ *   `onActivate`, which matches what a real user click does.
+ * - Hints the element's semantic role as `"navigation-item"` via the
+ *   `variant` field so content-element discovery can group nav entries
+ *   together.
+ * - Tags the element type as `menuitem` (closest DOM semantic, honoured by
+ *   the existing registry's type filters).
+ *
+ * If `useUIElement` isn't available at runtime (package not installed, no
+ * UIBridgeProvider in the tree, etc.) the hook is a no-op. It never throws.
+ *
+ * Consumers typically call this hook inside the component that renders the
+ * nav item's `<button>`. See `NavigationItemShell` for a zero-boilerplate
+ * wrapper.
+ */
+declare function useNavigationItem(item: NavigationItemLike, onActivate: () => void): void;
+interface NavigationItemShellProps {
+    item: NavigationItemLike;
+    onActivate: () => void;
+    children: React.ReactNode;
+}
+/**
+ * Thin render-prop-free wrapper that invokes `useNavigationItem` for the
+ * given `item` + `onActivate` and renders `children` unchanged.
+ *
+ * Use this when you want auto-registration without refactoring an existing
+ * nav button into its own component. Example:
+ *
+ * ```tsx
+ * <NavigationItemShell item={item} onActivate={() => onTabChange(item.id)}>
+ *   <button onClick={() => onTabChange(item.id)}>{item.label}</button>
+ * </NavigationItemShell>
+ * ```
+ */
+declare function NavigationItemShell({ item, onActivate, children, }: NavigationItemShellProps): React.ReactElement;
+
+export { BUILD_GROUP, BUILD_ITEMS, CHILDREN_MAP, CONFIGURE_GROUP, CONFIGURE_ITEMS, DEV_GROUP, DEV_ITEMS, ICON_NAMES, type IconName, LEARN_GROUP, LEARN_ITEMS, NAVIGATION_GROUPS, type NavigationAction, type NavigationBadge, type NavigationGroup, type NavigationItem, type NavigationItemLike, NavigationItemShell, type NavigationItemShellProps, type NavigationState, OBSERVE_GROUP, OBSERVE_ITEMS, type Platform, RUNS_ITEMS, RUN_GROUP, RUN_ITEMS, SCHEDULE_GROUP, SCHEDULE_ITEMS, SESSION_ITEMS, SETTINGS_ITEMS, STORAGE_KEYS, SYSTEM_GROUP, SYSTEM_ITEMS, type SecondarySidebarState, createInitialState, deserializeState, filterGroupForPlatform, filterGroupsForPlatform, filterItemsForPlatform, findItemById, getAllItems, getChildrenForPlatform, getChildrenItems, getItemGroup, getNavigationGroups, getProductMode, getRunnerNavigation, getWebNavigation, isDevelopmentMode, isGroupExpanded, isItemActive, isItemAvailable, isItemExpanded, isSecondaryOpenFor, isValidIconName, navigationActions, navigationReducer, serializeState, setDevelopmentMode, setProductMode, useNavigationItem };
