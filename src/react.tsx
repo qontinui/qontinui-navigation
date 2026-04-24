@@ -14,7 +14,6 @@
  * installed (tests, Storybook, CLI tooling) — the hook degrades to a no-op
  * rather than crashing.
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import * as React from "react";
 import type { NavigationItem } from "./types";
@@ -51,7 +50,6 @@ function resolveUseUIElement(): UseUIElementFn | null {
           // CJS contexts; throws in bare-ESM, caught below.
           (() => {
             try {
-              // eslint-disable-next-line no-new-func
               return new Function("m", "return require(m)") as (
                 m: string,
               ) => unknown;
@@ -136,7 +134,7 @@ export function useNavigationItem(
   // Always call the hook in the same order whether UI Bridge is present or
   // not. We use a stable no-op substitute when UI Bridge isn't available.
   const hookFn: UseUIElementFn =
-    useUIElementFn ?? ((_opts: Record<string, unknown>) => undefined);
+    useUIElementFn ?? (() => undefined);
 
   // Stable handler that forwards to the ref so the custom actions object
   // doesn't change identity.
