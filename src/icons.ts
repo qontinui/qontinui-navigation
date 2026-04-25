@@ -79,10 +79,13 @@ export const ICON_NAMES: IconName[] = [
   "RotateCcw",
   "Cpu",
   "Target",
+  "Repeat",
+  "ShieldAlert",
   // Web / shared
   "MessageSquare",
   "Server",
   "Workflow",
+  "Package",
 ];
 
 /**

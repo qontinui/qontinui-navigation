@@ -86,6 +86,15 @@ export const RUN_ITEMS: NavigationItem[] = [
     color: "#8B5CF6",
     platforms: ["runner"],
   },
+  {
+    id: "wrappers",
+    label: "Wrappers",
+    icon: "Package",
+    description: "Wrapper configurations and manifest management",
+    route: "/wrappers",
+    color: "#F59E0B",
+    platforms: ["runner"],
+  },
 ];
 
 export const RUN_GROUP: NavigationGroup = {

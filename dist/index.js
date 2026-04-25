@@ -62,6 +62,15 @@ var RUN_ITEMS = [
     route: "/orchestration-loop",
     color: "#8B5CF6",
     platforms: ["runner"]
+  },
+  {
+    id: "wrappers",
+    label: "Wrappers",
+    icon: "Package",
+    description: "Wrapper configurations and manifest management",
+    route: "/wrappers",
+    color: "#F59E0B",
+    platforms: ["runner"]
   }
 ];
 var RUN_GROUP = {
@@ -847,10 +856,13 @@ var ICON_NAMES = [
   "RotateCcw",
   "Cpu",
   "Target",
+  "Repeat",
+  "ShieldAlert",
   // Web / shared
   "MessageSquare",
   "Server",
-  "Workflow"
+  "Workflow",
+  "Package"
 ];
 function isValidIconName(name) {
   return ICON_NAMES.includes(name);
@@ -1126,7 +1138,7 @@ function useNavigationItem(item, onActivate) {
     activateRef.current = onActivate;
   }, [onActivate]);
   const useUIElementFn = resolveUseUIElement();
-  const hookFn = useUIElementFn ?? ((_opts) => void 0);
+  const hookFn = useUIElementFn ?? (() => void 0);
   const handleClick = React.useCallback(() => {
     activateRef.current();
   }, []);

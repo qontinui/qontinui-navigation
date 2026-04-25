@@ -87,7 +87,10 @@ export type IconName =
   // Web / shared
   | "MessageSquare"
   | "Server"
-  | "Workflow";
+  | "Workflow"
+  | "Package"
+  | "Repeat"
+  | "ShieldAlert";
 
 // ============================================================================
 // Navigation Item Types
