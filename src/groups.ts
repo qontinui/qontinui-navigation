@@ -473,6 +473,29 @@ export const BUILD_GROUP: NavigationGroup = {
 };
 
 // ============================================================================
+// WRAPPERS Group — top-level entry for the wrapper extensibility surface
+// ============================================================================
+
+export const WRAPPERS_ITEMS: NavigationItem[] = [
+  {
+    id: "wrappers",
+    label: "Wrappers",
+    icon: "Package",
+    description: "Install and manage wrapper extensions",
+    route: "/wrappers",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+];
+
+export const WRAPPERS_GROUP: NavigationGroup = {
+  id: "wrappers",
+  label: "WRAPPERS",
+  items: WRAPPERS_ITEMS,
+  defaultExpanded: true,
+};
+
+// ============================================================================
 // CONFIGURE Group
 // ============================================================================
 
@@ -821,6 +844,7 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
   OBSERVE_GROUP,
   LEARN_GROUP,
   BUILD_GROUP,
+  WRAPPERS_GROUP,
   CONFIGURE_GROUP,
   SCHEDULE_GROUP,
   DEV_GROUP,

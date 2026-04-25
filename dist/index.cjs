@@ -54,6 +54,8 @@ __export(index_exports, {
   STORAGE_KEYS: () => STORAGE_KEYS,
   SYSTEM_GROUP: () => SYSTEM_GROUP,
   SYSTEM_ITEMS: () => SYSTEM_ITEMS,
+  WRAPPERS_GROUP: () => WRAPPERS_GROUP,
+  WRAPPERS_ITEMS: () => WRAPPERS_ITEMS,
   createInitialState: () => createInitialState,
   deserializeState: () => deserializeState,
   filterGroupForPlatform: () => filterGroupForPlatform,
@@ -511,6 +513,23 @@ var BUILD_GROUP = {
   items: BUILD_ITEMS,
   defaultExpanded: false
 };
+var WRAPPERS_ITEMS = [
+  {
+    id: "wrappers",
+    label: "Wrappers",
+    icon: "Package",
+    description: "Install and manage wrapper extensions",
+    route: "/wrappers",
+    color: "#06B6D4",
+    platforms: ["runner"]
+  }
+];
+var WRAPPERS_GROUP = {
+  id: "wrappers",
+  label: "WRAPPERS",
+  items: WRAPPERS_ITEMS,
+  defaultExpanded: true
+};
 var CONFIGURE_ITEMS = [
   {
     id: "config-findings",
@@ -828,6 +847,7 @@ var NAVIGATION_GROUPS = [
   OBSERVE_GROUP,
   LEARN_GROUP,
   BUILD_GROUP,
+  WRAPPERS_GROUP,
   CONFIGURE_GROUP,
   SCHEDULE_GROUP,
   DEV_GROUP,
@@ -1295,6 +1315,8 @@ function NavigationItemShell({
   STORAGE_KEYS,
   SYSTEM_GROUP,
   SYSTEM_ITEMS,
+  WRAPPERS_GROUP,
+  WRAPPERS_ITEMS,
   createInitialState,
   deserializeState,
   filterGroupForPlatform,

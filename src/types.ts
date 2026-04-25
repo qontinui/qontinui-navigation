@@ -84,6 +84,7 @@ export type IconName =
   | "Cpu"
   | "Repeat"
   | "Target"
+  | "Package"
   // Web / shared
   | "MessageSquare"
   | "Server"
