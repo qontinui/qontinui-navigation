@@ -152,6 +152,15 @@ var RUN_ITEMS = [
     platforms: ["runner"]
   },
   {
+    id: "productivity",
+    label: "Productivity",
+    icon: "ClipboardList",
+    description: "Plan/task board, coordinator dashboard, and knowledge browser",
+    route: "/productivity",
+    color: "#F59E0B",
+    platforms: ["runner"]
+  },
+  {
     id: "wrappers",
     label: "Wrappers",
     icon: "Package",
@@ -779,6 +788,15 @@ var SETTINGS_ITEMS = [
     description: "Backup and restore",
     route: "/settings/backup",
     color: "#FFD700"
+  },
+  {
+    id: "settings-instances",
+    label: "Runner Instances",
+    icon: "Server",
+    description: "Spawn placement and per-instance configs",
+    route: "/settings/instances",
+    color: "#FFD700",
+    platforms: ["runner"]
   },
   {
     id: "settings-updates",
