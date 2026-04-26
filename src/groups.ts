@@ -87,6 +87,15 @@ export const RUN_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
+    id: "productivity",
+    label: "Productivity",
+    icon: "ClipboardList",
+    description: "Plan/task board, coordinator dashboard, and knowledge browser",
+    route: "/productivity",
+    color: "#F59E0B",
+    platforms: ["runner"],
+  },
+  {
     id: "wrappers",
     label: "Wrappers",
     icon: "Package",
