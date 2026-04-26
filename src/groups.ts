@@ -768,6 +768,15 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     color: "#FFD700",
   },
   {
+    id: "settings-instances",
+    label: "Runner Instances",
+    icon: "Server",
+    description: "Spawn placement and per-instance configs",
+    route: "/settings/instances",
+    color: "#FFD700",
+    platforms: ["runner"],
+  },
+  {
     id: "settings-updates",
     label: "Updates",
     icon: "Download",
