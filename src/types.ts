@@ -84,14 +84,11 @@ export type IconName =
   | "Cpu"
   | "Repeat"
   | "Target"
-  | "Package"
   // Web / shared
   | "MessageSquare"
   | "Server"
   | "Workflow"
-  | "Package"
-  | "Repeat"
-  | "ShieldAlert";
+  | "Package";
 
 // ============================================================================
 // Navigation Item Types
