@@ -154,6 +154,26 @@ Guardrails (Phase 3 Item 8):
   anytime you want to verify every shared package's dist is newer than its
   src; the Claude Code `git commit` hook runs it automatically.
 
+## Release Process
+
+This package is published to npm as `qontinui-navigation` (unscoped) via a tag-triggered GitHub Actions workflow.
+
+To cut a release:
+
+1. Bump `version` in `package.json` (use semver; `0.x` minor bumps for breaking changes while pre-1.0).
+2. Commit the version bump on `master`.
+3. Tag the commit with a `v`-prefixed tag matching the version, e.g. `git tag v0.2.0`.
+4. Push the tag: `git push origin v0.2.0`.
+
+The `.github/workflows/publish.yml` workflow runs on `push: tags: ['v*']` and publishes to npm using the org-level `NPM_TOKEN` secret. Verify the publish succeeded by checking the workflow run and `npm view qontinui-navigation version`.
+
+For local validation before tagging:
+
+```bash
+npm run build
+npm publish --dry-run
+```
+
 ## License
 
 Licensed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later). See [LICENSE](LICENSE) for full terms.

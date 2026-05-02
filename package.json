@@ -36,12 +36,19 @@
   ],
   "author": "Joshua Spinak",
   "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qontinui/qontinui-navigation.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "overrides": {
     "rollup": ">=4.59.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "@qontinui/ui-bridge": "file:../ui-bridge/packages/ui-bridge",
+    "@qontinui/ui-bridge": "^0.3.2",
     "@types/node": "^20.10.0",
     "@types/react": "^19.0.0",
     "eslint": "^9.0.0",
