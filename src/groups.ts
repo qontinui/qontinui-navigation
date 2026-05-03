@@ -444,6 +444,16 @@ export const BUILD_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
+    id: "regression",
+    label: "Regression",
+    icon: "ShieldCheck",
+    description:
+      "Run auto-generated regression suites against the live UI Bridge registry; review coverage and self-diagnoses for failures",
+    color: "var(--brand-secondary)",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
+  {
     id: "vga",
     label: "Visual GUI",
     icon: "Target",
