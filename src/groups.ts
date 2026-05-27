@@ -813,6 +813,15 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
+    id: "settings-repos",
+    label: "Repositories",
+    icon: "GitBranch",
+    description: "Manage coordinated repositories",
+    route: "/settings/repos",
+    color: "#FFD700",
+    platforms: ["web"],
+  },
+  {
     id: "settings-debug",
     label: "Debug",
     icon: "FlaskConical",
