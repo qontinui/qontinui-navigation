@@ -842,6 +842,15 @@ export const SYSTEM_ITEMS: NavigationItem[] = [
     color: "#10B981",
   },
   {
+    id: "sessions",
+    label: "Sessions",
+    icon: "Terminal",
+    description: "Terminal and agent sessions across machines",
+    platforms: ["web"],
+    route: "/sessions",
+    color: "#10B981",
+  },
+  {
     id: "settings",
     label: "Settings",
     icon: "Settings",
