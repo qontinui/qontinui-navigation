@@ -8,15 +8,35 @@
  *   - platform:    "runner" | "web" | both (default) — which app shows the item
  *   - productMode: "ai" | "visual" | "both" | undefined (default=both) — which product mode
  *   - hiddenInProd: true — dev-only items hidden in production
+ *
+ * ---------------------------------------------------------------------------
+ * Terminal-centric information architecture (2026-06).
+ * ---------------------------------------------------------------------------
+ * The Terminal page is now the primary surface — most users live there running
+ * Claude Code / shell sessions. The previous IA (RUN / OBSERVE / LEARN / BUILD /
+ * WRAPPERS / CONFIGURE / SCHEDULE) was organised around the older
+ * setup→verification→agentic→completion workflow-loop paradigm and surfaced
+ * ~25 items by default, burying the handful a session-driven user touches daily.
+ *
+ * The new IA applies progressive disclosure:
+ *   - WORKSPACE / REVIEW / SYSTEM  — the daily set, expanded by default.
+ *   - SPEND / AUTOMATE / BUILD / INSIGHTS / CONFIGURE / DEV — collapsed; the
+ *     legacy workflow-builder + monitoring + accumulated-intelligence long tail,
+ *     all still one disclosure-click away (nothing is removed; every route and
+ *     tab id is preserved so deep-links and tab-activation keep resolving).
+ *
+ * Both platforms share this structure; per-item `platforms`/`productMode`
+ * filters yield the right view for each (web has no Terminal; runner has no
+ * Dashboard/Runners, etc.).
  */
 
 import type { NavigationGroup, NavigationItem } from "./types";
 
 // ============================================================================
-// TOP-LEVEL (no group header rendered)
+// WORKSPACE Group — the daily entry points (where work starts)
 // ============================================================================
 
-export const TOP_LEVEL_ITEMS: NavigationItem[] = [
+export const WORKSPACE_ITEMS: NavigationItem[] = [
   {
     id: "visual-dashboard",
     label: "Dashboard",
@@ -26,20 +46,6 @@ export const TOP_LEVEL_ITEMS: NavigationItem[] = [
     color: "#10B981",
     productMode: "visual",
   },
-];
-
-export const TOP_LEVEL_GROUP: NavigationGroup = {
-  id: "top-level",
-  label: "",
-  items: TOP_LEVEL_ITEMS,
-  defaultExpanded: true,
-};
-
-// ============================================================================
-// RUN Group
-// ============================================================================
-
-export const RUN_ITEMS: NavigationItem[] = [
   {
     id: "prompt-home",
     label: "Home",
@@ -59,15 +65,6 @@ export const RUN_ITEMS: NavigationItem[] = [
     productMode: "visual",
   },
   {
-    id: "active",
-    label: "Active",
-    icon: "Activity",
-    description: "Monitor active executions",
-    route: "/runs/active",
-    color: "#4A90D9",
-    productMode: "ai",
-  },
-  {
     id: "terminal",
     label: "Terminal",
     icon: "Terminal",
@@ -78,13 +75,13 @@ export const RUN_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
   },
   {
-    id: "orchestration-loop",
-    label: "Orchestration",
-    icon: "Repeat",
-    description: "Iterative workflow loop with pipeline mode (build/reflect/fix)",
-    route: "/orchestration-loop",
-    color: "#8B5CF6",
-    platforms: ["runner"],
+    id: "active",
+    label: "Active",
+    icon: "Activity",
+    description: "Monitor active executions",
+    route: "/runs/active",
+    color: "#4A90D9",
+    productMode: "ai",
   },
   {
     id: "productivity",
@@ -95,29 +92,20 @@ export const RUN_ITEMS: NavigationItem[] = [
     color: "#F59E0B",
     platforms: ["runner"],
   },
-  {
-    id: "wrappers",
-    label: "Wrappers",
-    icon: "Package",
-    description: "Wrapper configurations and manifest management",
-    route: "/wrappers",
-    color: "#F59E0B",
-    platforms: ["runner"],
-  },
 ];
 
-export const RUN_GROUP: NavigationGroup = {
-  id: "run",
-  label: "RUN",
-  items: RUN_ITEMS,
+export const WORKSPACE_GROUP: NavigationGroup = {
+  id: "workspace",
+  label: "WORKSPACE",
+  items: WORKSPACE_ITEMS,
   defaultExpanded: true,
 };
 
 // ============================================================================
-// OBSERVE Group — runtime monitoring (things happening now or recently)
+// REVIEW Group — sessions, output, and the intelligence a user reviews
 // ============================================================================
 
-// Runs Sub-items (runner secondary sidebar)
+// Runs Sub-items (runner secondary sidebar — flyout children of "Runs")
 export const SESSION_ITEMS: NavigationItem[] = [
   {
     id: "run-recap",
@@ -206,7 +194,7 @@ export const RUNS_ITEMS: NavigationItem[] = [
   },
 ];
 
-export const OBSERVE_ITEMS: NavigationItem[] = [
+export const REVIEW_ITEMS: NavigationItem[] = [
   {
     id: "runs",
     label: "Runs",
@@ -228,40 +216,38 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
-    id: "error-monitor",
-    label: "Error Monitor",
-    icon: "AlertCircle",
-    description: "Monitor and fix application errors from log sources",
-    route: "/tools/error-monitor",
-    color: "#4A90D9",
+    id: "memory",
+    label: "Memory",
+    icon: "Brain",
+    description: "Cross-session observation memory from past runs",
+    route: "/observe/memory",
+    color: "#8B5CF6",
     productMode: "ai",
   },
   {
-    id: "processes",
-    label: "Processes",
-    icon: "Cpu",
-    description: "Manage and monitor spawned child processes",
-    color: "#06B6D4",
-    productMode: "ai",
-  },
-  {
-    id: "activity-timeline",
-    label: "Activity Timeline",
-    icon: "Activity",
-    description: "Searchable capture history — everything seen on screen during automation",
-    route: "/observe/activity-timeline",
-    color: "#06B6D4",
-    platforms: ["runner"],
-  },
-  {
-    id: "automation-health",
-    label: "Automation Health",
-    icon: "Activity",
-    description: "UI Bridge automation quality, selector reliability, and improvement recommendations",
-    color: "#10B981",
+    id: "knowledge-explorer",
+    label: "Knowledge",
+    icon: "Globe",
+    description: "Search external knowledge sources and view acquisition stats — web search, vulnerability intelligence, API docs",
+    route: "/observe/knowledge",
+    color: "#F97316",
     platforms: ["runner"],
     productMode: "ai",
   },
+];
+
+export const REVIEW_GROUP: NavigationGroup = {
+  id: "review",
+  label: "REVIEW",
+  items: REVIEW_ITEMS,
+  defaultExpanded: true,
+};
+
+// ============================================================================
+// SPEND Group — token cost is a daily concern for session-heavy users
+// ============================================================================
+
+export const SPEND_ITEMS: NavigationItem[] = [
   {
     id: "llm-analytics",
     label: "LLM Analytics",
@@ -282,109 +268,52 @@ export const OBSERVE_ITEMS: NavigationItem[] = [
   },
 ];
 
-export const OBSERVE_GROUP: NavigationGroup = {
-  id: "observe",
-  label: "OBSERVE",
-  items: OBSERVE_ITEMS,
+export const SPEND_GROUP: NavigationGroup = {
+  id: "spend",
+  label: "SPEND",
+  items: SPEND_ITEMS,
   defaultExpanded: false,
 };
 
 // ============================================================================
-// LEARN Group — accumulated intelligence (things the system knows)
+// AUTOMATE Group — scheduled / reactive agents
 // ============================================================================
 
-export const LEARN_ITEMS: NavigationItem[] = [
+export const AUTOMATE_ITEMS: NavigationItem[] = [
   {
-    id: "memory",
-    label: "Memory",
-    icon: "Brain",
-    description: "Cross-session observation memory from past runs",
-    route: "/observe/memory",
-    color: "#8B5CF6",
+    id: "tasks",
+    label: "Scheduled Tasks",
+    icon: "Calendar",
+    description: "Manage scheduled automation",
     productMode: "ai",
   },
   {
-    id: "knowledge-explorer",
-    label: "Knowledge",
-    icon: "Globe",
-    description: "Search external knowledge sources and view acquisition stats — web search, vulnerability intelligence, API docs",
-    route: "/observe/knowledge",
-    color: "#F97316",
-    platforms: ["runner"],
+    id: "triggers",
+    label: "Triggers",
+    icon: "Zap",
+    description: "Event-driven workflow automation",
     productMode: "ai",
   },
   {
-    id: "decision-trail",
-    label: "Decision Trail",
-    icon: "ListChecks",
-    description: "Architectural decision history — what was decided, why, and what alternatives were considered",
-    route: "/observe/decision-trail",
-    color: "#8B5CF6",
-    productMode: "ai",
-    platforms: ["runner"],
-  },
-  {
-    id: "session-recap",
-    label: "Session Recap",
-    icon: "GitBranch",
-    description: "Semantic dependency map of what was built — files, types, endpoints, and how they connect",
-    route: "/observe/session-recap",
-    color: "#8B5CF6",
-    platforms: ["runner"],
-    productMode: "ai",
-  },
-  {
-    id: "reflection",
-    label: "Reflection",
-    icon: "RotateCcw",
-    description: "Reflection fix effectiveness and history",
-    productMode: "ai",
-  },
-  {
-    id: "architecture",
-    label: "Architecture",
-    icon: "GitBranch",
-    description: "Component dependency graph and SDK project architecture",
-    productMode: "ai",
-  },
-  {
-    id: "api-surface",
-    label: "API Surface",
-    icon: "Network",
-    description: "Interactive map of every endpoint, command, query, and their connections",
-    color: "#06B6D4",
-    platforms: ["runner"],
-  },
-  {
-    id: "development-intelligence",
-    label: "Dev Intelligence",
-    icon: "Brain",
-    description: "Coverage gap analysis, complexity scoring, drift detection, and dead feature identification",
-    route: "/observe/development-intelligence",
-    color: "#8B5CF6",
-    platforms: ["runner"],
-    productMode: "ai",
-  },
-  {
-    id: "project-explainer",
-    label: "Explainer",
-    icon: "BookOpen",
-    description: "Hierarchical explainer for any project: overview, per-cluster narratives, and per-page deep dives with embedded architecture diagrams. AI side panel for asking questions while reading.",
-    route: "/observe/explainer",
+    id: "watchers",
+    label: "Watchers",
+    icon: "Eye",
+    description: "Scheduled reactive agents that monitor the activity timeline",
+    route: "/observe/watchers",
     color: "#06B6D4",
     platforms: ["runner"],
   },
 ];
 
-export const LEARN_GROUP: NavigationGroup = {
-  id: "learn",
-  label: "LEARN",
-  items: LEARN_ITEMS,
+export const AUTOMATE_GROUP: NavigationGroup = {
+  id: "automate",
+  label: "AUTOMATE",
+  items: AUTOMATE_ITEMS,
   defaultExpanded: false,
 };
 
 // ============================================================================
-// BUILD Group
+// BUILD Group — the workflow / visual-automation building surface (legacy core)
 // ============================================================================
 
 export const BUILD_ITEMS: NavigationItem[] = [
@@ -463,6 +392,15 @@ export const BUILD_ITEMS: NavigationItem[] = [
     productMode: "both",
   },
   {
+    id: "orchestration-loop",
+    label: "Orchestration",
+    icon: "Repeat",
+    description: "Iterative workflow loop with pipeline mode (build/reflect/fix)",
+    route: "/orchestration-loop",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+  },
+  {
     id: "demo-video",
     label: "Demo Videos",
     icon: "Video",
@@ -482,20 +420,6 @@ export const BUILD_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
-];
-
-export const BUILD_GROUP: NavigationGroup = {
-  id: "build",
-  label: "BUILD",
-  items: BUILD_ITEMS,
-  defaultExpanded: false,
-};
-
-// ============================================================================
-// WRAPPERS Group — top-level entry for the wrapper extensibility surface
-// ============================================================================
-
-export const WRAPPERS_ITEMS: NavigationItem[] = [
   {
     id: "wrappers",
     label: "Wrappers",
@@ -507,11 +431,121 @@ export const WRAPPERS_ITEMS: NavigationItem[] = [
   },
 ];
 
-export const WRAPPERS_GROUP: NavigationGroup = {
-  id: "wrappers",
-  label: "WRAPPERS",
-  items: WRAPPERS_ITEMS,
-  defaultExpanded: true,
+export const BUILD_GROUP: NavigationGroup = {
+  id: "build",
+  label: "BUILD",
+  items: BUILD_ITEMS,
+  defaultExpanded: false,
+};
+
+// ============================================================================
+// INSIGHTS Group — live monitoring + accumulated analysis (the long tail)
+// ============================================================================
+
+export const INSIGHTS_ITEMS: NavigationItem[] = [
+  {
+    id: "error-monitor",
+    label: "Error Monitor",
+    icon: "AlertCircle",
+    description: "Monitor and fix application errors from log sources",
+    route: "/tools/error-monitor",
+    color: "#4A90D9",
+    productMode: "ai",
+  },
+  {
+    id: "processes",
+    label: "Processes",
+    icon: "Cpu",
+    description: "Manage and monitor spawned child processes",
+    color: "#06B6D4",
+    productMode: "ai",
+  },
+  {
+    id: "activity-timeline",
+    label: "Activity Timeline",
+    icon: "Activity",
+    description: "Searchable capture history — everything seen on screen during automation",
+    route: "/observe/activity-timeline",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+  {
+    id: "automation-health",
+    label: "Automation Health",
+    icon: "Activity",
+    description: "UI Bridge automation quality, selector reliability, and improvement recommendations",
+    color: "#10B981",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
+  {
+    id: "reflection",
+    label: "Reflection",
+    icon: "RotateCcw",
+    description: "Reflection fix effectiveness and history",
+    productMode: "ai",
+  },
+  {
+    id: "architecture",
+    label: "Architecture",
+    icon: "GitBranch",
+    description: "Component dependency graph and SDK project architecture",
+    productMode: "ai",
+  },
+  {
+    id: "api-surface",
+    label: "API Surface",
+    icon: "Network",
+    description: "Interactive map of every endpoint, command, query, and their connections",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+  {
+    id: "development-intelligence",
+    label: "Dev Intelligence",
+    icon: "Brain",
+    description: "Coverage gap analysis, complexity scoring, drift detection, and dead feature identification",
+    route: "/observe/development-intelligence",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
+  {
+    id: "project-explainer",
+    label: "Explainer",
+    icon: "BookOpen",
+    description: "Hierarchical explainer for any project: overview, per-cluster narratives, and per-page deep dives with embedded architecture diagrams. AI side panel for asking questions while reading.",
+    route: "/observe/explainer",
+    color: "#06B6D4",
+    platforms: ["runner"],
+  },
+  {
+    id: "decision-trail",
+    label: "Decision Trail",
+    icon: "ListChecks",
+    description: "Architectural decision history — what was decided, why, and what alternatives were considered",
+    route: "/observe/decision-trail",
+    color: "#8B5CF6",
+    productMode: "ai",
+    platforms: ["runner"],
+  },
+  {
+    id: "session-recap",
+    label: "Session Recap",
+    icon: "GitBranch",
+    description: "Semantic dependency map of what was built — files, types, endpoints, and how they connect",
+    route: "/observe/session-recap",
+    color: "#8B5CF6",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
+];
+
+export const INSIGHTS_GROUP: NavigationGroup = {
+  id: "insights",
+  label: "INSIGHTS",
+  items: INSIGHTS_ITEMS,
+  defaultExpanded: false,
 };
 
 // ============================================================================
@@ -542,43 +576,6 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     description: "Manage UI Bridge integrations for external apps",
     productMode: "ai",
   },
-];
-
-export const CONFIGURE_GROUP: NavigationGroup = {
-  id: "configure",
-  label: "CONFIGURE",
-  items: CONFIGURE_ITEMS,
-  defaultExpanded: false,
-};
-
-// ============================================================================
-// SCHEDULE Group — Watchers moved here (they are scheduled reactive agents)
-// ============================================================================
-
-export const SCHEDULE_ITEMS: NavigationItem[] = [
-  {
-    id: "triggers",
-    label: "Triggers",
-    icon: "Zap",
-    description: "Event-driven workflow automation",
-    productMode: "ai",
-  },
-  {
-    id: "tasks",
-    label: "Scheduled Tasks",
-    icon: "Calendar",
-    description: "Manage scheduled automation",
-    productMode: "ai",
-  },
-  {
-    id: "watchers",
-    label: "Watchers",
-    icon: "Eye",
-    description: "Scheduled reactive agents that monitor the activity timeline",
-    route: "/observe/watchers",
-    color: "#06B6D4",
-    platforms: ["runner"],
-  },
   {
     id: "event-history",
     label: "Event History",
@@ -589,10 +586,10 @@ export const SCHEDULE_ITEMS: NavigationItem[] = [
   },
 ];
 
-export const SCHEDULE_GROUP: NavigationGroup = {
-  id: "schedule",
-  label: "SCHEDULE",
-  items: SCHEDULE_ITEMS,
+export const CONFIGURE_GROUP: NavigationGroup = {
+  id: "configure",
+  label: "CONFIGURE",
+  items: CONFIGURE_ITEMS,
   defaultExpanded: false,
 };
 
@@ -678,7 +675,7 @@ export const DEV_GROUP: NavigationGroup = {
 };
 
 // ============================================================================
-// SYSTEM Group
+// SYSTEM Group — settings, account, help (always at the bottom)
 // ============================================================================
 
 export const SETTINGS_ITEMS: NavigationItem[] = [
@@ -883,16 +880,18 @@ export const SYSTEM_GROUP: NavigationGroup = {
 
 /**
  * All navigation groups in order.
+ *
+ * Order is deliberate: the expanded daily set (WORKSPACE, REVIEW) leads;
+ * the collapsed legacy/long-tail groups follow; SYSTEM anchors the bottom.
  */
 export const NAVIGATION_GROUPS: NavigationGroup[] = [
-  TOP_LEVEL_GROUP,
-  RUN_GROUP,
-  OBSERVE_GROUP,
-  LEARN_GROUP,
+  WORKSPACE_GROUP,
+  REVIEW_GROUP,
+  SPEND_GROUP,
+  AUTOMATE_GROUP,
   BUILD_GROUP,
-  WRAPPERS_GROUP,
+  INSIGHTS_GROUP,
   CONFIGURE_GROUP,
-  SCHEDULE_GROUP,
   DEV_GROUP,
   SYSTEM_GROUP,
 ];
