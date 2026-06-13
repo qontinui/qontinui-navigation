@@ -4,10 +4,14 @@
  * Shared navigation group definitions for Qontinui applications.
  * These define the structure and hierarchy of the sidebar navigation.
  *
- * Each item can have three orthogonal visibility dimensions:
+ * Each item can have four orthogonal visibility dimensions:
  *   - platform:    "runner" | "web" | both (default) — which app shows the item
  *   - productMode: "ai" | "visual" | "both" | undefined (default=both) — which product mode
  *   - hiddenInProd: true — dev-only items hidden in production
+ *   - hidden: true — "advanced" surfaces (the workflow-authoring tools) kept
+ *     out of the default sidebar until the user opts in via "Show advanced
+ *     automation features" (setShowHiddenItems). Route/tab id stays registered,
+ *     so deep-links (e.g. the Terminal "save as workflow" disclosure) resolve.
  *
  * ---------------------------------------------------------------------------
  * Terminal-centric information architecture (2026-06).
@@ -325,6 +329,10 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/build/workflows",
     color: "var(--brand-secondary)",
     productMode: "ai",
+    // Advanced surface — demoted from the default nav now that the Terminal is
+    // the primary entry point. Reached via the Terminal "save as workflow"
+    // disclosure or by opting into "Show advanced automation features".
+    hidden: true,
   },
   {
     id: "dag-workflow-editor",
@@ -335,6 +343,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     color: "#6366f1",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "step-builders",
@@ -344,6 +353,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/build/templates",
     color: "var(--brand-secondary)",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "library",
@@ -399,6 +409,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/orchestration-loop",
     color: "#8B5CF6",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "demo-video",

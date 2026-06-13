@@ -51,6 +51,32 @@ export function getProductMode(): ProductMode {
 }
 
 // ============================================================================
+// Advanced (hidden) Items
+// ============================================================================
+
+let _showHiddenItems = false;
+
+/**
+ * Set whether items flagged `hidden: true` should be shown.
+ *
+ * Defaults to false, so "advanced" surfaces (the workflow-authoring tools)
+ * are kept out of the default sidebar. Each app wires this to a persisted
+ * "Show advanced automation features" setting (Settings → General). Toggling
+ * it on restores the items without affecting their route/tab registration —
+ * deep-links resolve regardless of this flag.
+ */
+export function setShowHiddenItems(show: boolean): void {
+  _showHiddenItems = show;
+}
+
+/**
+ * Whether `hidden` items are currently shown.
+ */
+export function getShowHiddenItems(): boolean {
+  return _showHiddenItems;
+}
+
+// ============================================================================
 // Platform Filtering
 // ============================================================================
 
@@ -64,6 +90,11 @@ export function isItemAvailable(
 ): boolean {
   // Exclude hiddenInProd items in production (show in development)
   if (item.hiddenInProd && !isDevelopmentMode()) {
+    return false;
+  }
+  // Exclude "advanced" hidden items unless the user has opted in.
+  // The route/tab id stays registered — this only affects sidebar rendering.
+  if (item.hidden && !_showHiddenItems) {
     return false;
   }
   // Filter by product mode if one is set
