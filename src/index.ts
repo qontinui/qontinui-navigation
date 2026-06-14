@@ -84,6 +84,9 @@ export {
   // Product mode
   setProductMode,
   getProductMode,
+  // Advanced (hidden) items
+  setShowHiddenItems,
+  getShowHiddenItems,
   // Platform filtering
   isItemAvailable,
   filterItemsForPlatform,

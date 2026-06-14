@@ -124,6 +124,16 @@ export interface NavigationItem {
   shortcut?: string;
   /** Hide from navigation in production (visible in dev mode with a badge) */
   hiddenInProd?: boolean;
+  /**
+   * Hide from the default navigation as an "advanced" surface. Unlike
+   * `hiddenInProd` (which keys off dev/prod), `hidden` items stay out of the
+   * sidebar until the user opts in via the "Show advanced automation features"
+   * setting (wired through `setShowHiddenItems(true)`). The route/tab id is
+   * still registered, so deep-links and programmatic tab-activation continue
+   * to resolve. Used to demote the workflow-authoring surfaces (workflow
+   * builder, DAG editor, orchestration loop, step builders) now that the
+   * Terminal is the primary entry point. */
+  hidden?: boolean;
   /** Product mode visibility - "ai", "visual", or "both" (default: shown in all modes) */
   productMode?: "ai" | "visual" | "both";
   /** URL path for web routing (e.g., "/build/workflows") */
