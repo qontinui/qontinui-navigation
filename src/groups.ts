@@ -290,6 +290,8 @@ export const AUTOMATE_ITEMS: NavigationItem[] = [
     icon: "Calendar",
     description: "Manage scheduled automation",
     productMode: "ai",
+    // Runner-only feature — has no web page (web route 404s).
+    platforms: ["runner"],
   },
   {
     id: "triggers",
@@ -297,6 +299,8 @@ export const AUTOMATE_ITEMS: NavigationItem[] = [
     icon: "Zap",
     description: "Event-driven workflow automation",
     productMode: "ai",
+    // Runner-only feature — has no web page (web route 404s).
+    platforms: ["runner"],
   },
   {
     id: "watchers",
@@ -399,7 +403,9 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Visual GUI automation — build state machines and inspect runs",
     route: "/vga",
     color: "var(--brand-secondary)",
-    productMode: "both",
+    // Visual GUI automation belongs to Visual mode, not AI Dev (removed from
+    // the AI Dev sidebar on both runner and web).
+    productMode: "visual",
   },
   {
     id: "orchestration-loop",
@@ -495,6 +501,8 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     icon: "RotateCcw",
     description: "Reflection fix effectiveness and history",
     productMode: "ai",
+    // Runner-only feature — has no web page (web route 404s).
+    platforms: ["runner"],
   },
   {
     id: "architecture",
