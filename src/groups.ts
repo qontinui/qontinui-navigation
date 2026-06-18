@@ -24,14 +24,26 @@
  *
  * The new IA applies progressive disclosure:
  *   - WORKSPACE / REVIEW / SYSTEM  — the daily set, expanded by default.
- *   - SPEND / AUTOMATE / BUILD / INSIGHTS / CONFIGURE / DEV — collapsed; the
- *     legacy workflow-builder + monitoring + accumulated-intelligence long tail,
- *     all still one disclosure-click away (nothing is removed; every route and
- *     tab id is preserved so deep-links and tab-activation keep resolving).
+ *   - SPEND / AUTOMATE / BUILD / INSIGHTS / CONFIGURE / DEV — the legacy
+ *     workflow-builder + monitoring + accumulated-intelligence long tail.
+ *     These are flagged `hidden: true` so they are kept out of the default
+ *     sidebar entirely until the user opts into "Show advanced automation
+ *     features" (setShowHiddenItems) — the same one-toggle disclosure that
+ *     reveals the workflow-authoring builders. Nothing is removed; every route
+ *     and tab id is preserved so deep-links and tab-activation keep resolving.
+ *     (Groups that end up with no visible items are dropped by
+ *     filterGroupsForPlatform, so no bare group header renders.)
+ *
+ * The default (toggle OFF, AI Dev mode) is therefore the lean, Terminal-first
+ * set: WORKSPACE (Home / Terminal / Active / Productivity), REVIEW (Runs /
+ * Findings / Memory / Knowledge), and SYSTEM (Settings / Help). This mirrors
+ * qontinui-web's coord+sessions-centric default menu.
  *
  * Both platforms share this structure; per-item `platforms`/`productMode`
  * filters yield the right view for each (web has no Terminal; runner has no
- * Dashboard/Runners, etc.).
+ * Dashboard/Runners, etc.). qontinui-web additionally demotes a few items the
+ * runner keeps (runs/active/findings/memory — task_run-scoped, not session-
+ * scoped) via its own local list; those stay un-`hidden` here.
  */
 
 import type { NavigationGroup, NavigationItem } from "./types";
@@ -260,6 +272,7 @@ export const SPEND_ITEMS: NavigationItem[] = [
     color: "#D97706",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "cost-control",
@@ -269,6 +282,7 @@ export const SPEND_ITEMS: NavigationItem[] = [
     color: "#EF4444",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
 ];
 
@@ -292,6 +306,7 @@ export const AUTOMATE_ITEMS: NavigationItem[] = [
     productMode: "ai",
     // Runner-only feature — has no web page (web route 404s).
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "triggers",
@@ -301,6 +316,7 @@ export const AUTOMATE_ITEMS: NavigationItem[] = [
     productMode: "ai",
     // Runner-only feature — has no web page (web route 404s).
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "watchers",
@@ -310,6 +326,7 @@ export const AUTOMATE_ITEMS: NavigationItem[] = [
     route: "/observe/watchers",
     color: "#06B6D4",
     platforms: ["runner"],
+    hidden: true,
   },
 ];
 
@@ -367,6 +384,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/library",
     color: "var(--brand-secondary)",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "state-machine",
@@ -376,6 +394,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/automation-builder/ui-bridge-states",
     color: "var(--brand-secondary)",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "specs",
@@ -385,6 +404,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/build/specs",
     color: "var(--brand-secondary)",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "regression",
@@ -395,6 +415,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     color: "var(--brand-secondary)",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "vga",
@@ -426,6 +447,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     color: "var(--brand-secondary)",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "product-tours",
@@ -436,6 +458,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     color: "var(--brand-secondary)",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "wrappers",
@@ -445,6 +468,7 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/wrappers",
     color: "#06B6D4",
     platforms: ["runner"],
+    hidden: true,
   },
 ];
 
@@ -468,6 +492,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     route: "/tools/error-monitor",
     color: "#4A90D9",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "processes",
@@ -476,6 +501,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     description: "Manage and monitor spawned child processes",
     color: "#06B6D4",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "activity-timeline",
@@ -485,6 +511,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     route: "/observe/activity-timeline",
     color: "#06B6D4",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "automation-health",
@@ -494,6 +521,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     color: "#10B981",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "reflection",
@@ -503,6 +531,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     productMode: "ai",
     // Runner-only feature — has no web page (web route 404s).
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "architecture",
@@ -510,6 +539,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     icon: "GitBranch",
     description: "Component dependency graph and SDK project architecture",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "api-surface",
@@ -518,6 +548,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     description: "Interactive map of every endpoint, command, query, and their connections",
     color: "#06B6D4",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "development-intelligence",
@@ -528,6 +559,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     color: "#8B5CF6",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "project-explainer",
@@ -537,6 +569,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     route: "/observe/explainer",
     color: "#06B6D4",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "decision-trail",
@@ -547,6 +580,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     color: "#8B5CF6",
     productMode: "ai",
     platforms: ["runner"],
+    hidden: true,
   },
   {
     id: "session-recap",
@@ -557,6 +591,7 @@ export const INSIGHTS_ITEMS: NavigationItem[] = [
     color: "#8B5CF6",
     platforms: ["runner"],
     productMode: "ai",
+    hidden: true,
   },
 ];
 
@@ -580,6 +615,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     route: "/configure/finding-rules",
     color: "#FFD700",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "config-hooks",
@@ -587,6 +623,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     icon: "Webhook",
     description: "Configure execution event triggers",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "config-ui-bridge",
@@ -594,6 +631,7 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     icon: "Plug",
     description: "Manage UI Bridge integrations for external apps",
     productMode: "ai",
+    hidden: true,
   },
   {
     id: "event-history",
@@ -683,6 +721,7 @@ export const DEV_ITEMS: NavigationItem[] = [
     description: "Inspect and interact with native desktop accessibility trees via UIA, AT-SPI, or AX APIs",
     color: "#06B6D4",
     platforms: ["runner"],
+    hidden: true,
   },
 ];
 
