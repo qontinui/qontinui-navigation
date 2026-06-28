@@ -906,6 +906,18 @@ export const SYSTEM_ITEMS: NavigationItem[] = [
     color: "#10B981",
   },
   {
+    // Member-visible coord layer. No adminOnly: any tenant member (Developer)
+    // can VIEW; per-page mutation controls stay gated on coord_is_admin in
+    // qontinui-web. Web-only — keeps it out of the runner sidebar.
+    id: "ai-dev-coordination",
+    label: "AI-Dev Coordination",
+    icon: "Network",
+    description: "Coordination layer — fleet, plans, gates, merge queue",
+    platforms: ["web"],
+    route: "/admin/coord",
+    color: "#06B6D4",
+  },
+  {
     id: "settings",
     label: "Settings",
     icon: "Settings",
