@@ -250,6 +250,16 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     platforms: ["runner"],
     productMode: "ai",
   },
+  {
+    id: "helper-tasks",
+    label: "Helper Tasks",
+    icon: "MessageSquare",
+    description: "Helper Task Queue — emit human spot-check tasks, review helper verdicts, invite helpers",
+    route: "/review/helper-tasks",
+    color: "#10B981",
+    platforms: ["runner"],
+    productMode: "ai",
+  },
 ];
 
 export const REVIEW_GROUP: NavigationGroup = {
