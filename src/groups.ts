@@ -975,15 +975,6 @@ export const SETTINGS_ITEMS: NavigationItem[] = [
 
 export const SYSTEM_ITEMS: NavigationItem[] = [
   {
-    id: "runners",
-    label: "Runners",
-    icon: "Server",
-    description: "Connected desktop runners",
-    platforms: ["web"],
-    route: "/runners",
-    color: "#10B981",
-  },
-  {
     id: "sessions",
     label: "Sessions",
     icon: "Terminal",
@@ -991,18 +982,6 @@ export const SYSTEM_ITEMS: NavigationItem[] = [
     platforms: ["web"],
     route: "/sessions",
     color: "#10B981",
-  },
-  {
-    // Member-visible coord layer. No adminOnly: any tenant member (Developer)
-    // can VIEW; per-page mutation controls stay gated on coord_is_admin in
-    // qontinui-web. Web-only — keeps it out of the runner sidebar.
-    id: "ai-dev-coordination",
-    label: "AI-Dev Coordination",
-    icon: "Network",
-    description: "Coordination layer — fleet, plans, gates, merge queue",
-    platforms: ["web"],
-    route: "/admin/coord",
-    color: "#06B6D4",
   },
   {
     id: "settings",
