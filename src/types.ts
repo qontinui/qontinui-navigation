@@ -114,6 +114,25 @@ export interface NavigationItem {
   hasChildren?: boolean;
   /** If true, clicking this item selects its first child instead of itself */
   selectsFirstChild?: boolean;
+  /**
+   * If true, this item is a parent (`hasChildren: true`) that ALSO has a page
+   * of its own: clicking it must activate the item's own id (in addition to
+   * opening its children flyout/submenu), not just expand.
+   *
+   * This is the third case in the parent-click contract, and it exists because
+   * the other two cannot express it:
+   *   - `selectsFirstChild: true`  — activates the FIRST CHILD's id (e.g.
+   *     "settings" → "settings-account"). The parent has no page of its own.
+   *   - `selectsFirstChild: false` — activates NOTHING; the click only
+   *     expands. Correct for a pure container.
+   *   - `hasOwnPage: true`         — activates the PARENT's own id (e.g.
+   *     "runs" → the Runs page). Use when the parent is a real destination.
+   *
+   * Consumers implementing item-click MUST honour this: when a parent has
+   * `hasOwnPage`, dispatch the tab/route change for `item.id` itself.
+   * Ignored for items without children.
+   */
+  hasOwnPage?: boolean;
   /** Platform availability - if not set, available on all platforms */
   platforms?: Platform[];
   /** Badge count or status to show on this item */
