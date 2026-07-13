@@ -42,8 +42,10 @@
  * Both platforms share this structure; per-item `platforms`/`productMode`
  * filters yield the right view for each (web has no Terminal; runner has no
  * Dashboard/Runners, etc.). qontinui-web additionally demotes a few items the
- * runner keeps (runs/active/findings/memory — task_run-scoped, not session-
- * scoped) via its own local list; those stay un-`hidden` here.
+ * runner keeps (runs/active/findings — task_run-scoped, not session-scoped)
+ * via its own local list; those stay un-`hidden` here. The observation-memory
+ * item is no longer among them: it is `platforms: ["runner"]` now, since web
+ * has no `observe/` route tree (its route 404s there).
  */
 
 import type { NavigationGroup, NavigationItem } from "./types";
@@ -217,7 +219,13 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     icon: "History",
     description: "Browse and manage all runs",
     hasChildren: true,
+    // Runs is a parent WITH a page of its own (/runs — the run browser).
+    // `selectsFirstChild: false` alone means "expand only, activate nothing",
+    // which left the item inert: clicking Runs opened the flyout but never
+    // dispatched a tab change. It must activate its OWN id, not its first
+    // child's ("run-recap"), so `selectsFirstChild` cannot express this.
     selectsFirstChild: false,
+    hasOwnPage: true,
     route: "/runs",
     color: "#4A90D9",
     productMode: "ai",
@@ -232,12 +240,21 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     productMode: "ai",
   },
   {
-    id: "memory",
+    // Id is "observations" (NOT "memory"): it must match the runner's
+    // `MainTabId` union member / `TabContent` case that actually renders this
+    // page. The old "memory" id was in no consumer's tab union, so clicking
+    // the item activated a tab that did not exist.
+    id: "observations",
     label: "Memory",
     icon: "Brain",
     description: "Cross-session observation memory from past runs",
     route: "/observe/memory",
     color: "#8B5CF6",
+    // Runner-only: qontinui-web has no `observe/` route tree at all, so this
+    // item's route 404s there — and because qontinui-web derives its co-pilot
+    // page map from getWebNavigation(), an un-gated item also advertises that
+    // 404 as a navigable target to the planner. Gate it at the source.
+    platforms: ["runner"],
     productMode: "ai",
   },
   {
