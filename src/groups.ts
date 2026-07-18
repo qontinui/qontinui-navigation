@@ -63,6 +63,11 @@ export const WORKSPACE_ITEMS: NavigationItem[] = [
     route: "/tools/visual-automation",
     color: "#10B981",
     productMode: "visual",
+    // Web-only surface: /tools/visual-automation exists in qontinui-web only.
+    // The runner has no tab/route for it, so without this filter the item would
+    // render in the runner sidebar as a dead click (Sidebar guard "Ignoring the
+    // click"). Tag web-only so filterGroupsForPlatform drops it from the runner.
+    platforms: ["web"],
   },
   {
     id: "prompt-home",
@@ -454,6 +459,10 @@ export const BUILD_ITEMS: NavigationItem[] = [
     // Visual GUI automation belongs to Visual mode, not AI Dev (removed from
     // the AI Dev sidebar on both runner and web).
     productMode: "visual",
+    // Web-only surface: /vga exists in qontinui-web only. The runner has no tab/
+    // route for it, so without this filter the item renders in the runner sidebar
+    // as a dead click. Tag web-only so filterGroupsForPlatform drops it.
+    platforms: ["web"],
   },
   {
     id: "orchestration-loop",
