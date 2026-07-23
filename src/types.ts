@@ -149,10 +149,18 @@ export interface NavigationItem {
    * sidebar until the user opts in via the "Show advanced automation features"
    * setting (wired through `setShowHiddenItems(true)`). The route/tab id is
    * still registered, so deep-links and programmatic tab-activation continue
-   * to resolve. Used to demote the workflow-authoring surfaces (workflow
-   * builder, DAG editor, orchestration loop, step builders) now that the
-   * Terminal is the primary entry point. */
-  hidden?: boolean;
+   * to resolve. Used to demote the verification-agentic loop-workflow surfaces
+   * (workflow builder, DAG editor, orchestration loop, step builders, the
+   * run/execution dashboards) now that the Terminal is the primary entry point.
+   *
+   * `true` demotes the item on EVERY platform. A platform list demotes it only
+   * on the named platforms — the runner and qontinui-web disagree about a
+   * handful of items (the runner's Home/prompt entry is advanced there but is
+   * still web's landing page; web's coord+sessions default drops runs/findings
+   * the runner keeps), and expressing that at the source beats each app
+   * carrying its own parallel demotion list that silently drifts.
+   */
+  hidden?: boolean | Platform[];
   /** Product mode visibility - "ai", "visual", or "both" (default: shown in all modes) */
   productMode?: "ai" | "visual" | "both";
   /** URL path for web routing (e.g., "/build/workflows") */

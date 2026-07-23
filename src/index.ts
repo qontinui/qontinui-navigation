@@ -89,6 +89,7 @@ export {
   getShowHiddenItems,
   // Platform filtering
   isItemAvailable,
+  isItemDemoted,
   filterItemsForPlatform,
   filterGroupForPlatform,
   filterGroupsForPlatform,

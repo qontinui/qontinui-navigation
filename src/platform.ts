@@ -81,6 +81,21 @@ export function getShowHiddenItems(): boolean {
 // ============================================================================
 
 /**
+ * Whether an item's `hidden` ("advanced") demotion applies on this platform.
+ *
+ * `hidden: true` demotes everywhere; `hidden: ["runner"]` demotes only on the
+ * runner. Absent/false is never demoted.
+ */
+export function isItemDemoted(
+  item: NavigationItem,
+  platform: Platform,
+): boolean {
+  const demoted = item.hidden;
+  if (!demoted) return false;
+  return demoted === true || demoted.includes(platform);
+}
+
+/**
  * Filter a navigation item based on platform.
  * Returns true if the item should be shown on the given platform.
  */
@@ -94,7 +109,7 @@ export function isItemAvailable(
   }
   // Exclude "advanced" hidden items unless the user has opted in.
   // The route/tab id stays registered — this only affects sidebar rendering.
-  if (item.hidden && !_showHiddenItems) {
+  if (isItemDemoted(item, platform) && !_showHiddenItems) {
     return false;
   }
   // Filter by product mode if one is set
