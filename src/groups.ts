@@ -8,10 +8,12 @@
  *   - platform:    "runner" | "web" | both (default) — which app shows the item
  *   - productMode: "ai" | "visual" | "both" | undefined (default=both) — which product mode
  *   - hiddenInProd: true — dev-only items hidden in production
- *   - hidden: true — "advanced" surfaces (the workflow-authoring tools) kept
- *     out of the default sidebar until the user opts in via "Show advanced
- *     automation features" (setShowHiddenItems). Route/tab id stays registered,
- *     so deep-links (e.g. the Terminal "save as workflow" disclosure) resolve.
+ *   - hidden: true | Platform[] — "advanced" surfaces (the loop-workflow and
+ *     workflow-authoring tools) kept out of the default sidebar until the user
+ *     opts in via "Show advanced automation features" (setShowHiddenItems).
+ *     Route/tab id stays registered, so deep-links (e.g. the Terminal
+ *     "save as workflow" disclosure) resolve. A platform list demotes on only
+ *     those platforms — see `NavigationItem.hidden`.
  *
  * ---------------------------------------------------------------------------
  * Terminal-centric information architecture (2026-06).
@@ -34,9 +36,21 @@
  *     (Groups that end up with no visible items are dropped by
  *     filterGroupsForPlatform, so no bare group header renders.)
  *
+ * 2026-07 follow-up — the loop-workflow残り. The first pass demoted the
+ * BUILDERS but left the loop's RUNTIME surfaces in the default set: the
+ * natural-language Home prompt (which composes and launches a
+ * setup→verification→agentic→completion workflow), the Active dashboard
+ * (phase badge, iteration counter, "did the fix work?" verification widget),
+ * and the GUI/loop-specific run detail tabs (Actions, Image Recognition,
+ * State Explorer, Test Results). Those are the loop paradigm's cockpit, not
+ * the Terminal's, so they are demoted too. What stays under Runs is the set a
+ * Terminal session actually produces — chat sessions create `task_runs` with
+ * `workflow_type: "chat"`, so Summary / Findings / AI Output / Statistics /
+ * AI Data remain first-class.
+ *
  * The default (toggle OFF, AI Dev mode) is therefore the lean, Terminal-first
- * set: WORKSPACE (Home / Terminal / Active / Productivity), REVIEW (Runs /
- * Findings / Memory / Knowledge), and SYSTEM (Settings / Help). This mirrors
+ * set: WORKSPACE (Terminal / Productivity), REVIEW (Runs / Findings / Memory /
+ * Knowledge / Helper Tasks), and SYSTEM (Settings / Help). This mirrors
  * qontinui-web's coord+sessions-centric default menu.
  *
  * Both platforms share this structure; per-item `platforms`/`productMode`
@@ -72,6 +86,12 @@ export const WORKSPACE_ITEMS: NavigationItem[] = [
     route: "/prompt-home",
     color: "#8B5CF6",
     productMode: "ai",
+    // Runner-only demotion. On the runner this page COMPOSES a loop workflow
+    // (setup → verification → agentic → completion) from a prompt and hands it
+    // to the executor — it is the loop paradigm's front door, not the
+    // Terminal's, so it belongs behind the advanced disclosure there. On
+    // qontinui-web the same route is the app's landing page, so it stays.
+    hidden: ["runner"],
   },
   {
     id: "gui-automation",
@@ -81,6 +101,9 @@ export const WORKSPACE_ITEMS: NavigationItem[] = [
     route: "/execute",
     color: "#10B981",
     productMode: "visual",
+    // Web demotes it (coord+sessions default); the runner reaches it through
+    // the Visual product mode, which is itself disclosure-gated there.
+    hidden: ["web"],
   },
   {
     id: "terminal",
@@ -100,6 +123,11 @@ export const WORKSPACE_ITEMS: NavigationItem[] = [
     route: "/runs/active",
     color: "#4A90D9",
     productMode: "ai",
+    // The loop-workflow cockpit: phase badge, iteration counter, GUI/Playwright
+    // widgets and the "did the fix work?" verification panel. A Terminal
+    // session watches itself in the Terminal, so this is advanced on both
+    // platforms (web already demoted it locally).
+    hidden: true,
   },
   {
     id: "productivity",
@@ -140,6 +168,8 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Action execution log",
     route: "/runs/actions",
     color: "#4A90D9",
+    // GUI action log — only ever populated by a visual/loop workflow run.
+    hidden: true,
   },
   {
     id: "run-image",
@@ -148,6 +178,7 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Visual recognition results",
     route: "/runs/image-recognition",
     color: "#4A90D9",
+    hidden: true,
   },
   {
     id: "run-findings",
@@ -164,6 +195,8 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "State exploration results",
     route: "/runs/state-exploration",
     color: "#4A90D9",
+    // State-machine exploration is a visual-GUI-automation artifact.
+    hidden: true,
   },
   {
     id: "run-tests",
@@ -172,6 +205,8 @@ export const SESSION_ITEMS: NavigationItem[] = [
     description: "Playwright test results",
     route: "/runs/test-results",
     color: "#4A90D9",
+    // Populated by the loop's verification phase, never by a chat session.
+    hidden: true,
   },
   {
     id: "run-ai-output",
@@ -229,6 +264,11 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     route: "/runs",
     color: "#4A90D9",
     productMode: "ai",
+    // Runner keeps it: a Terminal/Claude session creates a `task_run`
+    // (`workflow_type: "chat"`), so this IS the runner's session history.
+    // qontinui-web demotes it — its sessions live in `coord.sessions` and
+    // produce no task_runs.
+    hidden: ["web"],
   },
   {
     id: "run-findings",
@@ -238,6 +278,7 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     route: "/runs/findings",
     color: "#4A90D9",
     productMode: "ai",
+    hidden: ["web"],
   },
   {
     // Id is "observations" (NOT "memory"): it must match the runner's
@@ -452,8 +493,11 @@ export const BUILD_ITEMS: NavigationItem[] = [
     route: "/vga",
     color: "var(--brand-secondary)",
     // Visual GUI automation belongs to Visual mode, not AI Dev (removed from
-    // the AI Dev sidebar on both runner and web).
+    // the AI Dev sidebar on both runner and web). Web demotes it outright; on
+    // the runner it is reached through the Visual product mode, which is itself
+    // behind the "Show visual GUI automation" disclosure.
     productMode: "visual",
+    hidden: ["web"],
   },
   {
     id: "orchestration-loop",
@@ -667,6 +711,10 @@ export const CONFIGURE_ITEMS: NavigationItem[] = [
     description: "Workflow event bus, queue status, circuit breaker",
     hiddenInProd: true,
     productMode: "ai",
+    // Workflow event bus — a loop-workflow internal. Dev-only AND advanced, so
+    // the CONFIGURE group has no default-visible item left and the group header
+    // is dropped entirely by filterGroupsForPlatform.
+    hidden: true,
   },
 ];
 
