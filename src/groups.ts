@@ -77,6 +77,15 @@ export const WORKSPACE_ITEMS: NavigationItem[] = [
     route: "/tools/visual-automation",
     color: "#10B981",
     productMode: "visual",
+    // Web-only: `/tools/visual-automation` is a Next.js route in qontinui-web.
+    // The runner has no tab for this id — it is in no `MainTabId` union member
+    // and `TabContent` has no case — so on the runner the item rendered and its
+    // click was REFUSED by the sidebar's id guard with a console error. Dead
+    // nav items are worse than absent ones: the user reads the refusal as the
+    // app being broken. (Latent since the item was added; surfaced when Visual
+    // mode became a deliberate opt-in and this became one of only four items
+    // in it.)
+    platforms: ["web"],
   },
   {
     id: "prompt-home",
@@ -492,11 +501,14 @@ export const BUILD_ITEMS: NavigationItem[] = [
     description: "Visual GUI automation — build state machines and inspect runs",
     route: "/vga",
     color: "var(--brand-secondary)",
-    // Visual GUI automation belongs to Visual mode, not AI Dev (removed from
-    // the AI Dev sidebar on both runner and web). Web demotes it outright; on
-    // the runner it is reached through the Visual product mode, which is itself
-    // behind the "Show visual GUI automation" disclosure.
+    // Visual GUI automation belongs to Visual mode, not AI Dev.
     productMode: "visual",
+    // Web-only for the same reason as `visual-dashboard`: `/vga` is a
+    // qontinui-web route and the runner has no `vga` tab, so the item was a
+    // dead click there. `hidden: ["web"]` additionally keeps it out of web's
+    // coord+sessions default menu — so it now appears in exactly one place:
+    // web, in Visual mode, with the advanced disclosure on.
+    platforms: ["web"],
     hidden: ["web"],
   },
   {

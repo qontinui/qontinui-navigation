@@ -146,6 +146,23 @@ describe("the default runner menu is Terminal-first", () => {
     );
   });
 
+  it("offers no visual-mode item the runner cannot actually open", () => {
+    // `visual-dashboard` (/tools/visual-automation) and `vga` (/vga) are
+    // qontinui-web routes; the runner has no tab for either, so rendering them
+    // produced a nav entry whose click the runner REFUSES. Every item left in
+    // the runner's Visual mode must correspond to a real runner page.
+    setProductMode("visual");
+    setShowHiddenItems(true);
+    const visible = idsIn(getRunnerNavigation());
+    expect(visible).not.toContain("visual-dashboard");
+    expect(visible).not.toContain("vga");
+    expect(visible).toContain("gui-automation");
+
+    // …and they are still offered on web, which does have those routes.
+    const web = idsIn(getWebNavigation());
+    expect(web).toEqual(expect.arrayContaining(["visual-dashboard", "vga"]));
+  });
+
   it("drops a group whose every item is demoted rather than rendering a bare header", () => {
     setDevelopmentMode(true); // CONFIGURE's last item is also hiddenInProd
     expect(getRunnerNavigation().map((g) => g.id)).not.toContain("configure");
