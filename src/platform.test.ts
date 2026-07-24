@@ -90,7 +90,7 @@ describe("isItemAvailable", () => {
 describe("the default runner menu is Terminal-first", () => {
   beforeEach(() => setProductMode("ai"));
 
-  it("drops the loop-workflow runtime surfaces", () => {
+  it("drops the loop-workflow runtime surfaces and the run-review group", () => {
     const visible = idsIn(getRunnerNavigation());
 
     // The loop paradigm's front door and cockpit.
@@ -99,27 +99,32 @@ describe("the default runner menu is Terminal-first", () => {
     // Its authoring surfaces (demoted in 0.2.0, still demoted).
     expect(visible).not.toContain("unified-workflow-builder");
     expect(visible).not.toContain("orchestration-loop");
+    // The whole REVIEW group reads loop/agentic run data — the run browser,
+    // findings, observation memory, knowledge acquisition, and helper HITL —
+    // so none of it belongs in the Terminal-first default. (Demoted in 0.3.2;
+    // the run detail tabs under them were already demoted in 0.2.0.)
+    for (const reviewSurface of [
+      "runs",
+      "run-findings",
+      "observations",
+      "knowledge-explorer",
+      "helper-tasks",
+    ]) {
+      expect(visible).not.toContain(reviewSurface);
+    }
 
     // What a Terminal session actually needs.
     expect(visible).toEqual(
-      expect.arrayContaining([
-        "terminal",
-        "productivity",
-        "runs",
-        "run-findings",
-        "observations",
-        "knowledge-explorer",
-        "helper-tasks",
-        "settings",
-        "help",
-      ]),
+      expect.arrayContaining(["terminal", "productivity", "settings", "help"]),
     );
   });
 
   it("keeps the chat-session run tabs and drops the GUI/verification ones", () => {
-    // A Terminal session creates a task_run (`workflow_type: "chat"`), so the
-    // run detail tabs it populates stay; the ones only a visual/loop run can
-    // fill do not.
+    // The run detail tabs split by who can populate them: a chat task_run
+    // (`workflow_type: "chat"`) fills these, so they are never demoted; the
+    // GUI/verification tabs only a visual/loop run can fill are `hidden` and
+    // drop without the disclosure. (The Runs parent itself is now demoted too,
+    // but its child set is filtered independently of the parent.)
     const children = getChildrenForPlatform("runs", "runner").map((c) => c.id);
     expect(children).toEqual(
       expect.arrayContaining([
@@ -139,7 +144,16 @@ describe("the default runner menu is Terminal-first", () => {
     setShowHiddenItems(true);
     const visible = idsIn(getRunnerNavigation());
     expect(visible).toEqual(
-      expect.arrayContaining(["prompt-home", "active", "unified-workflow-builder"]),
+      expect.arrayContaining([
+        "prompt-home",
+        "active",
+        "unified-workflow-builder",
+        "runs",
+        "run-findings",
+        "observations",
+        "knowledge-explorer",
+        "helper-tasks",
+      ]),
     );
     expect(getChildrenForPlatform("runs", "runner").map((c) => c.id)).toEqual(
       expect.arrayContaining(["run-actions", "run-image", "run-state-explorer", "run-tests"]),
