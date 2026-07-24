@@ -43,23 +43,34 @@
  * (phase badge, iteration counter, "did the fix work?" verification widget),
  * and the GUI/loop-specific run detail tabs (Actions, Image Recognition,
  * State Explorer, Test Results). Those are the loop paradigm's cockpit, not
- * the Terminal's, so they are demoted too. What stays under Runs is the set a
- * Terminal session actually produces — chat sessions create `task_runs` with
- * `workflow_type: "chat"`, so Summary / Findings / AI Output / Statistics /
- * AI Data remain first-class.
+ * the Terminal's, so they are demoted too.
+ *
+ * 2026-07 second follow-up (0.3.2) — the whole REVIEW group goes behind the
+ * disclosure too. Runs, Findings, Memory, Knowledge and Helper Tasks all read
+ * loop/agentic RUN data — the task_run browser and its detail tabs, findings
+ * from the orchestrator + loop reflection, observation memory written only by
+ * the loop executor + agentic reflection, agentic knowledge acquisition, and
+ * the helper-task HITL queue (spot-checks emitted on a spec-check
+ * partial-match, verdicts fed back into reflection). None of it is produced by
+ * a Terminal session, whose live output is the Terminal itself, so REVIEW is
+ * an advanced concern. (A chat session does create a `task_run`, but reviewing
+ * past runs is not the Terminal-first daily surface.) The run detail tabs
+ * beneath Runs were already demoted above; now their parents are too.
  *
  * The default (toggle OFF, AI Dev mode) is therefore the lean, Terminal-first
- * set: WORKSPACE (Terminal / Productivity), REVIEW (Runs / Findings / Memory /
- * Knowledge / Helper Tasks), and SYSTEM (Settings / Help). This mirrors
- * qontinui-web's coord+sessions-centric default menu.
+ * set: WORKSPACE (Terminal / Productivity) and SYSTEM (Settings / Help). The
+ * REVIEW group empties out of the default menu entirely (dropped by
+ * filterGroupsForPlatform) and reappears, with WORKSPACE's loop surfaces and
+ * the legacy builder groups, only under "Show advanced automation features".
  *
  * Both platforms share this structure; per-item `platforms`/`productMode`
  * filters yield the right view for each (web has no Terminal; runner has no
- * Dashboard/Runners, etc.). qontinui-web additionally demotes a few items the
- * runner keeps (runs/active/findings — task_run-scoped, not session-scoped)
- * via its own local list; those stay un-`hidden` here. The observation-memory
- * item is no longer among them: it is `platforms: ["runner"]` now, since web
- * has no `observe/` route tree (its route 404s there).
+ * Dashboard/Runners, etc.). The REVIEW items are now `hidden: true`, so both
+ * platforms demote them (web already kept runs/active/findings out via its own
+ * local list; that list is now redundant for these ids but harmless). The
+ * observation-memory + knowledge + helper-tasks items are additionally
+ * `platforms: ["runner"]`, since web has no `observe/` or `review/` route tree
+ * (those routes 404 there).
  */
 
 import type { NavigationGroup, NavigationItem } from "./types";
