@@ -273,11 +273,14 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     route: "/runs",
     color: "#4A90D9",
     productMode: "ai",
-    // Runner keeps it: a Terminal/Claude session creates a `task_run`
-    // (`workflow_type: "chat"`), so this IS the runner's session history.
-    // qontinui-web demotes it — its sessions live in `coord.sessions` and
-    // produce no task_runs.
-    hidden: ["web"],
+    // Demoted behind "advanced" on the runner too. A Terminal/Claude session
+    // does create a `task_run`, but this is a review-of-past-automation
+    // browser whose detail tabs (Findings, Actions, Image Recognition, State
+    // Explorer, Test Results, …) are loop/agentic artifacts — the Terminal
+    // itself surfaces live session output, so the run browser is an advanced
+    // concern, not part of the Terminal-first default sidebar. qontinui-web
+    // has no task_runs at all, so `hidden: true` (both platforms) is correct.
+    hidden: true,
   },
   {
     id: "run-findings",
@@ -287,7 +290,9 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     route: "/runs/findings",
     color: "#4A90D9",
     productMode: "ai",
-    hidden: ["web"],
+    // Findings are written by the orchestrator (agentic workers) + loop
+    // reflection, never by a chat session — an advanced/loop surface.
+    hidden: true,
   },
   {
     // Id is "observations" (NOT "memory"): it must match the runner's
@@ -306,6 +311,9 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     // 404 as a navigable target to the planner. Gate it at the source.
     platforms: ["runner"],
     productMode: "ai",
+    // Observation memory is written only by the loop executor + agentic
+    // reflection, never by a chat session — demote behind "advanced".
+    hidden: true,
   },
   {
     id: "knowledge-explorer",
@@ -316,6 +324,9 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     color: "#F97316",
     platforms: ["runner"],
     productMode: "ai",
+    // Agentic-research tooling — its acquisition stats accumulate during
+    // agentic research phases, not Terminal sessions. Behind "advanced".
+    hidden: true,
   },
   {
     id: "helper-tasks",
@@ -326,6 +337,10 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     color: "#10B981",
     platforms: ["runner"],
     productMode: "ai",
+    // Helper Tasks emit HITL spot-checks when a spec-check lands in the
+    // partial-match band and feed verdicts back into reflection — an
+    // agentic-verification surface, not a Terminal concern. Behind "advanced".
+    hidden: true,
   },
 ];
 
