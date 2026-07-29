@@ -87,8 +87,26 @@ describe("isItemAvailable", () => {
   });
 });
 
-describe("the default runner menu is Terminal-first", () => {
+describe("the default runner menu is Projects-then-Terminal", () => {
   beforeEach(() => setProductMode("ai"));
+
+  it("leads with Projects", () => {
+    // Ordering is load-bearing, not cosmetic: `projects` is also the runner's
+    // landing tab for a fresh install, and a landing tab that is not the first
+    // sidebar entry reads as the app having opened somewhere arbitrary.
+    const visible = idsIn(getRunnerNavigation());
+    expect(visible[0]).toBe("projects");
+    expect(visible.indexOf("projects")).toBeLessThan(visible.indexOf("terminal"));
+  });
+
+  it("keeps Projects off the web menu", () => {
+    // The dashboard joins saved projects against runner-local process/session
+    // state; qontinui-web has no route for it, so offering it there would be a
+    // dead click (the `visual-dashboard` failure mode, in reverse).
+    expect(idsIn(getWebNavigation())).not.toContain("projects");
+    setShowHiddenItems(true);
+    expect(idsIn(getWebNavigation())).not.toContain("projects");
+  });
 
   it("drops the loop-workflow runtime surfaces and the run-review group", () => {
     const visible = idsIn(getRunnerNavigation());
@@ -115,7 +133,7 @@ describe("the default runner menu is Terminal-first", () => {
 
     // What a Terminal session actually needs.
     expect(visible).toEqual(
-      expect.arrayContaining(["terminal", "productivity", "settings", "help"]),
+      expect.arrayContaining(["projects", "terminal", "productivity", "settings", "help"]),
     );
   });
 

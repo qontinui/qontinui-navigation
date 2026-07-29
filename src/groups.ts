@@ -57,11 +57,19 @@
  * past runs is not the Terminal-first daily surface.) The run detail tabs
  * beneath Runs were already demoted above; now their parents are too.
  *
- * The default (toggle OFF, AI Dev mode) is therefore the lean, Terminal-first
- * set: WORKSPACE (Terminal / Productivity) and SYSTEM (Settings / Help). The
- * REVIEW group empties out of the default menu entirely (dropped by
+ * The default (toggle OFF, AI Dev mode) is therefore the lean, project-first
+ * set: WORKSPACE (Projects / Terminal / Productivity) and SYSTEM (Settings /
+ * Help). The REVIEW group empties out of the default menu entirely (dropped by
  * filterGroupsForPlatform) and reappears, with WORKSPACE's loop surfaces and
  * the legacy builder groups, only under "Show advanced automation features".
+ *
+ * 2026-07 follow-up — Projects leads WORKSPACE on the runner. The Terminal is
+ * still where the work happens, but it asks the user to already know which
+ * directory they are working in. Projects answers the prior question — what am
+ * I building, and what state is each one in — so it is placed above Terminal
+ * and is the runner's landing tab for installs with nothing persisted. Nothing
+ * is demoted by this: Terminal keeps its position and every existing install
+ * keeps the tab it last had open.
  *
  * Both platforms share this structure; per-item `platforms`/`productMode`
  * filters yield the right view for each (web has no Terminal; runner has no
@@ -80,6 +88,22 @@ import type { NavigationGroup, NavigationItem } from "./types";
 // ============================================================================
 
 export const WORKSPACE_ITEMS: NavigationItem[] = [
+  {
+    id: "projects",
+    label: "Projects",
+    icon: "FolderOpen",
+    description: "What you're building, and what state each project is in",
+    route: "/projects",
+    color: "#8B5CF6",
+    productMode: "ai",
+    // First in WORKSPACE, and the runner's landing tab for a fresh install
+    // (`tab-types.ts` DEFAULT_TAB_ID). "What am I building and how is it doing"
+    // is the question a user has before they have a path to open a Terminal in,
+    // so this sits above Terminal rather than beside it. Runner-only: the
+    // dashboard joins saved projects against runner-local process/session
+    // state, which qontinui-web has no equivalent of.
+    platforms: ["runner"],
+  },
   {
     id: "visual-dashboard",
     label: "Dashboard",

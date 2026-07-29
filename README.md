@@ -5,7 +5,7 @@ Shared navigation structure for Qontinui applications. Provides type-safe naviga
 ## Installation
 
 ```bash
-npm install qontinui-navigation
+npm install @qontinui/navigation
 ```
 
 ## Features
@@ -28,7 +28,7 @@ import {
   getRunnerNavigation,
   createInitialState,
   navigationReducer,
-} from "qontinui-navigation";
+} from "@qontinui/navigation";
 
 // Get platform-specific navigation
 const webNav = getWebNavigation();
@@ -47,7 +47,7 @@ const initialState = createInitialState({
 import {
   filterGroupsForPlatform,
   buildNavigationConfig,
-} from "qontinui-navigation";
+} from "@qontinui/navigation";
 
 // Filter navigation for a specific platform
 const config = buildNavigationConfig("runner", {
@@ -67,7 +67,7 @@ import {
   createInitialState,
   navigationReducer,
   navigationActions,
-} from "qontinui-navigation";
+} from "@qontinui/navigation";
 
 // Create initial state
 let state = createInitialState();
@@ -88,7 +88,7 @@ import {
   serializeState,
   deserializeState,
   STORAGE_KEYS,
-} from "qontinui-navigation";
+} from "@qontinui/navigation";
 
 // Save state
 localStorage.setItem(STORAGE_KEYS.state, serializeState(state));
@@ -156,16 +156,23 @@ Guardrails (Phase 3 Item 8):
 
 ## Release Process
 
-This package is published to npm as `qontinui-navigation` (unscoped) via a tag-triggered GitHub Actions workflow.
+This package is published to npm as **`@qontinui/navigation` (scoped)** via a tag-triggered GitHub Actions workflow. (It is not unscoped — `package.json` `name` is `@qontinui/navigation`, `publish.yml` passes `--access public` because the scope defaults to restricted, and every consumer depends on the scoped name.)
 
 To cut a release:
 
-1. Bump `version` in `package.json` (use semver; `0.x` minor bumps for breaking changes while pre-1.0).
+1. Bump `version` in `package.json`. Pre-1.0 rule: **minor** for a breaking change *or*
+   for a new nav item; **patch** for a fix that changes no item's existence or id.
+   The reason a new nav item is a minor and not a patch: consumers depend on
+   `^0.3.x`, and a caret range on `0.x` pins the minor — so a patch bump is picked up
+   *automatically* by an app whose build has no page behind the new id, which renders a
+   dead nav row the sidebar guard then refuses. A minor bump forces the consumer to bump
+   deliberately, landing the item and its page together.
+   **Also sync `package-lock.json`'s root `version`** — it has drifted from `package.json` before.
 2. Commit the version bump on `master`.
 3. Tag the commit with a `v`-prefixed tag matching the version, e.g. `git tag v0.2.0`.
 4. Push the tag: `git push origin v0.2.0`.
 
-The `.github/workflows/publish.yml` workflow runs on `push: tags: ['v*']` and publishes to npm using the org-level `NPM_TOKEN` secret. Verify the publish succeeded by checking the workflow run and `npm view qontinui-navigation version`.
+The `.github/workflows/publish.yml` workflow runs on `push: tags: ['v*']` and publishes to npm using the org-level `NPM_TOKEN` secret. Verify the publish succeeded by checking the workflow run and `npm view @qontinui/navigation version`.
 
 For local validation before tagging:
 
