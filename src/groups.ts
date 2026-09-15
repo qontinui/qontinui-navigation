@@ -177,7 +177,7 @@ export const WORKSPACE_ITEMS: NavigationItem[] = [
     id: "productivity",
     label: "Productivity",
     icon: "ClipboardList",
-    description: "Plan/task board, coordinator dashboard, and knowledge browser",
+    description: "Knowledge browser, file activity, and overlapping intents",
     route: "/productivity",
     color: "#F59E0B",
     platforms: ["runner"],
