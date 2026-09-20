@@ -318,6 +318,20 @@ export const REVIEW_ITEMS: NavigationItem[] = [
     hidden: true,
   },
   {
+    // DELIBERATE ALIAS. This id is also a child of `runs` (SESSION_ITEMS),
+    // which is what makes it the only id in this file that appears twice.
+    // Both entries name the SAME destination — route `/runs/findings`, tab id
+    // `run-findings` — so a consumer keyed on the id lands in the right place
+    // from either. What the two do NOT share is their demotion: the top-level
+    // entry is `hidden: true` while the run-detail child is not, because the
+    // child is reachable only once you are already inside a run. The
+    // consequence worth knowing is that `findItemById("run-findings")` and
+    // `getItemGroup("run-findings")` resolve to THIS entry — group items are
+    // walked before CHILDREN_MAP in `getAllItems()` — so a consumer reading
+    // `hidden` back off a lookup gets the top-level answer, not the child's.
+    // Filter the child list with `getChildrenForPlatform("runs", …)` instead.
+    // `groups.test.ts` pins this as the only duplicate and pins the two
+    // entries to one route; a NEW collision is a bug, not a second alias.
     id: "run-findings",
     label: "Findings",
     icon: "FileText",
@@ -790,6 +804,17 @@ export const CONFIGURE_GROUP: NavigationGroup = {
 // ============================================================================
 // DEV Group — all dev-only items, entire group hidden in production
 // ============================================================================
+//
+// `hiddenInProd` narrows WHO sees an item; it does not make a missing page
+// harmless. An item here still renders for every developer running a dev
+// build, and if no consumer has a page behind its id the click is refused by
+// the sidebar's id guard — the `visual-dashboard` / `vga` failure mode, in a
+// group where it is seen by fewer people and so survives longer. `autoresearch`
+// lived here that way: qontinui-runner deleted the whole subsystem in
+// `ac36fa4e4` ("rip dead autoresearch subsystem"), taking the tab id out of
+// `MainTabId` / `VALID_TAB_IDS` / `TAB_LABELS` / `PAGE_TO_TAB` with it, and the
+// nav item stayed. Before adding an item here, confirm the id is a real tab in
+// every platform it names.
 
 export const DEV_ITEMS: NavigationItem[] = [
   {
@@ -800,16 +825,6 @@ export const DEV_ITEMS: NavigationItem[] = [
     hiddenInProd: true,
     color: "#8B5CF6",
     productMode: "ai",
-  },
-  {
-    id: "autoresearch",
-    label: "Autoresearch",
-    icon: "FlaskConical",
-    description: "Compare workflow architectures with statistical A/B testing",
-    hiddenInProd: true,
-    color: "#8B5CF6",
-    productMode: "ai",
-    platforms: ["runner"],
   },
   {
     id: "meta-optimizer",
